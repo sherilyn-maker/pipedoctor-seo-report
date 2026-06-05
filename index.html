@@ -133,6 +133,22 @@
   .rank-warn { color: #E67E22; font-weight: 700; }
   .rank-bad { color: #C0392B; font-weight: 700; }
 
+  /* PAGE REC CARDS */
+  .page-rec-card { background: var(--card); border-radius: 10px; padding: 20px 22px; margin-bottom: 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 6px solid var(--primary); }
+  .page-rec-card.critical { border-left-color: #C0392B; }
+  .page-rec-card.high { border-left-color: #E67E22; }
+  .page-rec-card.medium { border-left-color: #F1C40F; }
+  .page-rec-card.missing { border-left-color: #8E44AD; }
+  .page-rec-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  .page-rec-url { font-family: monospace; font-size: 13px; font-weight: 700; color: var(--primary); word-break: break-all; }
+  .page-rec-stats { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+  .stat-chip { background: #EBF2FA; color: var(--primary); padding: 3px 10px; border-radius: 12px; font-size: 11.5px; font-weight: 600; }
+  .stat-chip.bad { background: #FADBD8; color: #A93226; }
+  .rec-section { margin-bottom: 12px; }
+  .rec-section h4 { font-size: 12.5px; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .rec-section ul, .rec-section ol { padding-left: 18px; }
+  .rec-section li { font-size: 13px; line-height: 1.6; margin-bottom: 3px; color: var(--text); }
+
   /* RESPONSIVE */
   @media (max-width: 768px) {
     .tab-pane { padding: 16px; }
@@ -163,8 +179,9 @@
   <button class="tab-btn" data-tab="tab-gsc">🔎 Search Console</button>
   <button class="tab-btn" data-tab="tab-coreupdate">🛡 Core Update Audit</button>
   <button class="tab-btn" data-tab="tab-ga4">📊 GA4 Analytics</button>
+  <button class="tab-btn" data-tab="tab-content">📝 Content</button>
   <button class="tab-btn" data-tab="tab-onpage">🔧 On-Page SEO</button>
-  <button class="tab-btn" data-tab="tab-content">📅 Content Calendar</button>
+  <button class="tab-btn" data-tab="tab-contentcal">📅 Content Calendar</button>
   <button class="tab-btn" data-tab="tab-local">📌 Local SEO</button>
   <button class="tab-btn" data-tab="tab-competitive">⚔ Competitive</button>
   <button class="tab-btn" data-tab="tab-actions">🚀 Priority Actions</button>
@@ -272,6 +289,23 @@
     <div class="kpi-card orange"><div class="kpi-label">GBP Impressions</div><div class="kpi-value">147</div><div class="kpi-delta down">↓ Low visibility</div></div>
     <div class="kpi-card green"><div class="kpi-label">CallRail Calls (Mar)</div><div class="kpi-value">134</div><div class="kpi-delta neutral">131 answered</div></div>
     <div class="kpi-card green"><div class="kpi-label">Answer Rate</div><div class="kpi-value">97.8%</div><div class="kpi-delta up">↑ Excellent</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📞 CallRail Call Tracking</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Month</th><th>Total Calls</th><th>Answered</th><th>Missed</th><th>Answer Rate</th></tr></thead>
+        <tbody>
+          <tr><td>Feb 2026</td><td>1</td><td>1</td><td>0</td><td><span class="badge badge-green">100%</span></td></tr>
+          <tr><td>Mar 2026</td><td>134</td><td>131</td><td>3</td><td><span class="badge badge-green">97.8%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight-box" style="margin-top:14px;">
+      <div class="insight-title">CallRail Integration Active</div>
+      <p>CallRail data integration is active. Jan and Apr 2026 data pending — verify tracking code is firing on all pages. March shows strong 134 calls with 97.8% answer rate, confirming excellent call handling. Scale top-of-funnel to grow call volume.</p>
+    </div>
   </div>
 
   <div class="two-col">
@@ -841,8 +875,399 @@
   </div>
 </div>
 
-<!-- ===== TAB 7: CONTENT CALENDAR ===== -->
+<!-- ===== TAB 6B: CONTENT RECOMMENDATIONS ===== -->
 <div id="tab-content" class="tab-pane">
+  <div class="section-title">Content &amp; Page Optimization Recommendations</div>
+  <div class="section-sub">Page-by-page fix list based on GSC data · Addresses client's ranking drops for sewer/plumbing keywords</div>
+
+  <div class="insight-box red" style="margin-bottom:20px;">
+    <div class="insight-title">🚨 Why Rankings Dropped — Root Cause Analysis</div>
+    <p>GSC data confirms the client's concern: sewer-related query impressions crashed 94% from October 2025 (13,604) to December 2025 (833), coinciding with Google's November 2025 Core Update. The cause is multiple service/location pages with massive impression volume (245K–199K) ranking at positions 29–59 — page 3 to 6 — due to thin, templated content. Google demoted these pages after the core update. The fix requires expanding each page with unique, in-depth content, proper schema, and internal linking.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 Underperforming Pages — Summary Table</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Priority</th><th>Page URL</th><th>Impressions</th><th>Current Pos</th><th>Target Pos</th><th>Est. Gain</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge badge-red">🔴 CRITICAL</span></td><td><code>/sewer-and-drain/sewer-camera-inspection-alexandria-va/</code></td><td>245,975</td><td class="rank-bad">28.9</td><td>5–10</td><td>+400–800 clicks/mo</td></tr>
+          <tr><td><span class="badge badge-red">🔴 CRITICAL</span></td><td><code>/service-area/fairfax-va/sewer-repair/</code></td><td>199,314</td><td class="rank-bad">36.8</td><td>5–10</td><td>+350–600 clicks/mo</td></tr>
+          <tr><td><span class="badge badge-red">🔴 CRITICAL</span></td><td><code>/sewer-and-drain/hydro-jetting-alexandria-va/</code></td><td>140,979</td><td class="rank-bad">22.5</td><td>5–10</td><td>+200–400 clicks/mo</td></tr>
+          <tr><td><span class="badge badge-red">🔴 CRITICAL</span></td><td><code>/service-area/arlington-va/sewer-camera-inspection/</code></td><td>106,809</td><td class="rank-bad">33.3</td><td>5–10</td><td>+150–250 clicks/mo</td></tr>
+          <tr><td><span class="badge badge-red">🔴 CRITICAL</span></td><td><code>/service-area/fairfax-va/drain-cleaning/</code></td><td>58,052</td><td class="rank-bad">33.9</td><td>5–10</td><td>+80–130 clicks/mo</td></tr>
+          <tr><td><span class="badge badge-orange">🟠 HIGH</span></td><td><code>/service-area/fairfax-va/sewer-camera-inspection/</code></td><td>50,778</td><td class="rank-bad">58.8</td><td>10–20</td><td>+60–100 clicks/mo</td></tr>
+          <tr><td><span class="badge badge-orange">🟠 HIGH</span></td><td><code>/service-area/fairfax-va/trenchless-pipe-repair/</code></td><td>49,526</td><td class="rank-bad">28.9</td><td>5–10</td><td>+70–120 clicks/mo</td></tr>
+          <tr><td><span class="badge badge-orange">🟠 HIGH</span></td><td><code>/service-area/arlington-va/sewer-repair/</code></td><td>38,756</td><td class="rank-bad">48.1</td><td>10–20</td><td>+50–90 clicks/mo</td></tr>
+          <tr><td><span class="badge badge-orange">🟠 HIGH</span></td><td><code>/plumbing/sump-pumps-alexandria-va/</code></td><td>37,761</td><td class="rank-bad">46.9</td><td>10–20</td><td>+45–80 clicks/mo</td></tr>
+          <tr><td><span class="badge badge-orange">🟠 HIGH</span></td><td><code>/plumbing/garbage-disposal-alexandria-va/</code></td><td>22,085</td><td class="rank-warn">22.3</td><td>5–10</td><td>+30–60 clicks/mo</td></tr>
+          <tr><td><span class="badge badge-gray">🟡 MEDIUM</span></td><td><code>/plumbing/water-heaters-alexandria-va/</code></td><td>14,856</td><td class="rank-bad">35.9</td><td>10–20</td><td>+20–40 clicks/mo</td></tr>
+          <tr><td><span class="badge badge-gray">🟡 MEDIUM</span></td><td><code>/service-area/fairfax-va/water-heater-repair/</code></td><td>12,736</td><td class="rank-warn">21.7</td><td>5–10</td><td>+20–35 clicks/mo</td></tr>
+          <tr><td><span class="badge badge-gray">🟡 MEDIUM</span></td><td><code>/service-area/falls-church-va/water-heater-repair/</code></td><td>12,378</td><td class="rank-warn">25.2</td><td>5–10</td><td>+18–32 clicks/mo</td></tr>
+          <tr><td><span class="badge badge-gray">🟡 MEDIUM</span></td><td><code>/service-area/fredericksburg-va/</code></td><td>6,031</td><td class="rank-bad">34.7</td><td>5–15</td><td>+15–30 clicks/mo</td></tr>
+          <tr><td><span class="badge badge-blue">➕ MISSING</span></td><td><code>/sewer-pipe-repair-replacement/</code> (CREATE)</td><td>0</td><td>N/A</td><td>1–5</td><td>+100–200 clicks/mo</td></tr>
+          <tr><td><span class="badge badge-blue">➕ MISSING</span></td><td><code>/drain-cleaning-near-me/</code> (CREATE)</td><td>0</td><td>N/A</td><td>1–5</td><td>+50–80 clicks/mo</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PAGE 1 -->
+  <div class="page-rec-card critical">
+    <div class="page-rec-header">
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#C0392B;margin-bottom:4px;">🔴 CRITICAL — Page 1 of 7</div>
+        <div class="page-rec-url">/sewer-and-drain/sewer-camera-inspection-alexandria-va/</div>
+      </div>
+    </div>
+    <div class="page-rec-stats">
+      <span class="stat-chip bad">245,975 Impressions</span>
+      <span class="stat-chip bad">Pos 28.9</span>
+      <span class="stat-chip bad">CTR 0.01%</span>
+      <span class="stat-chip bad">16 Clicks</span>
+    </div>
+    <div class="rec-section">
+      <h4>❌ What's Missing / Problems</h4>
+      <ul>
+        <li>Title tag is generic — does not match top-intent keyword "sewer inspection near me" (102,860 impressions)</li>
+        <li>No FAQ section or FAQPage schema — missing AI Overview eligibility</li>
+        <li>Page likely under 500 words — no depth to compete with page-1 results</li>
+        <li>No internal links from homepage or Alexandria service area page pointing here</li>
+        <li>No customer testimonials or before/after photos on the page</li>
+        <li>Missing Service schema (type, price range, area served, provider)</li>
+        <li>H1 does not include local modifier (city + state)</li>
+        <li>No mention of competitor differentiation (same-day, no-dig, video recording)</li>
+      </ul>
+    </div>
+    <div class="rec-section">
+      <h4>✅ Exact Instructions to Fix</h4>
+      <ol>
+        <li>Change title tag to: <strong>"Sewer Camera Inspection Alexandria VA | Same-Day Video Inspection | The Pipe Doctor"</strong></li>
+        <li>Change meta description to: <em>"Schedule same-day sewer camera inspection in Alexandria, VA. Licensed plumbers, HD video recording, written report included. Call (703) XXX-XXXX for fast diagnosis."</em></li>
+        <li>Rewrite H1 to: <strong>"Sewer Camera Inspection in Alexandria, VA — Same-Day Video Diagnosis"</strong></li>
+        <li>Expand page content to 800–1,200 words covering: what sewer camera inspection is, when you need it (6 scenarios), what The Pipe Doctor's process looks like step-by-step, service area neighborhoods in Alexandria, cost transparency, what happens after the inspection</li>
+        <li>Add 5-question FAQ section: "How much does a sewer camera inspection cost in Alexandria?", "How long does a sewer camera inspection take?", "Will I get a video recording?", "What problems can a sewer camera find?", "Is a sewer camera inspection necessary before buying a home?"</li>
+        <li>Add FAQPage schema markup for those 5 questions</li>
+        <li>Add Service schema: type="Plumber", serviceType="Sewer Camera Inspection", areaServed="Alexandria VA", priceRange="$$"</li>
+        <li>Add internal links FROM: homepage, /service-area/alexandria-va/, /sewer-and-drain/drain-cleaning-alexandria-va/ all pointing to this page with anchor text "sewer camera inspection Alexandria"</li>
+        <li>Add 3–5 Google review quotes specifically mentioning sewer camera inspection</li>
+        <li>Add before/after photo with alt text: "sewer camera inspection results Alexandria VA"</li>
+        <li>Target secondary keywords in body: "sewer scope inspection", "video pipe inspection", "camera drain inspection Alexandria VA"</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div class="page-rec-card critical">
+    <div class="page-rec-header">
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#C0392B;margin-bottom:4px;">🔴 CRITICAL — Page 2 of 7</div>
+        <div class="page-rec-url">/service-area/fairfax-va/sewer-repair/</div>
+      </div>
+    </div>
+    <div class="page-rec-stats">
+      <span class="stat-chip bad">199,314 Impressions</span>
+      <span class="stat-chip bad">Pos 36.8</span>
+      <span class="stat-chip bad">CTR 0.00%</span>
+      <span class="stat-chip bad">3 Clicks</span>
+    </div>
+    <div class="rec-section">
+      <h4>❌ What's Missing / Problems</h4>
+      <ul>
+        <li>Ranking page 4 for "sewer line repair" (9,894 impr) and "sewer repair Fairfax VA" — thin template page</li>
+        <li>Page is almost certainly a copy/paste template from other location pages with only the city name swapped</li>
+        <li>No Fairfax-specific content: no neighborhoods, no local knowledge, no Fairfax permit info</li>
+        <li>No sewer pipe replacement content — client says this keyword is dropping</li>
+        <li>Missing "sewer pipe repair vs replacement" decision guide content that earns page-1 rankings</li>
+        <li>No schema markup</li>
+        <li>No internal links from the Fairfax service area hub page</li>
+        <li>Title likely reads "Sewer Repair Fairfax VA" — not differentiated</li>
+      </ul>
+    </div>
+    <div class="rec-section">
+      <h4>✅ Exact Instructions to Fix</h4>
+      <ol>
+        <li>Change title to: <strong>"Sewer Line Repair &amp; Replacement Fairfax VA | Trenchless Specialists | The Pipe Doctor"</strong></li>
+        <li>Change meta: <em>"Sewer line repair and replacement in Fairfax, VA. Trenchless methods, no major excavation. Serving all Fairfax neighborhoods. Free estimates. Call now."</em></li>
+        <li>Expand to 1,000–1,500 words covering: types of sewer damage (root intrusion, pipe collapse, bellying, corrosion), trenchless vs traditional repair comparison, Fairfax-specific content (older neighborhoods with cast iron/clay pipes, Fairfax Water utility connection requirements), step-by-step repair process, cost guide</li>
+        <li>Add "Sewer Repair vs Replacement: How to Decide" section — this exact query drives massive impressions</li>
+        <li>Add FAQ: "How much does sewer line repair cost in Fairfax VA?", "Can sewer lines be repaired without digging?", "How long does sewer line repair take?", "Does homeowners insurance cover sewer line repair?", "What are signs of sewer line damage?"</li>
+        <li>Add FAQPage schema and Service schema</li>
+        <li>Target keywords: "sewer line repair Fairfax VA", "sewer pipe repair Fairfax", "sewer line replacement Fairfax VA", "trenchless sewer repair Fairfax"</li>
+        <li>Add internal links from /service-area/fairfax-va/ hub and from /service-area/fairfax-va/sewer-camera-inspection/ with anchor "sewer repair Fairfax"</li>
+        <li>Add Fairfax neighborhood list: Tysons, Vienna, Reston, Herndon, Annandale, Springfield, Centreville</li>
+        <li>Add photos of Fairfax area sewer work with geo-tagged alt text</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- PAGE 3 -->
+  <div class="page-rec-card critical">
+    <div class="page-rec-header">
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#C0392B;margin-bottom:4px;">🔴 CRITICAL — Page 3 of 7</div>
+        <div class="page-rec-url">/sewer-and-drain/hydro-jetting-alexandria-va/</div>
+      </div>
+    </div>
+    <div class="page-rec-stats">
+      <span class="stat-chip bad">140,979 Impressions</span>
+      <span class="stat-chip bad">Pos 22.5</span>
+      <span class="stat-chip bad">CTR 0.00%</span>
+      <span class="stat-chip bad">3 Clicks</span>
+    </div>
+    <div class="rec-section">
+      <h4>❌ What's Missing / Problems</h4>
+      <ul>
+        <li>140K impressions at pos 22.5 means this is ranking page 2/3 but never getting clicks</li>
+        <li>Primary keyword "hydro jetting near me" has enormous volume but page is not optimized</li>
+        <li>Title almost certainly doesn't include "near me" intent</li>
+        <li>No cost transparency content — "how much does hydro jetting cost" is a top converter</li>
+        <li>Page likely lacks residential vs commercial hydro jetting distinction</li>
+        <li>No before/after video or photos of hydro jetting in action</li>
+        <li>Missing schema markup</li>
+      </ul>
+    </div>
+    <div class="rec-section">
+      <h4>✅ Exact Instructions to Fix</h4>
+      <ol>
+        <li>Change title to: <strong>"Hydro Jetting Service Alexandria VA | Drain Cleaning Specialist | The Pipe Doctor"</strong></li>
+        <li>Update meta: <em>"Professional hydro jetting in Alexandria, VA. High-pressure drain cleaning for residential &amp; commercial. Removes grease, roots, scale. Same-day available."</em></li>
+        <li>Expand to 800–1,000 words: what is hydro jetting (explain the pressure), when hydro jetting is needed vs regular snaking, residential vs commercial use cases, cost range ($300–$600 typical), how it prevents future clogs</li>
+        <li>Add sections: "Hydro Jetting vs Drain Snake — Which Do You Need?", "How Much Does Hydro Jetting Cost in Alexandria?"</li>
+        <li>Target keywords: "hydro jetting near me", "hydro jetting Alexandria VA", "commercial hydro jetting", "high pressure drain cleaning Alexandria"</li>
+        <li>Add FAQ with FAQPage schema: cost questions, process questions, frequency questions</li>
+        <li>Add Service schema</li>
+        <li>Internal link from /service-area/alexandria-va/ and /sewer-and-drain/drain-cleaning-alexandria-va/</li>
+        <li>Add a video embed or photo series showing the process</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- PAGE 4 -->
+  <div class="page-rec-card critical">
+    <div class="page-rec-header">
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#C0392B;margin-bottom:4px;">🔴 CRITICAL — Page 4 of 7</div>
+        <div class="page-rec-url">/service-area/arlington-va/sewer-camera-inspection/</div>
+      </div>
+    </div>
+    <div class="page-rec-stats">
+      <span class="stat-chip bad">106,809 Impressions</span>
+      <span class="stat-chip bad">Pos 33.3</span>
+      <span class="stat-chip bad">CTR 0.01%</span>
+      <span class="stat-chip bad">6 Clicks</span>
+    </div>
+    <div class="rec-section">
+      <h4>❌ What's Missing / Problems</h4>
+      <ul>
+        <li>Template copy of the Alexandria sewer camera page with "Arlington" swapped in</li>
+        <li>No Arlington-specific content: no neighborhoods, no Arlington County permit info</li>
+        <li>Arlington has many older homes (1950s–1970s) with clay/cast iron pipes — no mention</li>
+        <li>No Arlington-specific testimonials</li>
+        <li>Pos 33.3 = page 4 — needs 25+ position improvement to matter</li>
+      </ul>
+    </div>
+    <div class="rec-section">
+      <h4>✅ Exact Instructions to Fix</h4>
+      <ol>
+        <li>Title: <strong>"Sewer Camera Inspection Arlington VA | Same-Day Service | The Pipe Doctor"</strong></li>
+        <li>Expand with Arlington-specific content: mention Clarendon, Ballston, Pentagon City, Rosslyn, Aurora Highlands neighborhoods; note that many Arlington homes built 1940s–1970s have original clay or cast iron pipes that need inspection before purchase</li>
+        <li>Add "Pre-Purchase Sewer Inspection" section — buyers in Arlington's competitive market commonly request this</li>
+        <li>Add FAQ with FAQPage schema (same structure as Alexandria page but Arlington-specific)</li>
+        <li>Add Service schema with areaServed="Arlington VA"</li>
+        <li>Internal link from /service-area/arlington-va/ hub</li>
+        <li>Add link to /service-area/arlington-va/sewer-repair/ (with CTA: "If we find damage, we offer same-day sewer repair in Arlington")</li>
+        <li>Target: "sewer camera inspection Arlington VA", "sewer scope Arlington VA", "pipe inspection Arlington VA"</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- PAGE 5 -->
+  <div class="page-rec-card critical">
+    <div class="page-rec-header">
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#C0392B;margin-bottom:4px;">🔴 CRITICAL — Page 5 of 7</div>
+        <div class="page-rec-url">/service-area/fairfax-va/drain-cleaning/</div>
+      </div>
+    </div>
+    <div class="page-rec-stats">
+      <span class="stat-chip bad">58,052 Impressions</span>
+      <span class="stat-chip bad">Pos 33.9</span>
+      <span class="stat-chip bad">CTR 0.01%</span>
+      <span class="stat-chip bad">4 Clicks</span>
+    </div>
+    <div class="rec-section">
+      <h4>❌ What's Missing / Problems</h4>
+      <ul>
+        <li>"drain cleaning" alone has 49,825 impressions at pos 48 — completely wasted</li>
+        <li>Page ranking for high-volume drain cleaning queries but on page 4</li>
+        <li>No mention of commercial drain cleaning (separate high-value service)</li>
+        <li>No pricing guide</li>
+        <li>No drain type breakdown (kitchen, bathroom, main sewer line)</li>
+        <li>No urgency/emergency angle</li>
+      </ul>
+    </div>
+    <div class="rec-section">
+      <h4>✅ Exact Instructions to Fix</h4>
+      <ol>
+        <li>Title: <strong>"Drain Cleaning Fairfax VA | Same-Day Service | The Pipe Doctor Plumbing"</strong></li>
+        <li>Expand to 1,000+ words covering: types of drain clogs (kitchen grease, bathroom hair, main line roots), drain cleaning methods (snaking vs hydro jetting), commercial drain cleaning for restaurants/businesses in Fairfax, cost guide, emergency drain cleaning availability</li>
+        <li>Add "Drain Cleaning Near Me in Fairfax" section targeting near-me intent</li>
+        <li>FAQ with FAQPage schema: cost, process, how to prevent clogs, when to call</li>
+        <li>Internal links from /service-area/fairfax-va/ and /service-area/fairfax-va/sewer-repair/</li>
+        <li>Target: "drain cleaning Fairfax VA", "drain cleaning near me Fairfax", "clogged drain Fairfax VA", "commercial drain cleaning Fairfax"</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- PAGE 6 -->
+  <div class="page-rec-card high">
+    <div class="page-rec-header">
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#E67E22;margin-bottom:4px;">🟠 HIGH — Page 6 of 7</div>
+        <div class="page-rec-url">/service-area/fairfax-va/sewer-camera-inspection/</div>
+      </div>
+    </div>
+    <div class="page-rec-stats">
+      <span class="stat-chip bad">50,778 Impressions</span>
+      <span class="stat-chip bad">Pos 58.8</span>
+      <span class="stat-chip bad">CTR 0.03%</span>
+      <span class="stat-chip bad">14 Clicks</span>
+    </div>
+    <div class="rec-section">
+      <h4>❌ What's Missing / Problems</h4>
+      <ul>
+        <li>Position 58.8 = PAGE 6 — essentially invisible</li>
+        <li>Despite 50K impressions, ranking this low means Google has no confidence in this page</li>
+        <li>Critical issue: page is almost certainly thin (under 300 words) and duplicate of other pages</li>
+        <li>No Fairfax-specific content at all</li>
+      </ul>
+    </div>
+    <div class="rec-section">
+      <h4>✅ Exact Instructions to Fix</h4>
+      <ol>
+        <li>This page needs a complete rewrite from scratch — 800+ unique words</li>
+        <li>Follow the same structure as /sewer-and-drain/sewer-camera-inspection-alexandria-va/ but with Fairfax-specific content</li>
+        <li>Mention: Fairfax older neighborhoods where pipe inspection is critical (Fair Oaks, Fair Lakes, Fairfax City)</li>
+        <li>Add specific mention of Fairfax County code requirements for sewer inspections</li>
+        <li>Add pre-purchase home inspection angle (common in Fairfax real estate market)</li>
+        <li>FAQPage schema, Service schema</li>
+        <li>Internal link from /service-area/fairfax-va/ hub</li>
+        <li>Once content is added, submit URL for recrawling in GSC</li>
+        <li>Build 2–3 internal links from blog posts and other Fairfax pages</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- PAGE 7 -->
+  <div class="page-rec-card high">
+    <div class="page-rec-header">
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#E67E22;margin-bottom:4px;">🟠 HIGH — Page 7 of 7</div>
+        <div class="page-rec-url">/service-area/fairfax-va/trenchless-pipe-repair/</div>
+      </div>
+    </div>
+    <div class="page-rec-stats">
+      <span class="stat-chip bad">49,526 Impressions</span>
+      <span class="stat-chip bad">Pos 28.9</span>
+      <span class="stat-chip bad">CTR 0.01%</span>
+      <span class="stat-chip bad">6 Clicks</span>
+    </div>
+    <div class="rec-section">
+      <h4>❌ What's Missing / Problems</h4>
+      <ul>
+        <li>"pipe relining near me" has 20,387 impressions at pos 37.4 — high opportunity</li>
+        <li>Trenchless repair is a specialty that should be a TOP performer, not page 3</li>
+        <li>No comparison with traditional excavation (which homeowners fear — this is the conversion hook)</li>
+        <li>No pricing transparency</li>
+        <li>No case study / before-after content</li>
+      </ul>
+    </div>
+    <div class="rec-section">
+      <h4>✅ Exact Instructions to Fix</h4>
+      <ol>
+        <li>Title: <strong>"Trenchless Pipe Repair Fairfax VA | No-Dig Pipe Lining | The Pipe Doctor"</strong></li>
+        <li>Expand content: explain trenchless vs dig-and-replace (no landscaping damage, faster, less expensive), CIPP vs pipe bursting methods, what problems trenchless can fix, what it cannot fix, cost comparison</li>
+        <li>Add "Trenchless Pipe Repair Process" step-by-step section</li>
+        <li>Add "Is Your Pipe a Candidate for Trenchless Repair?" decision guide</li>
+        <li>FAQ: cost, timeline, pipe materials compatible, warranty</li>
+        <li>FAQPage + Service schema</li>
+        <li>Internal links from /service-area/fairfax-va/, /service-area/fairfax-va/sewer-repair/, and from the CIPP blog post</li>
+        <li>Target: "trenchless pipe repair Fairfax VA", "pipe lining Fairfax VA", "no-dig pipe repair Fairfax", "pipe relining near me"</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- MISSING PAGE 1 -->
+  <div class="page-rec-card missing">
+    <div class="page-rec-header">
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#8E44AD;margin-bottom:4px;">➕ MISSING PAGE — CREATE NEW</div>
+        <div class="page-rec-url">/sewer-and-drain/sewer-pipe-repair-replacement-alexandria-va/</div>
+      </div>
+    </div>
+    <div class="page-rec-stats">
+      <span class="stat-chip">0 Impressions (page doesn't exist)</span>
+      <span class="stat-chip bad">GSC: "sewer line repair" = 9,894 impr, pos 24.3</span>
+    </div>
+    <div class="rec-section">
+      <h4>Why This Page Matters</h4>
+      <p style="font-size:13px;line-height:1.6;margin-bottom:8px;">Client complaint: rankings dropped for "sewer pipe repair or replacement" keywords. GSC evidence: "sewer line repair" = 9,894 impressions at pos 24.3 — NO dedicated page exists. This page DIRECTLY addresses the client's complaint.</p>
+    </div>
+    <div class="rec-section">
+      <h4>✅ Exact Instructions to Create</h4>
+      <ol>
+        <li>Title: <strong>"Sewer Pipe Repair &amp; Replacement Alexandria VA | The Pipe Doctor Plumbing"</strong></li>
+        <li>This page DIRECTLY addresses the client's complaint — a standalone page targeting "sewer pipe repair" and "sewer pipe replacement" as primary keywords</li>
+        <li>Content (1,200+ words): sewer pipe damage types, repair vs replacement decision guide (repair if &lt;50% damaged, replace if collapsed or bellied), trenchless options for both, cost guide (repair $500–$2,500 / replacement $3,000–$15,000), emergency service availability</li>
+        <li>FAQ: "How do I know if my sewer pipe needs repair or replacement?", "What causes sewer pipe damage?", "How long does sewer pipe replacement take?", "Does insurance cover sewer pipe replacement?", "What is the difference between sewer repair and replacement?"</li>
+        <li>FAQPage schema + Service schema</li>
+        <li>Internal links from homepage, Alexandria service area, and sewer camera inspection page</li>
+        <li>Target keywords: "sewer pipe repair Alexandria VA", "sewer pipe replacement Alexandria VA", "sewer line repair near me", "sewer line replacement cost"</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- MISSING PAGE 2 & 3 -->
+  <div class="page-rec-card missing">
+    <div class="page-rec-header">
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#8E44AD;margin-bottom:4px;">➕ MISSING PAGES — CREATE NEW LOCATION PAGES</div>
+        <div class="page-rec-url">/service-area/stafford-va/sewer-repair/ &amp;&amp; /service-area/fredericksburg-va/sewer-repair/</div>
+      </div>
+    </div>
+    <div class="rec-section">
+      <h4>Why These Pages Matter</h4>
+      <ul>
+        <li><strong>Stafford:</strong> Client complaint covers all locations dropping. Stafford has no sewer repair page. Map pack shows "Plumber in Stafford" at position 17–19 — needs dedicated location content.</li>
+        <li><strong>Fredericksburg:</strong> "plumber fredericksburg va" ranks at pos 46.7 — page 5. No dedicated sewer repair page for Fredericksburg exists despite it being the primary GBP city.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CHECKLIST TABLE -->
+  <div class="card">
+    <div class="card-title">✅ Plumbing Keyword Drop — Fix Checklist</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Issue</th><th>Evidence</th><th>Fix</th></tr></thead>
+        <tbody>
+          <tr><td>"sewer pipe repair/replacement" — no dedicated page</td><td>9,894 impr, pos 24.3, 2 clicks</td><td>Create /sewer-pipe-repair-replacement-alexandria-va/</td></tr>
+          <tr><td>Sewer keyword impressions crashed Dec 2025</td><td>Oct: 13,604 impr → Dec: 833 impr (–94%)</td><td>Expand all sewer pages with 800+ words of unique content</td></tr>
+          <tr><td>Fairfax Sewer Repair ranking page 4</td><td>199,314 impr at pos 36.8, 3 clicks</td><td>Full content rewrite + schema + internal links</td></tr>
+          <tr><td>Hydro Jetting not ranking page 1</td><td>140,979 impr at pos 22.5, CTR 0.00%</td><td>Add cost guide, FAQ schema, local content</td></tr>
+          <tr><td>"plumber fredericksburg va" at pos 47</td><td>707 impr, pos 46.7</td><td>Create Fredericksburg plumber dedicated page + citations</td></tr>
+          <tr><td>Multiple pages have no schema</td><td>6+ service pages missing Service + FAQPage schema</td><td>Implement schema on all service pages this month</td></tr>
+          <tr><td>Thin city × service pages</td><td>Multiple pages &lt;300 words</td><td>All location service pages need 800+ unique words</td></tr>
+          <tr><td>No internal link structure</td><td>Pages are siloed</td><td>Create topic clusters: hub page → all service pages → blog posts</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB 7: CONTENT CALENDAR ===== -->
+<div id="tab-contentcal" class="tab-pane">
   <div class="section-title">Content Calendar — Jun–Nov 2026</div>
   <div class="section-sub">GSC-backed content priorities for maximum organic traffic growth</div>
 
