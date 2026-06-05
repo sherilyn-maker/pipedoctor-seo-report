@@ -1557,244 +1557,1953 @@ new Chart(document.getElementById('ga4DeviceChart'), {
 });
 </script>
 
+
 <!-- ===== CONTENT TAB: FULL SITE AUDIT ===== -->
 <div id="tab-content" class="tab-pane">
   <div class="section-title">Content & Page Optimization — Full Site Audit</div>
   <div class="section-sub">All 197 pages analyzed against GSC data (Oct 2025–Apr 2026) · Addresses ranking drops across all locations</div>
 
-  <!-- ROOT CAUSE -->
   <div class="insight-box red" style="margin-bottom:20px">
-    <div class="insight-title">🚨 Root Cause: Site-Wide Template Content Penalty</div>
-    <p>Of 197 pages in the sitemap: <strong>18 are completely invisible (0 impressions), 65 have impressions but 0 clicks, and 90 rank below position 20</strong> — meaning only 24 pages are performing. This is not a few pages dropping — it's a site-wide signal that Google's November 2025 Core Update penalized the entire service×city page template structure. Every location service page needs unique, substantive content or Google will continue suppressing the site.</p>
+    <div class="insight-title">🚨 Root Cause: Site-Wide Template Content Penalty — Nov 2025 Core Update</div>
+    <p>Of 197 sitemap pages: <strong>18 invisible (0 impressions), 83 have impressions but rank below position 20 with negligible clicks, and only 1 page is truly performing (pos ≤10 with strong clicks)</strong>. This is a site-wide signal that Google's Nov 2025 Core Update penalized thin, templated service×city pages. Top 14 critical pages alone have <strong>2.8M combined impressions generating near-zero clicks</strong>. Every location service page needs unique, substantive content or rankings will continue to drop.</p>
   </div>
 
-  <!-- SUMMARY STATS -->
   <div class="kpi-grid" style="margin-bottom:24px">
-    <div class="kpi-card red"><div class="kpi-label">Invisible Pages</div><div class="kpi-value">18</div><div class="kpi-delta down">0 impressions</div></div>
-    <div class="kpi-card orange"><div class="kpi-label">Zero-Click Pages</div><div class="kpi-value">65</div><div class="kpi-delta down">Impressions, no clicks</div></div>
-    <div class="kpi-card orange"><div class="kpi-label">Dropping Pages</div><div class="kpi-value">90</div><div class="kpi-delta down">Pos >20, some clicks</div></div>
-    <div class="kpi-card green"><div class="kpi-label">Performing Pages</div><div class="kpi-value">24</div><div class="kpi-delta up">Pos ≤20 with clicks</div></div>
-    <div class="kpi-card red"><div class="kpi-label">Wasted Impressions</div><div class="kpi-value">2.8M+</div><div class="kpi-delta down">Generating ~0 clicks</div></div>
-    <div class="kpi-card green"><div class="kpi-label">Traffic Potential</div><div class="kpi-value">+3,000</div><div class="kpi-delta up">Clicks/mo if fixed</div></div>
+    <div class="kpi-card red"><div class="kpi-label">🔴 CRITICAL</div><div class="kpi-value">14</div><div class="kpi-delta down">100K+ impr, pos 23–55</div></div>
+    <div class="kpi-card orange"><div class="kpi-label">🟠 HIGH</div><div class="kpi-value">50</div><div class="kpi-delta down">1K–100K impr, poor pos</div></div>
+    <div class="kpi-card"><div class="kpi-label">🟡 MEDIUM</div><div class="kpi-value">83</div><div class="kpi-delta neutral">Under 10K impr or 0 clicks</div></div>
+    <div class="kpi-card"><div class="kpi-label">👁 MONITOR</div><div class="kpi-value">23</div><div class="kpi-delta neutral">Pos 10–20, near page 1</div></div>
+    <div class="kpi-card green"><div class="kpi-label">✅ GOOD</div><div class="kpi-value">1</div><div class="kpi-delta up">Only 1 page truly healthy</div></div>
+    <div class="kpi-card red"><div class="kpi-label">❌ INVISIBLE</div><div class="kpi-value">18</div><div class="kpi-delta down">0 impressions at all</div></div>
   </div>
 
-  <!-- MASTER PAGE TABLE -->
+  <!-- FILTERS -->
+  <div class="card" style="margin-bottom:16px;padding:14px 18px">
+    <div class="card-title" style="margin-bottom:10px">🔍 Filter Pages</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button onclick="filterPages('ALL')" class="filter-btn active" data-filter="ALL">All 197</button>
+      <button onclick="filterPages('CRITICAL')" class="filter-btn" data-filter="CRITICAL" style="background:#FADBD8;color:#A93226">🔴 Critical (14)</button>
+      <button onclick="filterPages('HIGH')" class="filter-btn" data-filter="HIGH" style="background:#FDEBD0;color:#D35400">🟠 High (50)</button>
+      <button onclick="filterPages('MEDIUM')" class="filter-btn" data-filter="MEDIUM" style="background:#EAECEE;color:#5D6D7E">🟡 Medium (83)</button>
+      <button onclick="filterPages('MONITOR')" class="filter-btn" data-filter="MONITOR" style="background:#D6EAF8;color:#1A5276">👁 Monitor (23)</button>
+      <button onclick="filterPages('GOOD')" class="filter-btn" data-filter="GOOD" style="background:#D4EFDF;color:#1E7E4A">✅ Good (1)</button>
+      <button onclick="filterPages('INVISIBLE')" class="filter-btn" data-filter="INVISIBLE" style="background:#FADBD8;color:#A93226">❌ Invisible (18)</button>
+    </div>
+  </div>
+
   <div class="card">
-    <div class="card-title">📋 Master Page Audit — All 197 Pages</div>
+    <div class="card-title">📋 All 197 Pages — Priority & Fix Recommendations</div>
     <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Priority</th><th>Page URL</th><th>Impressions</th><th>Position</th><th>Clicks</th><th>CTR</th><th>Status</th><th>Primary Fix</th></tr></thead>
-        <tbody>
-          <!-- CRITICAL -->
-          <tr><td><span class="badge badge-red">CRITICAL</span></td><td>/sewer-and-drain/sewer-camera-inspection-alexandria-va/</td><td>432,530</td><td class="rank-bad">29.4</td><td>32</td><td class="ctr-bad">0.01%</td><td><span class="badge badge-red">Thin</span></td><td>Full rewrite 1000+ words + FAQ schema + title fix</td></tr>
-          <tr><td><span class="badge badge-red">CRITICAL</span></td><td>/service-area/fairfax-va/sewer-repair/</td><td>324,684</td><td class="rank-bad">37.8</td><td>8</td><td class="ctr-bad">0.00%</td><td><span class="badge badge-red">Thin</span></td><td>Rewrite with Fairfax-specific content, sewer repair vs replacement guide</td></tr>
-          <tr><td><span class="badge badge-red">CRITICAL</span></td><td>/service-area/arlington-va/hydro-jetting/</td><td>235,452</td><td class="rank-bad">26.2</td><td>6</td><td class="ctr-bad">0.00%</td><td><span class="badge badge-red">Thin</span></td><td>Add cost guide, Arlington neighborhoods, FAQ schema</td></tr>
-          <tr><td><span class="badge badge-red">CRITICAL</span></td><td>/sewer-and-drain/hydro-jetting-alexandria-va/</td><td>204,659</td><td class="rank-bad">23.0</td><td>8</td><td class="ctr-bad">0.00%</td><td><span class="badge badge-red">Thin</span></td><td>Add "hydro jetting near me" targeting, cost section, FAQ schema</td></tr>
-          <tr><td><span class="badge badge-red">CRITICAL</span></td><td>/service-area/arlington-va/sewer-camera-inspection/</td><td>195,906</td><td class="rank-bad">32.9</td><td>14</td><td class="ctr-bad">0.01%</td><td><span class="badge badge-red">Thin</span></td><td>Arlington-specific content, pre-purchase angle, FAQ schema</td></tr>
-          <tr><td><span class="badge badge-red">CRITICAL</span></td><td>/service-area/fairfax-va/drain-cleaning/</td><td>152,774</td><td class="rank-bad">38.1</td><td>11</td><td class="ctr-bad">0.01%</td><td><span class="badge badge-red">Thin</span></td><td>Commercial drain cleaning section, drain type breakdown, cost guide</td></tr>
-          <tr><td><span class="badge badge-red">CRITICAL</span></td><td>/service-area/mclean-va/hydro-jetting/</td><td>114,612</td><td class="rank-bad">33.0</td><td>2</td><td class="ctr-bad">0.00%</td><td><span class="badge badge-red">Thin</span></td><td>McLean-specific content, luxury home angle, FAQ schema</td></tr>
-          <tr><td><span class="badge badge-red">CRITICAL</span></td><td>/service-area/arlington-va/trenchless-pipe-repair/</td><td>52,444</td><td class="rank-bad">29.8</td><td>0</td><td class="ctr-bad">0.00%</td><td><span class="badge badge-red">0 Clicks!</span></td><td>Add trenchless vs dig comparison, Arlington home age context, schema</td></tr>
-          <tr><td><span class="badge badge-red">CRITICAL</span></td><td>/service-area/fairfax-va/sewer-camera-inspection/</td><td>64,494</td><td class="rank-bad">54.6</td><td>34</td><td class="ctr-bad">0.05%</td><td><span class="badge badge-red">Page 6!</span></td><td>Complete rewrite — 800+ words, Fairfax-specific, FAQPage schema</td></tr>
-          <tr><td><span class="badge badge-red">CRITICAL</span></td><td>/sewer-and-drain/trenchless-sewer-repair-alexandria-va/</td><td>63,029</td><td class="rank-bad">41.0</td><td>4</td><td class="ctr-bad">0.01%</td><td><span class="badge badge-red">Page 4</span></td><td>Trenchless repair decision guide, cost comparison, schema</td></tr>
-          <tr><td><span class="badge badge-red">CRITICAL</span></td><td>/plumbing/sump-pumps-alexandria-va/</td><td>60,371</td><td class="rank-bad">43.9</td><td>22</td><td class="ctr-bad">0.04%</td><td><span class="badge badge-red">Page 5</span></td><td>Sump pump types, installation vs repair guide, cost, FAQ schema</td></tr>
-          <tr><td><span class="badge badge-red">CRITICAL</span></td><td>/service-area/arlington-va/sewer-repair/</td><td>60,124</td><td class="rank-bad">45.6</td><td>7</td><td class="ctr-bad">0.01%</td><td><span class="badge badge-red">Page 5</span></td><td>Sewer repair vs replacement guide, Arlington pipe age context</td></tr>
-          <tr><td><span class="badge badge-red">CRITICAL</span></td><td>/service-area/fairfax-va/trenchless-pipe-repair/</td><td>56,099</td><td class="rank-bad">29.4</td><td>14</td><td class="ctr-bad">0.02%</td><td><span class="badge badge-red">Thin</span></td><td>Trenchless methods comparison, Fairfax neighborhoods, cost guide</td></tr>
-          <!-- HIGH -->
-          <tr><td><span class="badge badge-orange">HIGH</span></td><td>/sewer-and-drain/ (hub page)</td><td>50,297</td><td class="rank-bad">43.2</td><td>3</td><td class="ctr-bad">0.01%</td><td><span class="badge badge-red">Thin Hub</span></td><td>Build proper service hub with intro content + links to all sewer pages</td></tr>
-          <tr><td><span class="badge badge-orange">HIGH</span></td><td>/service-area/fairfax-va/pipe-lining/</td><td>38,982</td><td class="rank-bad">45.0</td><td>27</td><td class="ctr-bad">0.07%</td><td><span class="badge badge-red">Page 5</span></td><td>CIPP process explanation, Fairfax content, pipe materials guide</td></tr>
-          <tr><td><span class="badge badge-orange">HIGH</span></td><td>/plumbing/garbage-disposal-alexandria-va/</td><td>34,448</td><td class="rank-bad">24.5</td><td>7</td><td class="ctr-bad">0.02%</td><td><span class="badge badge-orange">Page 3</span></td><td>Add brand comparison, installation vs repair guide, cost section</td></tr>
-          <tr><td><span class="badge badge-orange">HIGH</span></td><td>/plumbing/water-heaters-alexandria-va/</td><td>33,472</td><td class="rank-bad">33.3</td><td>7</td><td class="ctr-bad">0.02%</td><td><span class="badge badge-orange">Page 4</span></td><td>Tankless vs traditional comparison, energy efficiency, cost guide</td></tr>
-          <tr><td><span class="badge badge-orange">HIGH</span></td><td>/service-area/falls-church-va/water-heater-repair/</td><td>29,316</td><td class="rank-bad">24.0</td><td>5</td><td class="ctr-bad">0.02%</td><td><span class="badge badge-orange">Page 3</span></td><td>Falls Church local content, water heater repair signs, FAQ schema</td></tr>
-          <tr><td><span class="badge badge-orange">HIGH</span></td><td>/sewer-and-drain/sewer-line-replacement-alexandria-va/</td><td>26,237</td><td class="rank-bad">53.0</td><td>8</td><td class="ctr-bad">0.03%</td><td><span class="badge badge-red">Page 6!</span></td><td>Sewer replacement process, cost guide ($3K-$15K), financing options</td></tr>
-          <tr><td><span class="badge badge-orange">HIGH</span></td><td>/service-area/fredericksburg-va/hydro-jetting/</td><td>31,713</td><td class="rank-bad">54.3</td><td>0</td><td class="ctr-bad">0.00%</td><td><span class="badge badge-red">Page 5, 0 clicks</span></td><td>Fredericksburg local content, cost guide, FAQ schema — full rewrite</td></tr>
-          <tr><td><span class="badge badge-orange">HIGH</span></td><td>/plumbing/water-treatment-alexandria-va/</td><td>23,465</td><td class="rank-bad">24.4</td><td>10</td><td class="ctr-bad">0.04%</td><td><span class="badge badge-orange">Page 3</span></td><td>Water quality in Alexandria, filtration methods comparison, cost</td></tr>
-          <tr><td><span class="badge badge-orange">HIGH</span></td><td>/service-area/stafford-va/sewer-repair-stafford-va/</td><td>23,698</td><td class="rank-bad">47.0</td><td>0</td><td class="ctr-bad">0.00%</td><td><span class="badge badge-red">0 clicks!</span></td><td>Stafford-specific content, sewer repair vs replacement, schema</td></tr>
-          <tr><td><span class="badge badge-orange">HIGH</span></td><td>/sewer-and-drain/sewer-line-repair-alexandria-va/</td><td>20,883</td><td class="rank-bad">38.5</td><td>2</td><td class="ctr-bad">0.01%</td><td><span class="badge badge-red">Page 4</span></td><td>Sewer line damage types, repair methods, cost, emergency service</td></tr>
-          <tr><td><span class="badge badge-orange">HIGH</span></td><td>/sewer-and-drain/sewer-video-inspection-alexandria-va/</td><td>15,297</td><td class="rank-bad">41.1</td><td>0</td><td class="ctr-bad">0.00%</td><td><span class="badge badge-red">Duplicate!</span></td><td>Consolidate with sewer-camera-inspection page or add unique angle</td></tr>
-          <tr><td><span class="badge badge-orange">HIGH</span></td><td>/service-area/fredericksburg-va/sewer-repair/</td><td>11,416</td><td class="rank-bad">25.8</td><td>6</td><td class="ctr-bad">0.05%</td><td><span class="badge badge-orange">Page 3</span></td><td>Fredericksburg sewer history (older pipes), trenchless options, FAQ</td></tr>
-          <tr><td><span class="badge badge-orange">HIGH</span></td><td>/service-area/falls-church-va/sewer-repair/</td><td>11,999</td><td class="rank-bad">36.2</td><td>0</td><td class="ctr-bad">0.00%</td><td><span class="badge badge-red">0 clicks!</span></td><td>Falls Church neighborhoods, older home pipe types, repair guide</td></tr>
-          <tr><td><span class="badge badge-orange">HIGH</span></td><td>/service-area/fredericksburg-va/ (hub)</td><td>10,789</td><td class="rank-bad">31.2</td><td>17</td><td class="ctr-bad">0.16%</td><td><span class="badge badge-orange">Page 4</span></td><td>Strengthen hub content, add neighborhood list, service menu, FAQ</td></tr>
-          <tr><td><span class="badge badge-orange">HIGH</span></td><td>/service-area/stafford-va/ (hub)</td><td>10,663</td><td class="rank-bad">28.1</td><td>2</td><td class="ctr-bad">0.02%</td><td><span class="badge badge-orange">Page 3</span></td><td>Stafford hub expansion, neighborhood list, service links, FAQ</td></tr>
-          <tr><td><span class="badge badge-orange">HIGH</span></td><td>/sewer-and-drain/trenchless-pipe-repair-alexandria-va/</td><td>17,210</td><td class="rank-bad">54.4</td><td>3</td><td class="ctr-bad">0.02%</td><td><span class="badge badge-red">Page 6!</span></td><td>Consolidate with trenchless-sewer-repair page OR add unique CIPP content</td></tr>
-          <!-- MEDIUM -->
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/fairfax-va/water-line-repair/</td><td>15,240</td><td class="rank-bad">51.7</td><td>9</td><td class="ctr-bad">0.06%</td><td><span class="badge badge-red">Page 6</span></td><td>Add water line leak detection, excavation vs trenchless options</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/arlington-va/water-line-repair/</td><td>15,123</td><td class="rank-bad">46.7</td><td>4</td><td class="ctr-bad">0.03%</td><td><span class="badge badge-red">Page 5</span></td><td>Arlington water line content, Arlington County utility info</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/fairfax-va/commercial-drain-cleaning/</td><td>14,105</td><td class="rank-bad">43.1</td><td>2</td><td class="ctr-bad">0.01%</td><td><span class="badge badge-red">Page 5</span></td><td>Commercial focus — restaurants, HOA, office buildings in Fairfax</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/arlington-va/water-heater-repair/</td><td>13,379</td><td class="rank-bad">21.6</td><td>7</td><td class="ctr-bad">0.05%</td><td><span class="badge badge-orange">Page 3</span></td><td>Add water heater brands, repair vs replace guide, same-day service</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/stafford-va/plumbing-stafford-va/</td><td>12,860</td><td class="rank-bad">25.5</td><td>3</td><td class="ctr-bad">0.02%</td><td><span class="badge badge-orange">Page 3</span></td><td>Stafford plumbing hub, service list, Stafford neighborhoods</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/plumbing/slab-leaks-alexandria-va/</td><td>11,985</td><td class="rank-bad">37.3</td><td>4</td><td class="ctr-bad">0.03%</td><td><span class="badge badge-orange">Page 4</span></td><td>Slab leak detection methods, cost ($500-$3K), signs, FAQ schema</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/fredericksburg-va/water-heater-repair/</td><td>11,617</td><td class="rank-bad">21.9</td><td>1</td><td class="ctr-bad">0.01%</td><td><span class="badge badge-orange">Page 3</span></td><td>Add water heater age guide for Fredericksburg homes, FAQ schema</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/falls-church-va/water-line-repair/</td><td>9,093</td><td class="rank-bad">36.2</td><td>2</td><td class="ctr-bad">0.02%</td><td><span class="badge badge-orange">Page 4</span></td><td>Falls Church local content, water main vs service line explanation</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/arlington-va/drain-cleaning/</td><td>9,371</td><td class="rank-bad">28.0</td><td>2</td><td class="ctr-bad">0.02%</td><td><span class="badge badge-orange">Page 3</span></td><td>Arlington drain types, grease trap cleaning, FAQ schema</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/arlington-va/plumbing/</td><td>9,495</td><td class="rank-bad">28.1</td><td>2</td><td class="ctr-bad">0.02%</td><td><span class="badge badge-orange">Page 3</span></td><td>Arlington plumbing hub — expand with service list, neighborhoods</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/fairfax-va/plumbing/</td><td>3,587</td><td class="rank-bad">43.7</td><td>0</td><td class="ctr-bad">0.00%</td><td><span class="badge badge-red">0 clicks</span></td><td>Fairfax plumbing hub — complete rewrite with service overview</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/plumbing/water-filtration-alexandria-va/</td><td>4,996</td><td class="rank-bad">35.1</td><td>8</td><td class="ctr-bad">0.16%</td><td><span class="badge badge-orange">Page 4</span></td><td>Whole-home vs under-sink, Alexandria water quality data, cost</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/springfield-va/sewers/</td><td>19,301</td><td class="rank-bad">27.6</td><td>2</td><td class="ctr-bad">0.01%</td><td><span class="badge badge-orange">Page 3</span></td><td>Springfield sewer content — trenchless repair emphasis, FAQ</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/falls-church-va/</td><td>18,446</td><td class="rank-bad">21.6</td><td>13</td><td class="ctr-bad">0.07%</td><td><span class="badge badge-orange">Page 3</span></td><td>Falls Church hub expansion — add neighborhoods, service menu</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/stafford-va/water-heater-repair-stafford-va/</td><td>17,700</td><td class="rank-bad">32.8</td><td>4</td><td class="ctr-bad">0.02%</td><td><span class="badge badge-orange">Page 4</span></td><td>Stafford content, hard water impact on heaters, FAQ schema</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/plumbing/faucets-installation-repair-alexandria-va/</td><td>8,466</td><td class="rank-bad">33.8</td><td>5</td><td class="ctr-bad">0.06%</td><td><span class="badge badge-orange">Page 4</span></td><td>Faucet brand guide, repair vs replace, leak detection</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/fairfax-va/water-heater-repair/</td><td>20,278</td><td class="rank-warn">20.0</td><td>6</td><td class="ctr-bad">0.03%</td><td><span class="badge badge-orange">Borderline</span></td><td>Add water heater FAQ, brand guide, Fairfax service neighborhoods</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/plumbing/well-pumps-repair-installation-alexandria-va/</td><td>10,192</td><td class="rank-bad">33.7</td><td>5</td><td class="ctr-bad">0.05%</td><td><span class="badge badge-orange">Page 4</span></td><td>Well pump types, signs of failure, service area wells in NOVA</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/fredericksburg-va/water-gas-and-leaks/</td><td>6,666</td><td class="rank-bad">27.0</td><td>3</td><td class="ctr-bad">0.05%</td><td><span class="badge badge-orange">Page 3</span></td><td>Gas leak detection, water leak signs, emergency service</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/arlington-va/pipe-lining/</td><td>8,633</td><td class="rank-bad">38.5</td><td>5</td><td class="ctr-bad">0.06%</td><td><span class="badge badge-orange">Page 4</span></td><td>CIPP pipe lining process, Arlington older buildings, no-dig benefit</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/fredericksburg-va/cured-in-place-pipe/</td><td>8,036</td><td class="rank-warn">11.1</td><td>4</td><td class="ctr-bad">0.05%</td><td><span class="badge badge-orange">Near page 1</span></td><td>Add FAQ schema + title optimization to push from pos 11 to top 5</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/fredericksburg-va/drain-cleaning/</td><td>8,424</td><td class="rank-warn">17.4</td><td>4</td><td class="ctr-bad">0.05%</td><td><span class="badge badge-orange">Page 2</span></td><td>Add FAQ schema, CTR optimization on title/meta to break into top 10</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/service-area/fairfax-va/hydro-jetting/</td><td>6,231</td><td class="rank-warn">13.2</td><td>5</td><td class="ctr-bad">0.08%</td><td><span class="badge badge-orange">Page 2</span></td><td>FAQ schema + title CTR fix — close to page 1 for high-value keyword</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/sewer-and-drain/cured-in-place-pipe-alexandria-va/</td><td>3,914</td><td class="rank-bad">41.5</td><td>12</td><td class="ctr-bad">0.31%</td><td><span class="badge badge-red">Page 5</span></td><td>CIPP explanation, pipe materials eligible, before/after, cost</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/plumbing/water-heater-repair-alexandria-va/</td><td>2,449</td><td class="rank-bad">53.0</td><td>0</td><td class="ctr-bad">0.00%</td><td><span class="badge badge-red">0 clicks, page 6</span></td><td>Consolidate with /plumbing/water-heaters-alexandria-va/ or add unique repair content</td></tr>
-          <tr><td><span class="badge badge-gray">MEDIUM</span></td><td>/plumbing/water-heaters-electric-alexandria-va/</td><td>2,276</td><td class="rank-bad">40.3</td><td>0</td><td class="ctr-bad">0.00%</td><td><span class="badge badge-red">0 clicks</span></td><td>Electric vs gas vs tankless guide, rebates, installation cost</td></tr>
-          <!-- ZERO IMPRESSION PAGES -->
-          <tr><td><span class="badge badge-red">INVISIBLE</span></td><td>/plumbing/water-pipe-replacement/</td><td>0</td><td>—</td><td>0</td><td>—</td><td><span class="badge badge-red">No impressions</span></td><td>Create content targeting "water pipe replacement cost" — high intent keyword</td></tr>
-          <tr><td><span class="badge badge-red">INVISIBLE</span></td><td>/service-area/arlington-va/water-pipe-replacement/</td><td>0</td><td>—</td><td>0</td><td>—</td><td><span class="badge badge-red">No impressions</span></td><td>Add Arlington-specific water pipe replacement content + schema</td></tr>
-          <tr><td><span class="badge badge-red">INVISIBLE</span></td><td>/service-area/fairfax-va/water-pipe-replacement/</td><td>0</td><td>—</td><td>0</td><td>—</td><td><span class="badge badge-red">No impressions</span></td><td>Add Fairfax-specific content. Water pipe replacement is high-intent</td></tr>
-          <tr><td><span class="badge badge-red">INVISIBLE</span></td><td>/service-area/fredericksburg-va/water-pipe-replacement/</td><td>0</td><td>—</td><td>0</td><td>—</td><td><span class="badge badge-red">No impressions</span></td><td>Add Fredericksburg content. These pages need to be indexed and substantive</td></tr>
-          <tr><td><span class="badge badge-red">INVISIBLE</span></td><td>/service-area/stafford-va/water-pipe-replacement/</td><td>0</td><td>—</td><td>0</td><td>—</td><td><span class="badge badge-red">No impressions</span></td><td>Create content. Stafford has many aging homes needing repipes</td></tr>
-          <tr><td><span class="badge badge-red">INVISIBLE</span></td><td>/service-area/falls-church-va/water-pipe-replacement/</td><td>0</td><td>—</td><td>0</td><td>—</td><td><span class="badge badge-red">No impressions</span></td><td>Falls Church older homes angle, pipe materials guide</td></tr>
-          <tr><td><span class="badge badge-red">INVISIBLE</span></td><td>/service-area/springfield-va/water-pipe-replacement/</td><td>0</td><td>—</td><td>0</td><td>—</td><td><span class="badge badge-red">No impressions</span></td><td>Create content with Springfield-specific context</td></tr>
-          <tr><td><span class="badge badge-red">INVISIBLE</span></td><td>/service-area/lorton-va/drain-cleaning/</td><td>0</td><td>—</td><td>0</td><td>—</td><td><span class="badge badge-red">No impressions</span></td><td>Google may not be indexing — check Search Console coverage + add content</td></tr>
-          <tr><td><span class="badge badge-red">INVISIBLE</span></td><td>/service-area/great-falls-va/sewers/</td><td>0</td><td>—</td><td>0</td><td>—</td><td><span class="badge badge-red">No impressions</span></td><td>Great Falls has large estate homes with long private sewer lines — mention this</td></tr>
-          <tr><td><span class="badge badge-red">INVISIBLE</span></td><td>/service-area/great-falls-va/pipe-descaling/</td><td>0</td><td>—</td><td>0</td><td>—</td><td><span class="badge badge-red">No impressions</span></td><td>Add pipe descaling content for luxury homes in Great Falls</td></tr>
-          <tr><td><span class="badge badge-red">INVISIBLE</span></td><td>/service-area/springfield-va/pipe-descaling/</td><td>0</td><td>—</td><td>0</td><td>—</td><td><span class="badge badge-red">No impressions</span></td><td>Springfield older pipes context, descaling process, cost</td></tr>
-          <tr><td><span class="badge badge-red">INVISIBLE</span></td><td>/service-area/springfield-va/well-pumps/</td><td>0</td><td>—</td><td>0</td><td>—</td><td><span class="badge badge-red">No impressions</span></td><td>Create content — Springfield has properties on well water</td></tr>
-          <tr><td><span class="badge badge-red">INVISIBLE</span></td><td>/service-area/lorton-va/pipe-lining/</td><td>0</td><td>—</td><td>0</td><td>—</td><td><span class="badge badge-red">No impressions</span></td><td>Lorton trenchless pipe lining — add unique content</td></tr>
+      <table id="pages-table">
+        <thead>
+          <tr>
+            <th style="width:90px">Priority</th>
+            <th>Page URL</th>
+            <th style="width:90px;text-align:right">Impressions</th>
+            <th style="width:70px;text-align:right">Position</th>
+            <th style="width:60px;text-align:right">Clicks</th>
+            <th style="width:60px;text-align:right">CTR</th>
+            <th>Recommendation</th>
+          </tr>
+        </thead>
+        <tbody id="pages-tbody">
+<tr>
+      <td><span class="badge badge-red">CRITICAL</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fairfax-va/sewer-repair/</td>
+      <td style="text-align:right">324,684</td>
+      <td class="rank-bad" style="text-align:right">37.8</td>
+      <td style="text-align:right">8</td>
+      <td class="ctr-bad" style="text-align:right">0.0%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replacement guide, cost ($800–$5K), trenchless options, city-specific pipe age context</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">CRITICAL</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/arlington-va/sewer-camera-inspection/</td>
+      <td style="text-align:right">195,906</td>
+      <td class="rank-bad" style="text-align:right">32.9</td>
+      <td style="text-align:right">14</td>
+      <td class="ctr-bad" style="text-align:right">0.01%</td>
+      <td style="font-size:11.5px;color:#444">Rewrite 1000+ words: inspection process, cost ($150–$400), FAQ schema, sewer-inspection-near-me targeting</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">CRITICAL</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fairfax-va/drain-cleaning/</td>
+      <td style="text-align:right">152,774</td>
+      <td class="rank-bad" style="text-align:right">38.1</td>
+      <td style="text-align:right">11</td>
+      <td class="ctr-bad" style="text-align:right">0.01%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">CRITICAL</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/mclean-va/hydro-jetting/</td>
+      <td style="text-align:right">114,612</td>
+      <td class="rank-bad" style="text-align:right">33.0</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-bad" style="text-align:right">0.0%</td>
+      <td style="font-size:11.5px;color:#444">Add cost guide ($300–$600), residential vs commercial, near-me targeting, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">CRITICAL</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fairfax-va/sewer-camera-inspection/</td>
+      <td style="text-align:right">64,494</td>
+      <td class="rank-bad" style="text-align:right">54.6</td>
+      <td style="text-align:right">34</td>
+      <td class="ctr-bad" style="text-align:right">0.05%</td>
+      <td style="font-size:11.5px;color:#444">Rewrite 1000+ words: inspection process, cost ($150–$400), FAQ schema, sewer-inspection-near-me targeting</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">CRITICAL</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/trenchless-sewer-repair-alexandria-va/</td>
+      <td style="text-align:right">63,029</td>
+      <td class="rank-bad" style="text-align:right">41.0</td>
+      <td style="text-align:right">4</td>
+      <td class="ctr-bad" style="text-align:right">0.01%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replacement guide, cost ($800–$5K), trenchless options, city-specific pipe age context</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">CRITICAL</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/sump-pumps-alexandria-va/</td>
+      <td style="text-align:right">60,371</td>
+      <td class="rank-bad" style="text-align:right">43.9</td>
+      <td style="text-align:right">22</td>
+      <td class="ctr-bad" style="text-align:right">0.04%</td>
+      <td style="font-size:11.5px;color:#444">Sump pump types, installation vs repair, cost ($500–$1,500), battery backup option</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">CRITICAL</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/arlington-va/sewer-repair/</td>
+      <td style="text-align:right">60,124</td>
+      <td class="rank-bad" style="text-align:right">45.6</td>
+      <td style="text-align:right">7</td>
+      <td class="ctr-bad" style="text-align:right">0.01%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replacement guide, cost ($800–$5K), trenchless options, city-specific pipe age context</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">CRITICAL</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/arlington-va/trenchless-pipe-repair/</td>
+      <td style="text-align:right">52,444</td>
+      <td class="rank-bad" style="text-align:right">29.8</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add trenchless vs excavation comparison, eligible pipe types, cost, before/after photos</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">CRITICAL</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/</td>
+      <td style="text-align:right">50,297</td>
+      <td class="rank-bad" style="text-align:right">43.2</td>
+      <td style="text-align:right">3</td>
+      <td class="ctr-bad" style="text-align:right">0.01%</td>
+      <td style="font-size:11.5px;color:#444">Expand content to 700+ words with city-specific details. Add FAQ schema + Service schema. Improve title tag CTR.</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">CRITICAL</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/hydro-jetting/</td>
+      <td style="text-align:right">31,713</td>
+      <td class="rank-bad" style="text-align:right">54.3</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add cost guide ($300–$600), residential vs commercial, near-me targeting, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">CRITICAL</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/stafford-va/sewer-repair-stafford-va/</td>
+      <td style="text-align:right">23,698</td>
+      <td class="rank-bad" style="text-align:right">47.0</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replacement guide, cost ($800–$5K), trenchless options, city-specific pipe age context</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">CRITICAL</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/sewer-video-inspection-alexandria-va/</td>
+      <td style="text-align:right">15,297</td>
+      <td class="rank-bad" style="text-align:right">41.1</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Rewrite 1000+ words: inspection process, cost ($150–$400), FAQ schema, sewer-inspection-near-me targeting</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">CRITICAL</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/falls-church-va/sewer-repair/</td>
+      <td style="text-align:right">11,999</td>
+      <td class="rank-bad" style="text-align:right">36.2</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replacement guide, cost ($800–$5K), trenchless options, city-specific pipe age context</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/sewer-camera-inspection-alexandria-va/</td>
+      <td style="text-align:right">432,530</td>
+      <td class="rank-bad" style="text-align:right">29.4</td>
+      <td style="text-align:right">32</td>
+      <td class="ctr-bad" style="text-align:right">0.01%</td>
+      <td style="font-size:11.5px;color:#444">Rewrite 1000+ words: inspection process, cost ($150–$400), FAQ schema, sewer-inspection-near-me targeting</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/arlington-va/hydro-jetting/</td>
+      <td style="text-align:right">235,452</td>
+      <td class="rank-bad" style="text-align:right">26.2</td>
+      <td style="text-align:right">6</td>
+      <td class="ctr-bad" style="text-align:right">0.0%</td>
+      <td style="font-size:11.5px;color:#444">Add cost guide ($300–$600), residential vs commercial, near-me targeting, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/hydro-jetting-alexandria-va/</td>
+      <td style="text-align:right">204,659</td>
+      <td class="rank-bad" style="text-align:right">23.0</td>
+      <td style="text-align:right">8</td>
+      <td class="ctr-bad" style="text-align:right">0.0%</td>
+      <td style="font-size:11.5px;color:#444">Add cost guide ($300–$600), residential vs commercial, near-me targeting, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fairfax-va/trenchless-pipe-repair/</td>
+      <td style="text-align:right">56,099</td>
+      <td class="rank-bad" style="text-align:right">29.4</td>
+      <td style="text-align:right">14</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Add trenchless vs excavation comparison, eligible pipe types, cost, before/after photos</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fairfax-va/pipe-lining/</td>
+      <td style="text-align:right">38,982</td>
+      <td class="rank-bad" style="text-align:right">45.0</td>
+      <td style="text-align:right">27</td>
+      <td class="ctr-bad" style="text-align:right">0.07%</td>
+      <td style="font-size:11.5px;color:#444">CIPP process steps, eligible pipes, cost vs replacement, city-specific content</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/garbage-disposal-alexandria-va/</td>
+      <td style="text-align:right">34,448</td>
+      <td class="rank-bad" style="text-align:right">24.5</td>
+      <td style="text-align:right">7</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Brand comparison, repair vs replace ($150–$400), installation guide, warranty info</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/water-heaters-alexandria-va/</td>
+      <td style="text-align:right">33,472</td>
+      <td class="rank-bad" style="text-align:right">33.3</td>
+      <td style="text-align:right">7</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replace guide, tankless vs traditional, brand recommendations, cost, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/falls-church-va/water-heater-repair/</td>
+      <td style="text-align:right">29,316</td>
+      <td class="rank-bad" style="text-align:right">24.0</td>
+      <td style="text-align:right">5</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replace guide, tankless vs traditional, brand recommendations, cost, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/sewer-line-replacement-alexandria-va/</td>
+      <td style="text-align:right">26,237</td>
+      <td class="rank-bad" style="text-align:right">53.0</td>
+      <td style="text-align:right">8</td>
+      <td class="ctr-bad" style="text-align:right">0.03%</td>
+      <td style="font-size:11.5px;color:#444">Cost guide ($3K–$15K), process timeline, insurance coverage, financing options</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/water-treatment-alexandria-va/</td>
+      <td style="text-align:right">23,465</td>
+      <td class="rank-bad" style="text-align:right">24.4</td>
+      <td style="text-align:right">10</td>
+      <td class="ctr-bad" style="text-align:right">0.04%</td>
+      <td style="font-size:11.5px;color:#444">City water quality data, filtration methods (RO, softener, whole-home), cost comparison</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/sewer-line-repair-alexandria-va/</td>
+      <td style="text-align:right">20,883</td>
+      <td class="rank-bad" style="text-align:right">38.5</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-bad" style="text-align:right">0.01%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replacement guide, cost ($800–$5K), trenchless options, city-specific pipe age context</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/springfield-va/sewers/</td>
+      <td style="text-align:right">19,301</td>
+      <td class="rank-bad" style="text-align:right">27.6</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-bad" style="text-align:right">0.01%</td>
+      <td style="font-size:11.5px;color:#444">Springfield-specific content: neighborhoods, pipe age context, local building codes, named technician, review quote from Springfield customer</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/falls-church-va/</td>
+      <td style="text-align:right">18,446</td>
+      <td class="rank-bad" style="text-align:right">21.6</td>
+      <td style="text-align:right">13</td>
+      <td class="ctr-bad" style="text-align:right">0.07%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areafalls Church neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/stafford-va/water-heater-repair-stafford-va/</td>
+      <td style="text-align:right">17,700</td>
+      <td class="rank-bad" style="text-align:right">32.8</td>
+      <td style="text-align:right">4</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replace guide, tankless vs traditional, brand recommendations, cost, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/trenchless-pipe-repair-alexandria-va/</td>
+      <td style="text-align:right">17,210</td>
+      <td class="rank-bad" style="text-align:right">54.4</td>
+      <td style="text-align:right">3</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Add trenchless vs excavation comparison, eligible pipe types, cost, before/after photos</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fairfax-va/water-line-repair/</td>
+      <td style="text-align:right">15,240</td>
+      <td class="rank-bad" style="text-align:right">51.7</td>
+      <td style="text-align:right">9</td>
+      <td class="ctr-bad" style="text-align:right">0.06%</td>
+      <td style="font-size:11.5px;color:#444">Water line leak signs, repair vs replacement, excavation vs trenchless, cost guide</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/arlington-va/water-line-repair/</td>
+      <td style="text-align:right">15,123</td>
+      <td class="rank-bad" style="text-align:right">46.7</td>
+      <td style="text-align:right">4</td>
+      <td class="ctr-bad" style="text-align:right">0.03%</td>
+      <td style="font-size:11.5px;color:#444">Water line leak signs, repair vs replacement, excavation vs trenchless, cost guide</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fairfax-va/commercial-drain-cleaning/</td>
+      <td style="text-align:right">14,105</td>
+      <td class="rank-bad" style="text-align:right">43.1</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-bad" style="text-align:right">0.01%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/arlington-va/water-heater-repair/</td>
+      <td style="text-align:right">13,379</td>
+      <td class="rank-bad" style="text-align:right">21.6</td>
+      <td style="text-align:right">7</td>
+      <td class="ctr-bad" style="text-align:right">0.05%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replace guide, tankless vs traditional, brand recommendations, cost, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/stafford-va/plumbing-stafford-va/</td>
+      <td style="text-align:right">12,860</td>
+      <td class="rank-bad" style="text-align:right">25.5</td>
+      <td style="text-align:right">3</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Stafford-specific content: neighborhoods, pipe age context, local building codes, named technician, review quote from Stafford customer</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/slab-leaks-alexandria-va/</td>
+      <td style="text-align:right">11,985</td>
+      <td class="rank-bad" style="text-align:right">37.3</td>
+      <td style="text-align:right">4</td>
+      <td class="ctr-bad" style="text-align:right">0.03%</td>
+      <td style="font-size:11.5px;color:#444">Detection methods, cost ($500–$3K), repair options, signs of slab leak</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/water-heater-repair/</td>
+      <td style="text-align:right">11,617</td>
+      <td class="rank-bad" style="text-align:right">21.9</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.01%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replace guide, tankless vs traditional, brand recommendations, cost, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/sewer-repair/</td>
+      <td style="text-align:right">11,416</td>
+      <td class="rank-bad" style="text-align:right">25.8</td>
+      <td style="text-align:right">6</td>
+      <td class="ctr-bad" style="text-align:right">0.05%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replacement guide, cost ($800–$5K), trenchless options, city-specific pipe age context</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/</td>
+      <td style="text-align:right">10,789</td>
+      <td class="rank-bad" style="text-align:right">31.2</td>
+      <td style="text-align:right">17</td>
+      <td class="ctr-warn" style="text-align:right">0.16%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areafredericksburg neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/stafford-va/</td>
+      <td style="text-align:right">10,663</td>
+      <td class="rank-bad" style="text-align:right">28.1</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areastafford neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/water-line-repair/</td>
+      <td style="text-align:right">10,570</td>
+      <td class="rank-bad" style="text-align:right">41.9</td>
+      <td style="text-align:right">3</td>
+      <td class="ctr-bad" style="text-align:right">0.03%</td>
+      <td style="font-size:11.5px;color:#444">Water line leak signs, repair vs replacement, excavation vs trenchless, cost guide</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/well-pumps-repair-installation-alexandria-va/</td>
+      <td style="text-align:right">10,192</td>
+      <td class="rank-bad" style="text-align:right">33.7</td>
+      <td style="text-align:right">5</td>
+      <td class="ctr-bad" style="text-align:right">0.05%</td>
+      <td style="font-size:11.5px;color:#444">Well pump types, failure signs, cost ($500–$2K), seasonal maintenance tips</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/annandale-va/sewers/</td>
+      <td style="text-align:right">4,259</td>
+      <td class="rank-warn" style="text-align:right">19.2</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Annandale-specific content: neighborhoods, pipe age context, local building codes, named technician, review quote from Annandale customer</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/annandale-va/water-heaters/</td>
+      <td style="text-align:right">3,962</td>
+      <td class="rank-bad" style="text-align:right">20.3</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replace guide, tankless vs traditional, brand recommendations, cost, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/mclean-va/sewers/</td>
+      <td style="text-align:right">3,788</td>
+      <td class="rank-bad" style="text-align:right">20.5</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Mclean-specific content: neighborhoods, pipe age context, local building codes, named technician, review quote from Mclean customer</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/lorton-va/water-heater-repair/</td>
+      <td style="text-align:right">3,785</td>
+      <td class="rank-bad" style="text-align:right">24.0</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replace guide, tankless vs traditional, brand recommendations, cost, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fairfax-va/plumbing/</td>
+      <td style="text-align:right">3,587</td>
+      <td class="rank-bad" style="text-align:right">43.7</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Fairfax-specific content: neighborhoods, pipe age context, local building codes, named technician, review quote from Fairfax customer</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/stafford-va/trenchless-pipe-repair-stafford-va/</td>
+      <td style="text-align:right">3,504</td>
+      <td class="rank-bad" style="text-align:right">27.2</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add trenchless vs excavation comparison, eligible pipe types, cost, before/after photos</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/commercial-plumbing-alexandria-va/</td>
+      <td style="text-align:right">3,208</td>
+      <td class="rank-bad" style="text-align:right">45.0</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Target property managers, HOAs, restaurants — B2B angle, maintenance contracts, grease traps</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fairfax-va/commercial-hydro-jetting/</td>
+      <td style="text-align:right">2,999</td>
+      <td class="rank-bad" style="text-align:right">28.5</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add cost guide ($300–$600), residential vs commercial, near-me targeting, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/lorton-va/sewer-camera-inspection/</td>
+      <td style="text-align:right">2,995</td>
+      <td class="rank-bad" style="text-align:right">67.4</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Rewrite 1000+ words: inspection process, cost ($150–$400), FAQ schema, sewer-inspection-near-me targeting</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/water-heater-repair-alexandria-va/</td>
+      <td style="text-align:right">2,449</td>
+      <td class="rank-bad" style="text-align:right">53.0</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replace guide, tankless vs traditional, brand recommendations, cost, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/vienna-va/water-heaters/</td>
+      <td style="text-align:right">2,434</td>
+      <td class="rank-warn" style="text-align:right">18.7</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replace guide, tankless vs traditional, brand recommendations, cost, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/water-heaters-electric-alexandria-va/</td>
+      <td style="text-align:right">2,276</td>
+      <td class="rank-bad" style="text-align:right">40.3</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replace guide, tankless vs traditional, brand recommendations, cost, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/annandale-va/hydro-jetting/</td>
+      <td style="text-align:right">2,133</td>
+      <td class="rank-warn" style="text-align:right">17.6</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add cost guide ($300–$600), residential vs commercial, near-me targeting, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/great-falls-va/drain-cleaning/</td>
+      <td style="text-align:right">1,887</td>
+      <td class="rank-warn" style="text-align:right">16.5</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/pipe-descaling-alexandria-va/</td>
+      <td style="text-align:right">1,612</td>
+      <td class="rank-bad" style="text-align:right">30.3</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">What pipe descaling is, when needed, cost vs replacement, process explanation</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/water-line-repair-alexandria-va/</td>
+      <td style="text-align:right">1,537</td>
+      <td class="rank-bad" style="text-align:right">39.2</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Water line leak signs, repair vs replacement, excavation vs trenchless, cost guide</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/vienna-va/drain-cleaning/</td>
+      <td style="text-align:right">1,523</td>
+      <td class="rank-bad" style="text-align:right">27.9</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/commercial-hydro-jetting/</td>
+      <td style="text-align:right">1,305</td>
+      <td class="rank-bad" style="text-align:right">27.6</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add cost guide ($300–$600), residential vs commercial, near-me targeting, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/lorton-va/trenchless-pipe-repair/</td>
+      <td style="text-align:right">1,260</td>
+      <td class="rank-bad" style="text-align:right">27.5</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add trenchless vs excavation comparison, eligible pipe types, cost, before/after photos</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/lorton-va/plumbing/</td>
+      <td style="text-align:right">1,200</td>
+      <td class="rank-warn" style="text-align:right">18.2</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Lorton-specific content: neighborhoods, pipe age context, local building codes, named technician, review quote from Lorton customer</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/great-falls-va/water-heaters/</td>
+      <td style="text-align:right">1,138</td>
+      <td class="rank-warn" style="text-align:right">11.6</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replace guide, tankless vs traditional, brand recommendations, cost, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/arlington-va/commercial-hydro-jetting/</td>
+      <td style="text-align:right">1,093</td>
+      <td class="rank-bad" style="text-align:right">26.6</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add cost guide ($300–$600), residential vs commercial, near-me targeting, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-orange">HIGH</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/lorton-va/commercial-drain-cleaning/</td>
+      <td style="text-align:right">1,012</td>
+      <td class="rank-bad" style="text-align:right">23.4</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/arlington-va/plumbing/</td>
+      <td style="text-align:right">9,495</td>
+      <td class="rank-bad" style="text-align:right">28.1</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Arlington-specific content: neighborhoods, pipe age context, local building codes, named technician, review quote from Arlington customer</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/arlington-va/drain-cleaning/</td>
+      <td style="text-align:right">9,371</td>
+      <td class="rank-bad" style="text-align:right">28.0</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/falls-church-va/water-line-repair/</td>
+      <td style="text-align:right">9,093</td>
+      <td class="rank-bad" style="text-align:right">36.2</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Water line leak signs, repair vs replacement, excavation vs trenchless, cost guide</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/arlington-va/pipe-lining/</td>
+      <td style="text-align:right">8,633</td>
+      <td class="rank-bad" style="text-align:right">38.5</td>
+      <td style="text-align:right">5</td>
+      <td class="ctr-bad" style="text-align:right">0.06%</td>
+      <td style="font-size:11.5px;color:#444">CIPP process steps, eligible pipes, cost vs replacement, city-specific content</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/stafford-va/drain-cleaning-stafford-va/</td>
+      <td style="text-align:right">8,479</td>
+      <td class="rank-bad" style="text-align:right">22.3</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/faucets-installation-repair-alexandria-va/</td>
+      <td style="text-align:right">8,466</td>
+      <td class="rank-bad" style="text-align:right">33.8</td>
+      <td style="text-align:right">5</td>
+      <td class="ctr-bad" style="text-align:right">0.06%</td>
+      <td style="font-size:11.5px;color:#444">Brand comparison, repair vs replace, installation cost, popular styles in NOVA</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/springfield-va/</td>
+      <td style="text-align:right">8,355</td>
+      <td class="rank-bad" style="text-align:right">24.1</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areaspringfield neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/falls-church-va/sewer-camera-inspection/</td>
+      <td style="text-align:right">8,289</td>
+      <td class="rank-bad" style="text-align:right">33.0</td>
+      <td style="text-align:right">9</td>
+      <td class="ctr-warn" style="text-align:right">0.11%</td>
+      <td style="font-size:11.5px;color:#444">Rewrite 1000+ words: inspection process, cost ($150–$400), FAQ schema, sewer-inspection-near-me targeting</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/drain-cleaning-alexandria-va/</td>
+      <td style="text-align:right">8,170</td>
+      <td class="rank-bad" style="text-align:right">28.4</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/stafford-va/water-line-repair-stafford-va/</td>
+      <td style="text-align:right">8,081</td>
+      <td class="rank-bad" style="text-align:right">35.7</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.01%</td>
+      <td style="font-size:11.5px;color:#444">Water line leak signs, repair vs replacement, excavation vs trenchless, cost guide</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fairfax-va/</td>
+      <td style="text-align:right">7,348</td>
+      <td class="rank-bad" style="text-align:right">41.3</td>
+      <td style="text-align:right">10</td>
+      <td class="ctr-warn" style="text-align:right">0.14%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areafairfax neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/water-gas-and-leaks/</td>
+      <td style="text-align:right">6,666</td>
+      <td class="rank-bad" style="text-align:right">27.0</td>
+      <td style="text-align:right">3</td>
+      <td class="ctr-bad" style="text-align:right">0.05%</td>
+      <td style="font-size:11.5px;color:#444">Gas leak safety, emergency detection, utility notification process, repair timeline</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/</td>
+      <td style="text-align:right">6,174</td>
+      <td class="rank-bad" style="text-align:right">44.9</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Service hub: intro content + links to all plumbing sub-pages, service overview</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/stafford-va/sewer-camera-inspection-stafford-va/</td>
+      <td style="text-align:right">6,140</td>
+      <td class="rank-bad" style="text-align:right">33.5</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Rewrite 1000+ words: inspection process, cost ($150–$400), FAQ schema, sewer-inspection-near-me targeting</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/falls-church-va/trenchless-pipe-repair/</td>
+      <td style="text-align:right">5,361</td>
+      <td class="rank-bad" style="text-align:right">51.9</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Add trenchless vs excavation comparison, eligible pipe types, cost, before/after photos</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/trenchless-pipe-lining-alexandria-va/</td>
+      <td style="text-align:right">5,118</td>
+      <td class="rank-bad" style="text-align:right">43.8</td>
+      <td style="text-align:right">7</td>
+      <td class="ctr-warn" style="text-align:right">0.14%</td>
+      <td style="font-size:11.5px;color:#444">Add trenchless vs excavation comparison, eligible pipe types, cost, before/after photos</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/water-filtration-alexandria-va/</td>
+      <td style="text-align:right">4,996</td>
+      <td class="rank-bad" style="text-align:right">35.1</td>
+      <td style="text-align:right">8</td>
+      <td class="ctr-warn" style="text-align:right">0.16%</td>
+      <td style="font-size:11.5px;color:#444">City water quality data, filtration methods (RO, softener, whole-home), cost comparison</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/trenchless-piper-repair/</td>
+      <td style="text-align:right">4,808</td>
+      <td class="rank-bad" style="text-align:right">23.6</td>
+      <td style="text-align:right">8</td>
+      <td class="ctr-warn" style="text-align:right">0.17%</td>
+      <td style="font-size:11.5px;color:#444">Add trenchless vs excavation comparison, eligible pipe types, cost, before/after photos</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/plumbing/</td>
+      <td style="text-align:right">4,731</td>
+      <td class="rank-bad" style="text-align:right">37.4</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Fredericksburg-specific content: neighborhoods, pipe age context, local building codes, named technician, review quote from Fredericksburg customer</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/mclean-va/drain-cleaning/</td>
+      <td style="text-align:right">4,659</td>
+      <td class="rank-bad" style="text-align:right">25.8</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.02%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/arlington-va/commercial-drain-cleaning/</td>
+      <td style="text-align:right">4,647</td>
+      <td class="rank-bad" style="text-align:right">38.5</td>
+      <td style="text-align:right">5</td>
+      <td class="ctr-warn" style="text-align:right">0.11%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/trenchless-water-lines-alexandria-va/</td>
+      <td style="text-align:right">4,587</td>
+      <td class="rank-bad" style="text-align:right">34.9</td>
+      <td style="text-align:right">5</td>
+      <td class="ctr-warn" style="text-align:right">0.11%</td>
+      <td style="font-size:11.5px;color:#444">Add trenchless vs excavation comparison, eligible pipe types, cost, before/after photos</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/cured-in-place-pipe-alexandria-va/</td>
+      <td style="text-align:right">3,914</td>
+      <td class="rank-bad" style="text-align:right">41.5</td>
+      <td style="text-align:right">12</td>
+      <td class="ctr-warn" style="text-align:right">0.31%</td>
+      <td style="font-size:11.5px;color:#444">CIPP process steps, eligible pipes, cost vs replacement, city-specific content</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/vienna-va/</td>
+      <td style="text-align:right">3,797</td>
+      <td class="rank-bad" style="text-align:right">26.2</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-bad" style="text-align:right">0.05%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areavienna neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/commercial-plumbing/</td>
+      <td style="text-align:right">3,007</td>
+      <td class="rank-bad" style="text-align:right">34.4</td>
+      <td style="text-align:right">4</td>
+      <td class="ctr-warn" style="text-align:right">0.13%</td>
+      <td style="font-size:11.5px;color:#444">Target property managers, HOAs, restaurants — B2B angle, maintenance contracts, grease traps</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/leak-detection-alexandria-va/</td>
+      <td style="text-align:right">2,987</td>
+      <td class="rank-bad" style="text-align:right">33.3</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.03%</td>
+      <td style="font-size:11.5px;color:#444">Detection methods (acoustic, thermal, camera), cost, emergency response time</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/spotsylvania-va/well-pumps/</td>
+      <td style="text-align:right">2,972</td>
+      <td class="rank-bad" style="text-align:right">29.5</td>
+      <td style="text-align:right">9</td>
+      <td class="ctr-warn" style="text-align:right">0.3%</td>
+      <td style="font-size:11.5px;color:#444">Well pump types, failure signs, cost ($500–$2K), seasonal maintenance tips</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/underground-pipe-repair-alexandria-va/</td>
+      <td style="text-align:right">2,972</td>
+      <td class="rank-bad" style="text-align:right">44.3</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.03%</td>
+      <td style="font-size:11.5px;color:#444">Underground repair methods, no-dig options, cost guide, case studies</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/epoxy-coatings-alexandria-va/</td>
+      <td style="text-align:right">2,557</td>
+      <td class="rank-bad" style="text-align:right">54.5</td>
+      <td style="text-align:right">10</td>
+      <td class="ctr-warn" style="text-align:right">0.39%</td>
+      <td style="font-size:11.5px;color:#444">Epoxy pipe coating process, eligible pipes, cost, longevity vs replacement</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/contact-us/</td>
+      <td style="text-align:right">2,531</td>
+      <td class="rank-bad" style="text-align:right">27.4</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-bad" style="text-align:right">0.08%</td>
+      <td style="font-size:11.5px;color:#444">Expand content to 700+ words with city-specific details. Add FAQ schema + Service schema. Improve title tag CTR.</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/manassas-va/</td>
+      <td style="text-align:right">2,408</td>
+      <td class="rank-bad" style="text-align:right">34.5</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-bad" style="text-align:right">0.08%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areamanassas neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/stafford-va/well-pumps-stafford-va/</td>
+      <td style="text-align:right">2,387</td>
+      <td class="rank-bad" style="text-align:right">26.1</td>
+      <td style="text-align:right">9</td>
+      <td class="ctr-warn" style="text-align:right">0.38%</td>
+      <td style="font-size:11.5px;color:#444">Well pump types, failure signs, cost ($500–$2K), seasonal maintenance tips</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/falls-church-va/pipe-lining/</td>
+      <td style="text-align:right">1,965</td>
+      <td class="rank-bad" style="text-align:right">29.3</td>
+      <td style="text-align:right">4</td>
+      <td class="ctr-warn" style="text-align:right">0.2%</td>
+      <td style="font-size:11.5px;color:#444">CIPP process steps, eligible pipes, cost vs replacement, city-specific content</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/cast-iron-pipe-repair-alexandria-va/</td>
+      <td style="text-align:right">1,862</td>
+      <td class="rank-bad" style="text-align:right">51.0</td>
+      <td style="text-align:right">3</td>
+      <td class="ctr-warn" style="text-align:right">0.16%</td>
+      <td style="font-size:11.5px;color:#444">Cast iron pipe lifespan, failure signs, repair vs replacement, trenchless options</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/sewer-cameras/</td>
+      <td style="text-align:right">1,840</td>
+      <td class="rank-bad" style="text-align:right">22.7</td>
+      <td style="text-align:right">3</td>
+      <td class="ctr-warn" style="text-align:right">0.16%</td>
+      <td style="font-size:11.5px;color:#444">Rewrite 1000+ words: inspection process, cost ($150–$400), FAQ schema, sewer-inspection-near-me targeting</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/mclean-va/leak-detection/</td>
+      <td style="text-align:right">1,756</td>
+      <td class="rank-bad" style="text-align:right">35.4</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.06%</td>
+      <td style="font-size:11.5px;color:#444">Detection methods (acoustic, thermal, camera), cost, emergency response time</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/lorton-va/water-line-repair/</td>
+      <td style="text-align:right">1,671</td>
+      <td class="rank-bad" style="text-align:right">30.0</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.06%</td>
+      <td style="font-size:11.5px;color:#444">Water line leak signs, repair vs replacement, excavation vs trenchless, cost guide</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/falls-church-va/plumbing/</td>
+      <td style="text-align:right">1,630</td>
+      <td class="rank-bad" style="text-align:right">27.1</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.06%</td>
+      <td style="font-size:11.5px;color:#444">Falls Church-specific content: neighborhoods, pipe age context, local building codes, named technician, review quote from Falls Church customer</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/alexandria-va/</td>
+      <td style="text-align:right">1,432</td>
+      <td class="rank-bad" style="text-align:right">34.4</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.07%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areaalexandria neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/stafford-va/pipe-lining-stafford-va/</td>
+      <td style="text-align:right">1,389</td>
+      <td class="rank-bad" style="text-align:right">28.6</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.07%</td>
+      <td style="font-size:11.5px;color:#444">CIPP process steps, eligible pipes, cost vs replacement, city-specific content</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/arlington-va/</td>
+      <td style="text-align:right">1,361</td>
+      <td class="rank-bad" style="text-align:right">39.0</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-warn" style="text-align:right">0.15%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areaarlington neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/mclean-va/well-pumps/</td>
+      <td style="text-align:right">1,351</td>
+      <td class="rank-bad" style="text-align:right">25.8</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.07%</td>
+      <td style="font-size:11.5px;color:#444">Well pump types, failure signs, cost ($500–$2K), seasonal maintenance tips</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/vienna-va/pipe-descaling/</td>
+      <td style="text-align:right">1,306</td>
+      <td class="rank-bad" style="text-align:right">40.6</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.08%</td>
+      <td style="font-size:11.5px;color:#444">What pipe descaling is, when needed, cost vs replacement, process explanation</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/about-us/</td>
+      <td style="text-align:right">1,272</td>
+      <td class="rank-bad" style="text-align:right">28.6</td>
+      <td style="text-align:right">3</td>
+      <td class="ctr-warn" style="text-align:right">0.24%</td>
+      <td style="font-size:11.5px;color:#444">Expand content to 700+ words with city-specific details. Add FAQ schema + Service schema. Improve title tag CTR.</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/stafford-va/commercial-hydro-jetting-stafford-va/</td>
+      <td style="text-align:right">1,163</td>
+      <td class="rank-bad" style="text-align:right">30.5</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.09%</td>
+      <td style="font-size:11.5px;color:#444">Add cost guide ($300–$600), residential vs commercial, near-me targeting, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/great-falls-va/well-pumps/</td>
+      <td style="text-align:right">1,086</td>
+      <td class="rank-bad" style="text-align:right">21.7</td>
+      <td style="text-align:right">5</td>
+      <td class="ctr-warn" style="text-align:right">0.46%</td>
+      <td style="font-size:11.5px;color:#444">Well pump types, failure signs, cost ($500–$2K), seasonal maintenance tips</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/spotsylvania-va/sewers/</td>
+      <td style="text-align:right">989</td>
+      <td class="rank-warn" style="text-align:right">18.3</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Spotsylvania-specific content: neighborhoods, pipe age context, local building codes, named technician, review quote from Spotsylvania customer</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/tree-root-infiltration-alexandria-va/</td>
+      <td style="text-align:right">774</td>
+      <td class="rank-bad" style="text-align:right">26.8</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Root intrusion signs, prevention, hydro jetting vs trenchless repair, before/after</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/stafford-va/commercial-drain-cleaning-stafford-va/</td>
+      <td style="text-align:right">758</td>
+      <td class="rank-bad" style="text-align:right">34.0</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/commercial-hydro-jetting-alexandria-va/</td>
+      <td style="text-align:right">757</td>
+      <td class="rank-bad" style="text-align:right">45.1</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add cost guide ($300–$600), residential vs commercial, near-me targeting, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/spotsylvania-va/hydrojetting/</td>
+      <td style="text-align:right">722</td>
+      <td class="rank-bad" style="text-align:right">20.9</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add cost guide ($300–$600), residential vs commercial, near-me targeting, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/fixture-installations-alexandria-va/</td>
+      <td style="text-align:right">655</td>
+      <td class="rank-bad" style="text-align:right">35.4</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Brand comparison, repair vs replace, installation cost, popular styles in NOVA</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/</td>
+      <td style="text-align:right">642</td>
+      <td class="rank-bad" style="text-align:right">37.8</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Area neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/certified-master-plumbers/</td>
+      <td style="text-align:right">543</td>
+      <td class="rank-bad" style="text-align:right">28.6</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Fredericksburg-specific content: neighborhoods, pipe age context, local building codes, named technician, review quote from Fredericksburg customer</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fairfax-va/well-pumps/</td>
+      <td style="text-align:right">513</td>
+      <td class="rank-warn" style="text-align:right">13.0</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Well pump types, failure signs, cost ($500–$2K), seasonal maintenance tips</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/spotsylvania-va/water-heaters/</td>
+      <td style="text-align:right">474</td>
+      <td class="rank-bad" style="text-align:right">21.8</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replace guide, tankless vs traditional, brand recommendations, cost, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/lorton-va/sewer-repair/</td>
+      <td style="text-align:right">446</td>
+      <td class="rank-bad" style="text-align:right">20.8</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replacement guide, cost ($800–$5K), trenchless options, city-specific pipe age context</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/spotsylvania-va/drain-cleaning/</td>
+      <td style="text-align:right">432</td>
+      <td class="rank-warn" style="text-align:right">11.9</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/annandale-va/well-pumps/</td>
+      <td style="text-align:right">401</td>
+      <td class="rank-good" style="text-align:right">7.5</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Well pump types, failure signs, cost ($500–$2K), seasonal maintenance tips</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/mclean-va/pipe-descaling/</td>
+      <td style="text-align:right">368</td>
+      <td class="rank-bad" style="text-align:right">44.2</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">What pipe descaling is, when needed, cost vs replacement, process explanation</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/springfield-va/water-heaters/</td>
+      <td style="text-align:right">361</td>
+      <td class="rank-bad" style="text-align:right">20.7</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replace guide, tankless vs traditional, brand recommendations, cost, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/stafford-va/hdyro-jetting-stafford-va/</td>
+      <td style="text-align:right">360</td>
+      <td class="rank-bad" style="text-align:right">20.9</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Stafford-specific content: neighborhoods, pipe age context, local building codes, named technician, review quote from Stafford customer</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/falls-church-va/pipe-descaling/</td>
+      <td style="text-align:right">349</td>
+      <td class="rank-bad" style="text-align:right">56.5</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">What pipe descaling is, when needed, cost vs replacement, process explanation</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/vienna-va/well-pumps/</td>
+      <td style="text-align:right">338</td>
+      <td class="rank-bad" style="text-align:right">25.6</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Well pump types, failure signs, cost ($500–$2K), seasonal maintenance tips</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/mclean-va/plumbing/</td>
+      <td style="text-align:right">316</td>
+      <td class="rank-bad" style="text-align:right">36.2</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Mclean-specific content: neighborhoods, pipe age context, local building codes, named technician, review quote from Mclean customer</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/springfield-va/drain-cleaning/</td>
+      <td style="text-align:right">281</td>
+      <td class="rank-bad" style="text-align:right">26.2</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/great-falls-va/hydro-jetting/</td>
+      <td style="text-align:right">249</td>
+      <td class="rank-warn" style="text-align:right">16.7</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add cost guide ($300–$600), residential vs commercial, near-me targeting, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/vienna-va/sewers/</td>
+      <td style="text-align:right">201</td>
+      <td class="rank-warn" style="text-align:right">13.7</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Vienna-specific content: neighborhoods, pipe age context, local building codes, named technician, review quote from Vienna customer</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/falls-church-va/well-pumps/</td>
+      <td style="text-align:right">187</td>
+      <td class="rank-good" style="text-align:right">5.6</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Well pump types, failure signs, cost ($500–$2K), seasonal maintenance tips</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/arlington-va/well-pumps/</td>
+      <td style="text-align:right">166</td>
+      <td class="rank-good" style="text-align:right">3.1</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Well pump types, failure signs, cost ($500–$2K), seasonal maintenance tips</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/falls-church-va/hydro-jetting/</td>
+      <td style="text-align:right">137</td>
+      <td class="rank-warn" style="text-align:right">10.4</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add cost guide ($300–$600), residential vs commercial, near-me targeting, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/mclean-va/water-heaters/</td>
+      <td style="text-align:right">115</td>
+      <td class="rank-warn" style="text-align:right">16.9</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replace guide, tankless vs traditional, brand recommendations, cost, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service/</td>
+      <td style="text-align:right">106</td>
+      <td class="rank-bad" style="text-align:right">50.6</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Expand content to 700+ words with city-specific details. Add FAQ schema + Service schema. Improve title tag CTR.</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/privacy-policy/</td>
+      <td style="text-align:right">90</td>
+      <td class="rank-warn" style="text-align:right">12.9</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Expand content to 700+ words with city-specific details. Add FAQ schema + Service schema. Improve title tag CTR.</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/franconia-va/</td>
+      <td style="text-align:right">82</td>
+      <td class="rank-good" style="text-align:right">6.8</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areafranconia neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/gallery/</td>
+      <td style="text-align:right">69</td>
+      <td class="rank-warn" style="text-align:right">17</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Expand content to 700+ words with city-specific details. Add FAQ schema + Service schema. Improve title tag CTR.</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/sitemap/</td>
+      <td style="text-align:right">40</td>
+      <td class="rank-warn" style="text-align:right">17.3</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Expand content to 700+ words with city-specific details. Add FAQ schema + Service schema. Improve title tag CTR.</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/groveton-va/</td>
+      <td style="text-align:right">27</td>
+      <td class="rank-good" style="text-align:right">4.9</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areagroveton neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/lorton-va/</td>
+      <td style="text-align:right">17</td>
+      <td class="rank-warn" style="text-align:right">17.1</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Arealorton neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/montclair-va/</td>
+      <td style="text-align:right">14</td>
+      <td class="rank-warn" style="text-align:right">12.3</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areamontclair neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/annandale-va/descale-plumbing-pipes/</td>
+      <td style="text-align:right">11</td>
+      <td class="rank-warn" style="text-align:right">14.7</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Annandale-specific content: neighborhoods, pipe age context, local building codes, named technician, review quote from Annandale customer</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/spotsylvania-va/pipe-descaling/</td>
+      <td style="text-align:right">7</td>
+      <td class="rank-warn" style="text-align:right">17.7</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">What pipe descaling is, when needed, cost vs replacement, process explanation</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">MEDIUM</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/mount-vernon-va/</td>
+      <td style="text-align:right">3</td>
+      <td class="rank-warn" style="text-align:right">13</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">0%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areamount Vernon neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">LOW</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/water-heaters-gas-alexandria-va/</td>
+      <td style="text-align:right">853</td>
+      <td class="rank-bad" style="text-align:right">36.6</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-warn" style="text-align:right">0.12%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replace guide, tankless vs traditional, brand recommendations, cost, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">LOW</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/commercial-drain-cleaning-alexandria-va/</td>
+      <td style="text-align:right">850</td>
+      <td class="rank-bad" style="text-align:right">52.5</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-warn" style="text-align:right">0.12%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">LOW</span></td>
+      <td style="font-size:12px;word-break:break-all">/sewer-and-drain/cast-iron-pipe-replacement-alexandria-va/</td>
+      <td style="text-align:right">808</td>
+      <td class="rank-bad" style="text-align:right">28.9</td>
+      <td style="text-align:right">4</td>
+      <td class="ctr-warn" style="text-align:right">0.5%</td>
+      <td style="font-size:11.5px;color:#444">Cast iron pipe lifespan, failure signs, repair vs replacement, trenchless options</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">LOW</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/woodbridge-va/</td>
+      <td style="text-align:right">802</td>
+      <td class="rank-bad" style="text-align:right">37.4</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-warn" style="text-align:right">0.12%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areawoodbridge neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">LOW</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/vienna-va/hydro-jetting/</td>
+      <td style="text-align:right">727</td>
+      <td class="rank-bad" style="text-align:right">26.4</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-warn" style="text-align:right">0.28%</td>
+      <td style="font-size:11.5px;color:#444">Add cost guide ($300–$600), residential vs commercial, near-me targeting, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">LOW</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/commercial-drain-cleaning/</td>
+      <td style="text-align:right">672</td>
+      <td class="rank-bad" style="text-align:right">45.0</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-warn" style="text-align:right">0.15%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">LOW</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/arlington-va/pipe-descaling/</td>
+      <td style="text-align:right">589</td>
+      <td class="rank-bad" style="text-align:right">38.1</td>
+      <td style="text-align:right">4</td>
+      <td class="ctr-warn" style="text-align:right">0.68%</td>
+      <td style="font-size:11.5px;color:#444">What pipe descaling is, when needed, cost vs replacement, process explanation</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-gray">LOW</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fairfax-va/pipe-descaling/</td>
+      <td style="text-align:right">468</td>
+      <td class="rank-bad" style="text-align:right">34.0</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-warn" style="text-align:right">0.43%</td>
+      <td style="font-size:11.5px;color:#444">What pipe descaling is, when needed, cost vs replacement, process explanation</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/</td>
+      <td style="text-align:right">64,642</td>
+      <td class="rank-warn" style="text-align:right">18.4</td>
+      <td style="text-align:right">306</td>
+      <td class="ctr-warn" style="text-align:right">0.47%</td>
+      <td style="font-size:11.5px;color:#444">Expand content to 700+ words with city-specific details. Add FAQ schema + Service schema. Improve title tag CTR.</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fairfax-va/water-heater-repair/</td>
+      <td style="text-align:right">20,278</td>
+      <td class="rank-warn" style="text-align:right">20.0</td>
+      <td style="text-align:right">6</td>
+      <td class="ctr-bad" style="text-align:right">0.03%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replace guide, tankless vs traditional, brand recommendations, cost, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/mclean-va/</td>
+      <td style="text-align:right">11,430</td>
+      <td class="rank-warn" style="text-align:right">19.8</td>
+      <td style="text-align:right">3</td>
+      <td class="ctr-bad" style="text-align:right">0.03%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areamclean neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/drain-cleaning/</td>
+      <td style="text-align:right">8,424</td>
+      <td class="rank-warn" style="text-align:right">17.4</td>
+      <td style="text-align:right">4</td>
+      <td class="ctr-bad" style="text-align:right">0.05%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/pipe-lining/</td>
+      <td style="text-align:right">8,417</td>
+      <td class="rank-warn" style="text-align:right">18.8</td>
+      <td style="text-align:right">9</td>
+      <td class="ctr-warn" style="text-align:right">0.11%</td>
+      <td style="font-size:11.5px;color:#444">CIPP process steps, eligible pipes, cost vs replacement, city-specific content</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/annandale-va/</td>
+      <td style="text-align:right">8,156</td>
+      <td class="rank-warn" style="text-align:right">19.3</td>
+      <td style="text-align:right">3</td>
+      <td class="ctr-bad" style="text-align:right">0.04%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areaannandale neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/cured-in-place-pipe/</td>
+      <td style="text-align:right">8,036</td>
+      <td class="rank-warn" style="text-align:right">11.1</td>
+      <td style="text-align:right">4</td>
+      <td class="ctr-bad" style="text-align:right">0.05%</td>
+      <td style="font-size:11.5px;color:#444">CIPP process steps, eligible pipes, cost vs replacement, city-specific content</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fairfax-va/hydro-jetting/</td>
+      <td style="text-align:right">6,231</td>
+      <td class="rank-warn" style="text-align:right">13.2</td>
+      <td style="text-align:right">5</td>
+      <td class="ctr-bad" style="text-align:right">0.08%</td>
+      <td style="font-size:11.5px;color:#444">Add cost guide ($300–$600), residential vs commercial, near-me targeting, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/springfield-va/hydro-jetting/</td>
+      <td style="text-align:right">4,858</td>
+      <td class="rank-warn" style="text-align:right">16.4</td>
+      <td style="text-align:right">4</td>
+      <td class="ctr-bad" style="text-align:right">0.08%</td>
+      <td style="font-size:11.5px;color:#444">Add cost guide ($300–$600), residential vs commercial, near-me targeting, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/falls-church-va/drain-cleaning/</td>
+      <td style="text-align:right">4,117</td>
+      <td class="rank-warn" style="text-align:right">19.9</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-bad" style="text-align:right">0.05%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/spotsylvania-va/</td>
+      <td style="text-align:right">3,699</td>
+      <td class="rank-warn" style="text-align:right">17.3</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-bad" style="text-align:right">0.05%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areaspotsylvania neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/pipe-descaling/</td>
+      <td style="text-align:right">3,240</td>
+      <td class="rank-warn" style="text-align:right">17.4</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.03%</td>
+      <td style="font-size:11.5px;color:#444">What pipe descaling is, when needed, cost vs replacement, process explanation</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/well-pumps/</td>
+      <td style="text-align:right">2,757</td>
+      <td class="rank-warn" style="text-align:right">19.7</td>
+      <td style="text-align:right">5</td>
+      <td class="ctr-warn" style="text-align:right">0.18%</td>
+      <td style="font-size:11.5px;color:#444">Well pump types, failure signs, cost ($500–$2K), seasonal maintenance tips</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/stafford-va/leak-detection-stafford-va/</td>
+      <td style="text-align:right">2,036</td>
+      <td class="rank-warn" style="text-align:right">17.1</td>
+      <td style="text-align:right">6</td>
+      <td class="ctr-warn" style="text-align:right">0.29%</td>
+      <td style="font-size:11.5px;color:#444">Detection methods (acoustic, thermal, camera), cost, emergency response time</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/lorton-va/hydro-jetting/</td>
+      <td style="text-align:right">1,911</td>
+      <td class="rank-warn" style="text-align:right">10.6</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-bad" style="text-align:right">0.05%</td>
+      <td style="font-size:11.5px;color:#444">Add cost guide ($300–$600), residential vs commercial, near-me targeting, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/trenchless-sewer-repair/</td>
+      <td style="text-align:right">1,828</td>
+      <td class="rank-warn" style="text-align:right">15.2</td>
+      <td style="text-align:right">4</td>
+      <td class="ctr-warn" style="text-align:right">0.22%</td>
+      <td style="font-size:11.5px;color:#444">Add repair vs replacement guide, cost ($800–$5K), trenchless options, city-specific pipe age context</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/about-us/reviews/</td>
+      <td style="text-align:right">1,800</td>
+      <td class="rank-warn" style="text-align:right">12.6</td>
+      <td style="text-align:right">12</td>
+      <td class="ctr-warn" style="text-align:right">0.67%</td>
+      <td style="font-size:11.5px;color:#444">Expand content to 700+ words with city-specific details. Add FAQ schema + Service schema. Improve title tag CTR.</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/reston-va/</td>
+      <td style="text-align:right">1,001</td>
+      <td class="rank-warn" style="text-align:right">14.2</td>
+      <td style="text-align:right">2</td>
+      <td class="ctr-warn" style="text-align:right">0.2%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areareston neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/great-falls-va/</td>
+      <td style="text-align:right">514</td>
+      <td class="rank-warn" style="text-align:right">17.4</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-warn" style="text-align:right">0.19%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areagreat Falls neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/tysons-corner-va/</td>
+      <td style="text-align:right">306</td>
+      <td class="rank-warn" style="text-align:right">12.6</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-warn" style="text-align:right">0.33%</td>
+      <td style="font-size:11.5px;color:#444">Expand hub: add Service Areatysons Corner neighborhoods, all services list, local pipe age context, FAQ, internal links to all sub-pages</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/about-us/frequently-asked-questions/</td>
+      <td style="text-align:right">279</td>
+      <td class="rank-warn" style="text-align:right">18.3</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-warn" style="text-align:right">0.36%</td>
+      <td style="font-size:11.5px;color:#444">Expand content to 700+ words with city-specific details. Add FAQ schema + Service schema. Improve title tag CTR.</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/annandale-va/drain-cleaning/</td>
+      <td style="text-align:right">237</td>
+      <td class="rank-warn" style="text-align:right">10.2</td>
+      <td style="text-align:right">1</td>
+      <td class="ctr-warn" style="text-align:right">0.42%</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-blue">MONITOR</span></td>
+      <td style="font-size:12px;word-break:break-all">/specials/</td>
+      <td style="text-align:right">151</td>
+      <td class="rank-warn" style="text-align:right">12.6</td>
+      <td style="text-align:right">5</td>
+      <td class="ctr-good" style="text-align:right">3.31%</td>
+      <td style="font-size:11.5px;color:#444">Expand content to 700+ words with city-specific details. Add FAQ schema + Service schema. Improve title tag CTR.</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-green">GOOD</span></td>
+      <td style="font-size:12px;word-break:break-all">/angies-list/</td>
+      <td style="text-align:right">467</td>
+      <td class="rank-good" style="text-align:right">7.3</td>
+      <td style="text-align:right">6</td>
+      <td class="ctr-good" style="text-align:right">1.28%</td>
+      <td style="font-size:11.5px;color:#444">Maintain. Add FAQ schema to capture AI Overview. Monitor CTR for title optimization.</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/accessibility-statement/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">Check GSC Coverage for indexing errors. Add 700+ words of unique content. Submit URL for indexing.</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/coupons/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">Check GSC Coverage for indexing errors. Add 700+ words of unique content. Submit URL for indexing.</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/licensing-and-professional-disclaimer/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">Check GSC Coverage for indexing errors. Add 700+ words of unique content. Submit URL for indexing.</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/water-pipe-replacement/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">Cost guide ($3K–$15K), process timeline, insurance coverage, financing options</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/plumbing/well-pumps-repair-installation-alexandria-va/well-pump-services-in-annadale/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">Well pump types, failure signs, cost ($500–$2K), seasonal maintenance tips</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/arlington-va/water-pipe-replacement/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">Cost guide ($3K–$15K), process timeline, insurance coverage, financing options</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fairfax-va/water-pipe-replacement/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">Cost guide ($3K–$15K), process timeline, insurance coverage, financing options</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/falls-church-va/water-pipe-replacement/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">Cost guide ($3K–$15K), process timeline, insurance coverage, financing options</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/fredericksburg-va/water-pipe-replacement/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">Cost guide ($3K–$15K), process timeline, insurance coverage, financing options</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/great-falls-va/pipe-descaling/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">What pipe descaling is, when needed, cost vs replacement, process explanation</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/great-falls-va/sewers/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">Great Falls-specific content: neighborhoods, pipe age context, local building codes, named technician, review quote from Great Falls customer</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/lorton-va/drain-cleaning/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">Add drain type breakdown, cost ($100–$500), commercial vs residential, FAQ schema</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/lorton-va/pipe-lining/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">CIPP process steps, eligible pipes, cost vs replacement, city-specific content</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/springfield-va/pipe-descaling/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">What pipe descaling is, when needed, cost vs replacement, process explanation</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/springfield-va/water-pipe-replacement/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">Cost guide ($3K–$15K), process timeline, insurance coverage, financing options</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/springfield-va/well-pumps/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">Well pump types, failure signs, cost ($500–$2K), seasonal maintenance tips</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/service-area/stafford-va/water-pipe-replacement/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">Cost guide ($3K–$15K), process timeline, insurance coverage, financing options</td>
+    </tr>
+<tr>
+      <td><span class="badge badge-red">INVISIBLE</span></td>
+      <td style="font-size:12px;word-break:break-all">/terms-and-conditions/</td>
+      <td style="text-align:right">0</td>
+      <td class="" style="text-align:right">—</td>
+      <td style="text-align:right">0</td>
+      <td class="ctr-bad" style="text-align:right">—</td>
+      <td style="font-size:11.5px;color:#444">Check GSC Coverage for indexing errors. Add 700+ words of unique content. Submit URL for indexing.</td>
+    </tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- SECTION: WHAT EVERY PAGE IS MISSING -->
+  <!-- UNIVERSAL FIXES -->
   <div class="section-title" style="margin-top:28px">🔧 What Every Underperforming Page Is Missing</div>
-  <div class="section-sub">These are the universal fixes required across all 155 underperforming pages</div>
-
+  <div class="section-sub">These 8 problems apply to virtually every one of the 155+ underperforming pages</div>
   <div class="insight-grid">
     <div class="insight-box red">
-      <div class="insight-title">❌ Problem #1: Template Thin Content</div>
-      <p>Every service × city page appears to be a template with the city name swapped in. <strong>Google's algorithms detect this</strong> and refuse to rank template pages above position 20–60. Each page needs 600–1,000 words of content that could not apply to any other city. Include: local neighborhoods served, nearby landmarks, local building codes or permit requirements, pipe age common to that city's housing stock, named service examples.</p>
+      <div class="insight-title">❌ #1: Template Thin Content</div>
+      <p>Every service × city page is a template with only the city name swapped. Google detects this and refuses to rank template pages above position 20–60. Each page needs 600–1,000 words of content that could only apply to that specific city: local neighborhoods, pipe age context, local code requirements, named examples.</p>
     </div>
     <div class="insight-box red">
-      <div class="insight-title">❌ Problem #2: No Schema Markup</div>
-      <p>Zero FAQPage schema, no Service schema, no LocalBusiness structured data on individual service pages. <strong>Schema is now required</strong> for AI Overview appearances and rich snippets. Implement on every service page: Service schema (serviceType, areaServed, provider, priceRange) + FAQPage schema with 4–6 questions per page.</p>
+      <div class="insight-title">❌ #2: No Schema Markup</div>
+      <p>Zero FAQPage schema, no Service schema on individual service pages. Implement on every page: <strong>Service schema</strong> (serviceType, areaServed, provider, priceRange) + <strong>FAQPage schema</strong> with 4–6 questions. Required for AI Overview appearances and rich snippets.</p>
     </div>
     <div class="insight-box red">
-      <div class="insight-title">❌ Problem #3: Duplicate Competing Pages</div>
-      <p>Multiple pages target identical queries: /sewer-camera-inspection/ vs /sewer-video-inspection/, /trenchless-sewer-repair/ vs /trenchless-pipe-repair/, /water-heater-repair/ vs /water-heaters/. <strong>These pages cannibalize each other</strong>. Consolidate duplicates via 301 redirect OR give each a distinctly different angle (repair page ≠ inspection page).</p>
+      <div class="insight-title">❌ #3: Duplicate Competing Pages</div>
+      <p>Multiple pages target identical queries: <strong>/sewer-camera-inspection/ vs /sewer-video-inspection/</strong>, <strong>/trenchless-sewer-repair/ vs /trenchless-pipe-repair/</strong>. These cannibalize each other. Consolidate via 301 redirect OR give each a clearly different angle with distinct content.</p>
     </div>
     <div class="insight-box orange">
-      <div class="insight-title">⚠️ Problem #4: Weak Title Tags</div>
-      <p>Most titles follow "[Service] [City] VA" with no differentiator. Google uses title tags as a primary CTR signal. <strong>Every page title needs</strong>: primary keyword + unique value prop + brand. Example: "Sewer Camera Inspection Fairfax VA | Same-Day Video | The Pipe Doctor" vs "Sewer Camera Inspection Fairfax VA".</p>
+      <div class="insight-title">⚠️ #4: Weak Title Tags</div>
+      <p>All titles follow "[Service] [City] VA" with no differentiator. Required format: <strong>"[Service] [City] VA | [Value Prop] | The Pipe Doctor Plumbing"</strong>. Example: "Sewer Camera Inspection Fairfax VA | Same-Day Video | The Pipe Doctor" — adds CTR differentiation Google uses for ranking.</p>
     </div>
     <div class="insight-box orange">
-      <div class="insight-title">⚠️ Problem #5: No Cost Transparency</div>
-      <p>High-intent users searching "sewer repair Fairfax VA" want to know cost before calling. Pages with cost information rank significantly higher. <strong>Every service page needs</strong>: price range section (e.g., "Sewer repair in Fairfax typically costs $800–$3,500 depending on damage extent"), even if it's a range. This is the #1 missing element for commercial-intent keywords.</p>
+      <div class="insight-title">⚠️ #5: No Cost Transparency</div>
+      <p>High-intent users want to know cost before calling. Pages with cost sections rank significantly higher. Add to every service page: <strong>"[Service] in [City] typically costs $X–$X depending on [factors]"</strong> even as an estimate range. This is the single most missing element for commercial-intent keyword rankings.</p>
     </div>
     <div class="insight-box orange">
-      <div class="insight-title">⚠️ Problem #6: No Internal Linking Structure</div>
-      <p>Pages are siloed — the hub pages (/service-area/fairfax-va/) don't properly link to all service sub-pages, and sub-pages don't cross-link. <strong>Required structure</strong>: Hub page → all service pages → blog posts → back to hub. Every new internal link is a vote of confidence to Google. The sewer camera page needs links from 5+ related pages to rank page 1.</p>
+      <div class="insight-title">⚠️ #6: No Internal Linking Structure</div>
+      <p>Pages are completely siloed. Required: <strong>Hub page → all service sub-pages → blog posts → back to hub</strong>. Every new internal link is a ranking signal. The sewer camera page needs links from 5+ related pages to rank page 1. Currently most pages have zero cross-links.</p>
     </div>
     <div class="insight-box blue">
-      <div class="insight-title">💡 Problem #7: No E-E-A-T Signals on Pages</div>
-      <p>Service pages have no author attribution, no real photos from that city, no testimonials from customers in that specific city. <strong>Add per-page</strong>: 1 photo of actual work in that area, 1–2 review quotes from customers in that city, name of the technician who handles that service area, link to relevant license/certification.</p>
+      <div class="insight-title">💡 #7: No E-E-A-T Signals</div>
+      <p>Service pages have no author attribution, no actual photos from that city, no testimonials from that specific city's customers. Add per page: <strong>1 photo of real work in that area</strong>, <strong>1–2 review quotes from customers in that city</strong>, name of technician who covers that service area, link to relevant license/certification.</p>
     </div>
     <div class="insight-box blue">
-      <div class="insight-title">💡 Problem #8: No FAQ Sections</div>
-      <p>Users in 2025–2026 expect FAQ sections. Google rewards FAQ sections with <strong>People Also Ask appearances and AI Overview inclusions</strong>. Every service page needs 4–6 questions targeting: "How much does [service] cost in [city]?", "How long does [service] take?", "Do I need [service] or just [alternative]?", "Is [service] covered by insurance?"</p>
+      <div class="insight-title">💡 #8: No FAQ Sections</div>
+      <p>Every service page needs 4–6 questions targeting: <strong>"How much does [service] cost in [city]?", "How long does [service] take?", "Do I need [service] or just [alternative]?", "Is [service] covered by insurance?"</strong> — these map directly to People Also Ask boxes and AI Overview appearances.</p>
     </div>
   </div>
 
-  <!-- EXACT FIX TEMPLATE -->
-  <div class="section-title" style="margin-top:28px">📝 Universal Content Template — Copy for Every Service × City Page</div>
-  <div class="section-sub">Apply this structure to ALL 155 underperforming pages. Replace [SERVICE] and [CITY] with actual values.</div>
-
-  <div class="card">
-    <div class="card-title">✅ Required Page Structure (Minimum 700 Words)</div>
+  <!-- PAGE TEMPLATE -->
+  <div class="card" style="margin-top:20px">
+    <div class="card-title">📝 Required Content Template — Apply to Every Service × City Page</div>
     <div class="tbl-wrap">
       <table>
-        <thead><tr><th>#</th><th>Section</th><th>Content Required</th><th>Word Count</th><th>SEO Purpose</th></tr></thead>
+        <thead><tr><th>#</th><th>Section</th><th>Content Required</th><th>Min Words</th><th>SEO Purpose</th></tr></thead>
         <tbody>
           <tr><td>1</td><td><strong>Title Tag</strong></td><td>[Service] [City] VA | [Value Prop] | The Pipe Doctor Plumbing</td><td>55–65 chars</td><td>CTR + primary keyword</td></tr>
-          <tr><td>2</td><td><strong>Meta Description</strong></td><td>[Service] in [City], VA. [Unique differentiator]. [CTA] Call (703) XXX-XXXX.</td><td>150–160 chars</td><td>CTR improvement</td></tr>
-          <tr><td>3</td><td><strong>H1</strong></td><td>[Service] in [City], VA — [Descriptive Phrase]</td><td>50–70 chars</td><td>On-page relevance</td></tr>
-          <tr><td>4</td><td><strong>Intro paragraph</strong></td><td>What the service is, why [city] residents need it, what The Pipe Doctor does differently</td><td>80–120 words</td><td>Context + keywords</td></tr>
-          <tr><td>5</td><td><strong>[City]-Specific Section</strong></td><td>Neighborhoods served, common pipe ages/types in [city], local permit considerations, specific problem patterns in [city]</td><td>100–150 words</td><td>Local uniqueness signal</td></tr>
-          <tr><td>6</td><td><strong>Process / How It Works</strong></td><td>Step-by-step: what happens when they call, how the service is performed, what they receive</td><td>100–150 words</td><td>Expertise signal (EEAT)</td></tr>
-          <tr><td>7</td><td><strong>Signs You Need [Service]</strong></td><td>5–7 bullet points of symptoms/warning signs specific to this service</td><td>80–100 words</td><td>Informational keyword capture</td></tr>
-          <tr><td>8</td><td><strong>Cost Transparency</strong></td><td>"[Service] in [City] typically costs $X–$X depending on [factors]. Free estimates available."</td><td>60–80 words</td><td>High-intent query capture</td></tr>
-          <tr><td>9</td><td><strong>FAQ Section (4–6 questions)</strong></td><td>"How much does [service] cost in [city]?" / "How long does [service] take?" / "Do I need [service A] or [service B]?" / "Is [service] covered by insurance?"</td><td>150–200 words</td><td>PAA + AI Overview + FAQPage schema</td></tr>
-          <tr><td>10</td><td><strong>CTA Section</strong></td><td>Call to action with phone number, mention of service area coverage, emergency availability</td><td>40–60 words</td><td>Conversion</td></tr>
-          <tr><td>11</td><td><strong>Schema Markup</strong></td><td>Service schema + FAQPage schema (JSON-LD in head)</td><td>—</td><td>Rich snippets + AI Overview</td></tr>
-          <tr><td>12</td><td><strong>1 Local Photo</strong></td><td>Real photo from work in [city] area with alt text: "[service] in [city] VA by The Pipe Doctor"</td><td>—</td><td>Experience signal (EEAT)</td></tr>
-          <tr><td>13</td><td><strong>1 Customer Review Quote</strong></td><td>Review from a customer in [city] or nearby zip code</td><td>50–80 words</td><td>Trust signal (EEAT)</td></tr>
+          <tr><td>2</td><td><strong>Meta Description</strong></td><td>[Service] in [City], VA. [Differentiator]. Call (703) XXX-XXXX. Free estimates.</td><td>150–160 chars</td><td>CTR improvement</td></tr>
+          <tr><td>3</td><td><strong>H1</strong></td><td>[Service] in [City], VA — [Descriptive Phrase]</td><td>50–70 chars</td><td>On-page relevance signal</td></tr>
+          <tr><td>4</td><td><strong>Intro Paragraph</strong></td><td>What the service is, why [city] residents specifically need it, what makes Pipe Doctor different</td><td>100 words</td><td>Context + keyword density</td></tr>
+          <tr><td>5</td><td><strong>[City]-Specific Section</strong></td><td>Neighborhoods served, common pipe ages/types in [city], local permit considerations, area-specific problems</td><td>120 words</td><td>Local uniqueness — anti-template signal</td></tr>
+          <tr><td>6</td><td><strong>Process / How It Works</strong></td><td>Step-by-step: call → diagnosis → service → follow-up. What the customer receives.</td><td>100 words</td><td>Expertise signal (EEAT)</td></tr>
+          <tr><td>7</td><td><strong>Signs You Need [Service]</strong></td><td>5–7 bullet points of warning signs specific to this service</td><td>80 words</td><td>Informational keyword capture</td></tr>
+          <tr><td>8</td><td><strong>Cost Section</strong></td><td>"[Service] in [City] typically costs $X–$X depending on [factors]."</td><td>60 words</td><td>Commercial intent query capture</td></tr>
+          <tr><td>9</td><td><strong>FAQ Section (5 questions)</strong></td><td>Cost / timeline / repair-vs-replace / insurance coverage / emergency availability questions</td><td>200 words</td><td>PAA + AI Overview + FAQPage schema</td></tr>
+          <tr><td>10</td><td><strong>CTA Section</strong></td><td>Phone number, service area coverage, emergency availability, free estimate offer</td><td>50 words</td><td>Conversion</td></tr>
+          <tr><td>11</td><td><strong>Service Schema (JSON-LD)</strong></td><td>type="Plumber", serviceType, areaServed="[City] VA", priceRange, provider</td><td>—</td><td>Rich snippet eligibility</td></tr>
+          <tr><td>12</td><td><strong>FAQPage Schema (JSON-LD)</strong></td><td>All 5 FAQ questions from section 9</td><td>—</td><td>AI Overview + PAA appearances</td></tr>
+          <tr><td>13</td><td><strong>Local Photo</strong></td><td>Real job photo from [city] area, alt text: "[service] in [city] VA"</td><td>—</td><td>Experience signal (EEAT)</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- DUPLICATE PAGES TO CONSOLIDATE -->
-  <div class="card">
-    <div class="card-title">🔀 Duplicate Pages — Consolidate or Differentiate</div>
-    <p style="margin-bottom:12px;color:var(--muted);font-size:13px">These page pairs target the same queries and are cannibalizing each other. Fix immediately.</p>
+  <!-- DUPLICATE CONSOLIDATION -->
+  <div class="card" style="margin-top:20px">
+    <div class="card-title">🔀 Duplicate Pages to Consolidate (Immediate Action)</div>
     <div class="tbl-wrap">
       <table>
-        <thead><tr><th>Page A</th><th>Page B</th><th>Combined Impr</th><th>Recommended Action</th></tr></thead>
+        <thead><tr><th>Keep This Page</th><th>Redirect This Page</th><th>Combined Impressions</th><th>Action</th></tr></thead>
         <tbody>
-          <tr>
-            <td>/sewer-camera-inspection-alexandria-va/ (32 clicks)</td>
-            <td>/sewer-video-inspection-alexandria-va/ (0 clicks, 15K impr)</td>
-            <td>448K impr total</td>
-            <td><strong>301 redirect</strong> /sewer-video-inspection/ → /sewer-camera-inspection/. Consolidate link equity.</td>
-          </tr>
-          <tr>
-            <td>/trenchless-sewer-repair-alexandria-va/ (4 clicks, 63K impr)</td>
-            <td>/trenchless-pipe-repair-alexandria-va/ (3 clicks, 17K impr)</td>
-            <td>80K impr total</td>
-            <td><strong>Differentiate</strong>: sewer-repair = lateral/main line focus. pipe-repair = service lines/interior. OR 301 redirect weaker page to stronger.</td>
-          </tr>
-          <tr>
-            <td>/plumbing/water-heaters-alexandria-va/ (7 clicks, 33K impr)</td>
-            <td>/plumbing/water-heater-repair-alexandria-va/ (0 clicks, 2.4K impr)</td>
-            <td>36K impr total</td>
-            <td><strong>Differentiate</strong>: /water-heaters/ = installation + types. /water-heater-repair/ = repair-only with diagnostic guide. Both need full rewrites.</td>
-          </tr>
-          <tr>
-            <td>/sewer-and-drain/sewer-line-repair-alexandria-va/ (2 clicks, 21K impr)</td>
-            <td>/sewer-and-drain/sewer-camera-inspection-alexandria-va/ (32 clicks, 432K impr)</td>
-            <td>Competing</td>
-            <td><strong>Strengthen both</strong> but ensure sewer-line-repair targets "sewer repair cost" and camera-inspection targets "sewer inspection" — currently both ranking for similar queries.</td>
-          </tr>
-          <tr>
-            <td>/service-area/fredericksburg-va/trenchless-piper-repair/ (note: typo in URL)</td>
-            <td>/service-area/fredericksburg-va/trenchless-sewer-repair/</td>
-            <td>Competing</td>
-            <td><strong>Fix typo in URL</strong> (/trenchless-piper-repair/ → /trenchless-pipe-repair/) + 301 redirect. Then differentiate content focus.</td>
-          </tr>
+          <tr><td>/sewer-camera-inspection-alexandria-va/ <span class="badge badge-green">32 clicks</span></td><td>/sewer-video-inspection-alexandria-va/ <span class="badge badge-red">0 clicks, 15K impr</span></td><td>448K+</td><td><strong>301 redirect</strong> /sewer-video-inspection/ → /sewer-camera-inspection/</td></tr>
+          <tr><td>/trenchless-sewer-repair-alexandria-va/ <span class="badge badge-blue">4 clicks, 63K impr</span></td><td>/trenchless-pipe-repair-alexandria-va/ <span class="badge badge-red">3 clicks, 17K impr</span></td><td>80K+</td><td><strong>Differentiate OR 301</strong>: sewer = lateral/main line; pipe = service lines</td></tr>
+          <tr><td>/plumbing/water-heaters-alexandria-va/ <span class="badge badge-blue">7 clicks</span></td><td>/plumbing/water-heater-repair-alexandria-va/ <span class="badge badge-red">0 clicks</span></td><td>36K+</td><td><strong>Differentiate</strong>: installation page vs repair-only diagnostic page</td></tr>
+          <tr><td>/service-area/fredericksburg-va/trenchless-sewer-repair/ <span class="badge badge-blue">4 clicks</span></td><td>/service-area/fredericksburg-va/trenchless-piper-repair/ <span class="badge badge-red">URL typo!</span></td><td>Both competing</td><td><strong>Fix URL typo</strong> (piper → pipe) + 301 redirect old URL → corrected URL</td></tr>
+          <tr><td>/sewer-and-drain/sewer-line-repair-alexandria-va/</td><td>/sewer-and-drain/ (hub page with 50K impr, pos 43)</td><td>Competing</td><td><strong>Build proper hub</strong>: hub page should be landing page, not compete with service pages</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- PRIORITY EXECUTION ORDER -->
-  <div class="card">
-    <div class="card-title">📆 Execution Plan — 90 Days to Fix the Site</div>
+  <!-- 90-DAY PLAN -->
+  <div class="card" style="margin-top:20px">
+    <div class="card-title">📆 90-Day Execution Plan — Prioritized by Traffic Impact</div>
     <div class="tbl-wrap">
       <table>
-        <thead><tr><th>Week</th><th>Pages to Fix</th><th>Actions</th><th>Est. Impression Unlocked</th></tr></thead>
+        <thead><tr><th>Timeline</th><th>Pages to Fix</th><th>Combined Impressions</th><th>Est. Monthly Clicks Added</th></tr></thead>
         <tbody>
-          <tr><td><strong>Week 1–2</strong></td><td>Top 3 critical pages by impression volume</td><td>Sewer camera inspection Alex (432K) · Fairfax sewer repair (324K) · Arlington hydro jetting (235K)</td><td>~990K impressions</td></tr>
-          <tr><td><strong>Week 3–4</strong></td><td>Next 4 critical pages</td><td>Hydro jetting Alex (204K) · Arlington sewer camera (195K) · Fairfax drain cleaning (152K) · McLean hydro jetting (114K)</td><td>~665K impressions</td></tr>
-          <tr><td><strong>Month 2 Week 1–2</strong></td><td>High priority pages</td><td>Fairfax sewer camera (64K) · Trenchless sewer repair Alex (63K) · Sump pumps (60K) · Arlington sewer repair (60K) · Fairfax trenchless (56K)</td><td>~303K impressions</td></tr>
-          <tr><td><strong>Month 2 Week 3–4</strong></td><td>Hub pages + zero-click sewer pages</td><td>Fredericksburg hydro jetting (31K) · Stafford sewer repair (23K) · Falls Church sewer repair (12K) · All hub pages</td><td>~90K impressions</td></tr>
-          <tr><td><strong>Month 3</strong></td><td>Duplicate consolidation + invisible pages</td><td>301 redirects for duplicates · Water pipe replacement pages (18 invisible pages) · Schema implementation across all pages</td><td>Long-tail gains</td></tr>
-          <tr><td><strong>Ongoing</strong></td><td>Medium priority + new pages</td><td>Water line, water heater, plumbing hub pages · New: sewer pipe repair page · Emergency plumber pages</td><td>Incremental</td></tr>
+          <tr><td><strong>Week 1–2</strong></td><td>Top 3 CRITICAL: sewer-camera-inspection-alex (432K) · fairfax/sewer-repair (324K) · arlington/hydro-jetting (235K)</td><td>991K impr</td><td>+500–900</td></tr>
+          <tr><td><strong>Week 3–4</strong></td><td>Next 4 CRITICAL: hydro-jetting-alex (204K) · arlington/sewer-camera (195K) · fairfax/drain-cleaning (152K) · mclean/hydro-jetting (114K)</td><td>665K impr</td><td>+350–600</td></tr>
+          <tr><td><strong>Month 2, Week 1–2</strong></td><td>Remaining CRITICAL: arlington/trenchless (52K) · fairfax/sewer-camera (64K) · trenchless-sewer-repair-alex (63K) · sump-pumps (60K) · arlington/sewer-repair (60K) · fairfax/trenchless (56K)</td><td>355K impr</td><td>+200–400</td></tr>
+          <tr><td><strong>Month 2, Week 3–4</strong></td><td>Top 10 HIGH priority: fredericksburg/hydro-jetting · stafford/sewer-repair · sewer-line-replacement · falls-church/sewer-repair · pipe-lining pages</td><td>~200K impr</td><td>+100–200</td></tr>
+          <tr><td><strong>Month 3</strong></td><td>301 redirects for duplicates · All 18 invisible pages · Remaining HIGH priority pages · Schema implementation across all pages</td><td>Long-tail</td><td>+100–200</td></tr>
+          <tr><td><strong>Month 4+</strong></td><td>All MEDIUM priority pages (83 pages) · New pages: sewer pipe repair, emergency plumber, near-me landing pages</td><td>Incremental</td><td>+200–400</td></tr>
         </tbody>
       </table>
     </div>
     <div class="insight-box green" style="margin-top:14px">
-      <div class="insight-title">✅ Estimated Outcome: +2,000–3,500 Monthly Organic Clicks</div>
-      <p>The top 13 critical pages have a combined <strong>2.8 million impressions</strong> ranking at positions 23–55. Moving them to positions 5–10 (achievable in 60–90 days with proper content) at a conservative 1–3% CTR would generate 2,000–3,500 additional monthly clicks — a 3–4x increase from the current 230–250 monthly average.</p>
+      <div class="insight-title">✅ Conservative 90-Day Outcome: +1,150–2,100 Monthly Organic Clicks</div>
+      <p>Fixing only the 14 CRITICAL pages (2.8M impressions currently ranking pos 23–55) at a conservative 1–2% CTR after moving to top 10 positions adds 1,150–2,100 clicks/month. Current site average: 230–250 clicks/month. This represents a <strong>5–9x increase in organic traffic</strong> from content fixes alone — no new pages required for Phase 1.</p>
     </div>
   </div>
-
 </div>
+
+<style>
+.filter-btn { background:#EBF2FA; border:1px solid #D0DAE8; padding:7px 14px; border-radius:20px; cursor:pointer; font-size:12.5px; font-weight:600; transition:all 0.15s; }
+.filter-btn.active, .filter-btn:hover { background:var(--primary); color:white; border-color:var(--primary); }
+</style>
+
+<script>
+function filterPages(priority) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`[data-filter="${priority}"]`).classList.add('active');
+  document.querySelectorAll('#pages-tbody tr').forEach(row => {
+    if (priority === 'ALL') { row.style.display = ''; return; }
+    const badge = row.querySelector('.badge');
+    row.style.display = badge && badge.textContent.trim() === priority ? '' : 'none';
+  });
+}
+</script>
 
 </body>
 </html>
