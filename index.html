@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Pipe Doctor Plumbing — SEO & GBP Performance Report | Jan–Apr 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --primary: #0D4B8C;
+    --primary-light: #1565C0;
+    --accent: #E67E22;
+    --accent2: #27AE60;
+    --bg: #F0F4F8;
+    --card: #FFFFFF;
+    --text: #1A2433;
+    --muted: #6B7A8D;
+    --border: #D0DAE8;
+    --green: #27AE60;
+    --orange: #E67E22;
+    --red: #C0392B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; }
+  
+  /* HEADER */
+  .report-header {
+    background: linear-gradient(135deg, #0D4B8C 0%, #1565C0 60%, #E67E22 100%);
+    color: white; padding: 40px 48px 32px; position: relative; overflow: hidden;
+  }
+  .report-header::before {
+    content: ""; position: absolute; top: -40px; right: -40px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .header-badge { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.8; margin-bottom: 10px; }
+  .header-title { font-size: 32px; font-weight: 800; line-height: 1.2; margin-bottom: 6px; }
+  .header-sub { font-size: 16px; opacity: 0.85; margin-bottom: 20px; }
+  .header-meta { display: flex; gap: 24px; flex-wrap: wrap; }
+  .header-meta span { font-size: 12px; opacity: 0.75; }
+  .header-meta strong { opacity: 1; }
+
+  /* TAB NAV */
+  .tab-nav { background: var(--primary); padding: 0 24px; display: flex; gap: 2px; flex-wrap: wrap; overflow-x: auto; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+  .tab-btn { background: transparent; border: none; color: rgba(255,255,255,0.65); padding: 14px 16px; cursor: pointer; font-size: 12.5px; font-weight: 600; white-space: nowrap; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .tab-btn:hover { color: white; background: rgba(255,255,255,0.08); }
+  .tab-btn.active { color: white; border-bottom-color: var(--accent); background: rgba(255,255,255,0.1); }
+
+  /* LAYOUT */
+  .tab-pane { display: none; padding: 28px 32px; max-width: 1400px; margin: 0 auto; }
+  .tab-pane.active { display: block; }
+  .section-title { font-size: 20px; font-weight: 700; color: var(--primary); margin-bottom: 6px; border-left: 4px solid var(--accent); padding-left: 12px; }
+  .section-sub { color: var(--muted); font-size: 13px; margin-bottom: 20px; padding-left: 16px; }
+
+  /* KPI GRID */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 28px; }
+  .kpi-card { background: var(--card); border-radius: 10px; padding: 18px 16px; border-top: 4px solid var(--primary); box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  .kpi-card.green { border-top-color: var(--green); }
+  .kpi-card.orange { border-top-color: var(--orange); }
+  .kpi-card.red { border-top-color: var(--red); }
+  .kpi-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 6px; }
+  .kpi-value { font-size: 28px; font-weight: 800; color: var(--text); line-height: 1; }
+  .kpi-delta { font-size: 11px; margin-top: 4px; }
+  .kpi-delta.up { color: var(--green); }
+  .kpi-delta.down { color: var(--red); }
+  .kpi-delta.neutral { color: var(--muted); }
+
+  /* CARDS */
+  .card { background: var(--card); border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  .card-title { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .chart-wrap { position: relative; height: 260px; }
+  .chart-wrap.tall { height: 320px; }
+
+  /* TABLES */
+  .tbl-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th { background: var(--primary); color: white; padding: 10px 12px; text-align: left; font-size: 11.5px; font-weight: 600; letter-spacing: 0.4px; white-space: nowrap; }
+  tbody tr:nth-child(even) { background: #F7FAFD; }
+  tbody tr:hover { background: #EBF2FA; }
+  td { padding: 9px 12px; border-bottom: 1px solid var(--border); }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+  .badge-green { background: #D4EFDF; color: #1E7E4A; }
+  .badge-orange { background: #FDEBD0; color: #D35400; }
+  .badge-red { background: #FADBD8; color: #A93226; }
+  .badge-blue { background: #D6EAF8; color: #1A5276; }
+  .badge-gray { background: #EAECEE; color: #5D6D7E; }
+  .ctr-good { color: var(--green); font-weight: 700; }
+  .ctr-warn { color: var(--orange); font-weight: 700; }
+  .ctr-bad { color: var(--red); font-weight: 700; }
+
+  /* INSIGHT BOXES */
+  .insight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-bottom: 20px; }
+  .insight-box { background: var(--card); border-radius: 10px; padding: 16px 18px; border-left: 5px solid var(--primary); box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+  .insight-box.green { border-left-color: var(--green); }
+  .insight-box.orange { border-left-color: var(--orange); }
+  .insight-box.red { border-left-color: var(--red); }
+  .insight-box.blue { border-left-color: var(--primary-light); }
+  .insight-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px; }
+  .insight-box.green .insight-title { color: var(--green); }
+  .insight-box.orange .insight-title { color: var(--orange); }
+  .insight-box.red .insight-title { color: var(--red); }
+  .insight-box.blue .insight-title { color: var(--primary-light); }
+  .insight-box p { font-size: 13px; line-height: 1.55; color: var(--text); }
+
+  /* EEAT GRADES */
+  .eeat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+  .eeat-card { background: var(--card); border-radius: 10px; padding: 20px 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  .eeat-letter { font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 4px; }
+  .eeat-grade { font-size: 42px; font-weight: 900; line-height: 1; margin: 8px 0; }
+  .grade-a { color: var(--green); }
+  .grade-b { color: #2980B9; }
+  .grade-c { color: var(--orange); }
+  .eeat-note { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  /* CHECKLIST */
+  .checklist-pass { color: var(--green); font-weight: 700; }
+  .checklist-warn { color: var(--orange); font-weight: 700; }
+  .checklist-fail { color: var(--red); font-weight: 700; }
+
+  /* ACTION BOXES */
+  .action-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+  .action-box { background: var(--card); border-radius: 10px; padding: 16px 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); border-top: 3px solid var(--accent); }
+  .action-box .priority { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 4px; }
+  .action-box h4 { font-size: 13.5px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+  .action-box p { font-size: 12.5px; color: var(--text); line-height: 1.5; }
+
+  /* RANK TABLE */
+  .rank-1 { color: #27AE60; font-weight: 800; font-size: 15px; }
+  .rank-2 { color: #2980B9; font-weight: 700; }
+  .rank-good { color: #27AE60; font-weight: 700; }
+  .rank-warn { color: #E67E22; font-weight: 700; }
+  .rank-bad { color: #C0392B; font-weight: 700; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .tab-pane { padding: 16px; }
+    .two-col, .three-col, .eeat-grid { grid-template-columns: 1fr; }
+    .header-title { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="report-header">
+  <div class="header-badge">SEO &amp; GBP Performance Report</div>
+  <div class="header-title">The Pipe Doctor Plumbing</div>
+  <div class="header-sub">Fredericksburg, VA &amp; Northern Virginia | January – April 2026</div>
+  <div class="header-meta">
+    <span><strong>Website:</strong> thepipedoctorplumbing.com</span>
+    <span><strong>Service Areas:</strong> Fredericksburg · Stafford · Alexandria · Fairfax</span>
+    <span><strong>Report Period:</strong> Jan 1 – Apr 30, 2026</span>
+    <span><strong>Prepared:</strong> May 2026</span>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<nav class="tab-nav">
+  <button class="tab-btn active" data-tab="tab-summary">📋 Executive Summary</button>
+  <button class="tab-btn" data-tab="tab-gbp">📍 GBP Performance</button>
+  <button class="tab-btn" data-tab="tab-gsc">🔎 Search Console</button>
+  <button class="tab-btn" data-tab="tab-coreupdate">🛡 Core Update Audit</button>
+  <button class="tab-btn" data-tab="tab-ga4">📊 GA4 Analytics</button>
+  <button class="tab-btn" data-tab="tab-onpage">🔧 On-Page SEO</button>
+  <button class="tab-btn" data-tab="tab-content">📅 Content Calendar</button>
+  <button class="tab-btn" data-tab="tab-local">📌 Local SEO</button>
+  <button class="tab-btn" data-tab="tab-competitive">⚔ Competitive</button>
+  <button class="tab-btn" data-tab="tab-actions">🚀 Priority Actions</button>
+</nav>
+
+<!-- ===== TAB 1: EXECUTIVE SUMMARY ===== -->
+<div id="tab-summary" class="tab-pane active">
+  <div class="section-title">Executive Summary</div>
+  <div class="section-sub">Jan – Apr 2026 · The Pipe Doctor Plumbing · Fredericksburg, VA</div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card green">
+      <div class="kpi-label">Organic Clicks (GSC)</div>
+      <div class="kpi-value">919</div>
+      <div class="kpi-delta neutral">Jan–Apr 2026</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">GSC Impressions</div>
+      <div class="kpi-value">1.73M</div>
+      <div class="kpi-delta neutral">Avg CTR: 0.06%</div>
+    </div>
+    <div class="kpi-card orange">
+      <div class="kpi-label">Avg. Position</div>
+      <div class="kpi-value">29.7</div>
+      <div class="kpi-delta neutral">Improving: 29.6→26.9</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Phone Calls (GA4)</div>
+      <div class="kpi-value">371</div>
+      <div class="kpi-delta up">↑ Top conversion</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Form Submissions</div>
+      <div class="kpi-value">140</div>
+      <div class="kpi-delta neutral">+ 86 thank-you</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">GA4 Sessions</div>
+      <div class="kpi-value">3,987</div>
+      <div class="kpi-delta neutral">3,304 users</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">GBP Calls (Frxbg)</div>
+      <div class="kpi-value">31</div>
+      <div class="kpi-delta neutral">Jan–Apr 2026</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">GBP Website Visits</div>
+      <div class="kpi-value">2,240</div>
+      <div class="kpi-delta neutral">Fredericksburg GBP</div>
+    </div>
+  </div>
+
+  <div class="insight-grid">
+    <div class="insight-box green">
+      <div class="insight-title">🏆 Map Pack Dominance — Specialty Services</div>
+      <p>The Pipe Doctor holds <strong>#1 map pack rankings</strong> in Fredericksburg for Sewer Repair, Drain Cleaning, CIPP Pipe Lining, Trenchless Sewer Repair, Trenchless Pipe Repair, and Hydro Jetting — a commanding 6-for-6 sweep on high-value specialty keywords.</p>
+    </div>
+    <div class="insight-box green">
+      <div class="insight-title">📞 Strong Conversion Infrastructure</div>
+      <p>GA4 tracked <strong>511 total conversions</strong> (371 phone clicks + 140 form submits) in 4 months — averaging 128 conversions/month. Phone calls dominate at 73% of conversions. LSA integration would further amplify call volume.</p>
+    </div>
+    <div class="insight-box orange">
+      <div class="insight-title">⚠️ Critical CTR Gap — 1.73M Impressions, 0.06% CTR</div>
+      <p>The sewer camera inspection page alone has <strong>245,975 impressions at position 28.9</strong> — nearly zero clicks. Moving this page into the top 10 could yield 300–500+ monthly clicks. Title and meta overhaul is the immediate priority.</p>
+    </div>
+    <div class="insight-box orange">
+      <div class="insight-title">🎯 "Plumber In" Head Term Weakness</div>
+      <p>Both Fredericksburg (pos 17) and Stafford (pos 17–19) rank poorly for <strong>"plumber in [city]"</strong> — the highest-volume local intent keyword. This is a homepage optimization and citation authority issue requiring structured action.</p>
+    </div>
+    <div class="insight-box blue">
+      <div class="insight-title">📍 Alexandria Drives Most Organic Traffic</div>
+      <p>Despite the GBP tracking focus on Fredericksburg, <strong>Alexandria, VA service area page receives 362 organic clicks</strong> (39% of all traffic) and 622 GA4 page views — making it the #1 revenue-driving market online.</p>
+    </div>
+    <div class="insight-box blue">
+      <div class="insight-title">💡 April Engagement Drop — Action Needed</div>
+      <p>GA4 engagement rate fell from <strong>55.3% (Feb) to 30.5% (Apr)</strong> — a 25-point decline. Paid search landing page quality may be the cause (836 paid sessions in the period). Review ad landing pages and conversion tracking.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚦 Top 5 Priority Actions</div>
+    <table>
+      <thead><tr><th>#</th><th>Action</th><th>Impact</th><th>Effort</th><th>Timeline</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1</strong></td><td>Optimize sewer camera inspection page title + meta (245K impressions, pos 28.9)</td><td><span class="badge badge-red">HIGH</span></td><td><span class="badge badge-green">Low</span></td><td>This week</td></tr>
+        <tr><td><strong>2</strong></td><td>Target "plumber in Fredericksburg/Stafford" with homepage + GBP optimization</td><td><span class="badge badge-red">HIGH</span></td><td><span class="badge badge-orange">Medium</span></td><td>2 weeks</td></tr>
+        <tr><td><strong>3</strong></td><td>Create "drain cleaning near me" dedicated landing page (6,527 impr, pos 13.5)</td><td><span class="badge badge-red">HIGH</span></td><td><span class="badge badge-orange">Medium</span></td><td>30 days</td></tr>
+        <tr><td><strong>4</strong></td><td>Fix April engagement rate drop — audit paid search landing pages</td><td><span class="badge badge-orange">MEDIUM</span></td><td><span class="badge badge-green">Low</span></td><td>This week</td></tr>
+        <tr><td><strong>5</strong></td><td>Apply for LSA/Google Guaranteed badge — plumbing services in Fredericksburg</td><td><span class="badge badge-orange">MEDIUM</span></td><td><span class="badge badge-orange">Medium</span></td><td>30 days</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== TAB 2: GBP PERFORMANCE ===== -->
+<div id="tab-gbp" class="tab-pane">
+  <div class="section-title">GBP Performance</div>
+  <div class="section-sub">Google Business Profile · Fredericksburg, VA · Jan–Apr 2026</div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card green"><div class="kpi-label">GBP Clicks</div><div class="kpi-value">63</div><div class="kpi-delta neutral">Jan–Apr 2026</div></div>
+    <div class="kpi-card"><div class="kpi-label">GBP Calls</div><div class="kpi-value">31</div><div class="kpi-delta neutral">Fredericksburg</div></div>
+    <div class="kpi-card"><div class="kpi-label">Website Visits</div><div class="kpi-value">2,240</div><div class="kpi-delta neutral">via GBP</div></div>
+    <div class="kpi-card orange"><div class="kpi-label">GBP Impressions</div><div class="kpi-value">147</div><div class="kpi-delta down">↓ Low visibility</div></div>
+    <div class="kpi-card green"><div class="kpi-label">CallRail Calls (Mar)</div><div class="kpi-value">134</div><div class="kpi-delta neutral">131 answered</div></div>
+    <div class="kpi-card green"><div class="kpi-label">Answer Rate</div><div class="kpi-value">97.8%</div><div class="kpi-delta up">↑ Excellent</div></div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">📈 GBP Monthly Performance — Fredericksburg, VA</div>
+      <div class="chart-wrap"><canvas id="gbpPerfChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📊 GBP Clicks by Month</div>
+      <div class="chart-wrap"><canvas id="gbpClicksChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 Monthly GBP Performance Data — Fredericksburg, VA</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Month</th><th>GBP Clicks</th><th>Calls</th><th>Website Visits</th><th>Impressions</th></tr></thead>
+        <tbody>
+          <tr><td>Aug 2025</td><td>19</td><td>13</td><td>949</td><td>98</td></tr>
+          <tr><td>Sep 2025</td><td>21</td><td>8</td><td>838</td><td>126</td></tr>
+          <tr><td>Oct 2025</td><td>23</td><td>17</td><td>930</td><td>94</td></tr>
+          <tr><td>Nov 2025</td><td>20</td><td>12</td><td>761</td><td>152</td></tr>
+          <tr><td>Dec 2025</td><td>12</td><td>4</td><td>537</td><td>85</td></tr>
+          <tr><td><strong>Jan 2026</strong></td><td><strong>5</strong></td><td><strong>10</strong></td><td><strong>573</strong></td><td><strong>52</strong></td></tr>
+          <tr><td><strong>Feb 2026</strong></td><td><strong>25</strong></td><td><strong>5</strong></td><td><strong>512</strong></td><td><strong>22</strong></td></tr>
+          <tr><td><strong>Mar 2026</strong></td><td><strong>19</strong></td><td><strong>4</strong></td><td><strong>596</strong></td><td><strong>55</strong></td></tr>
+          <tr><td><strong>Apr 2026</strong></td><td><strong>14</strong></td><td><strong>12</strong></td><td><strong>559</strong></td><td><strong>18</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">📍 Map Pack Rankings — Fredericksburg, VA (Jan–Apr 2026)</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Keyword</th><th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>Trend</th></tr></thead>
+          <tbody>
+            <tr><td>Plumber in</td><td class="rank-warn">17</td><td class="rank-warn">16</td><td class="rank-warn">17</td><td class="rank-warn">17</td><td>→ Flat</td></tr>
+            <tr><td>Sewer Repair</td><td class="rank-1">2</td><td class="rank-1">1</td><td class="rank-1">1</td><td class="rank-1">1</td><td class="rank-good">↑ Excellent</td></tr>
+            <tr><td>Drain Cleaning</td><td class="rank-1">1</td><td class="rank-1">1</td><td class="rank-1">1</td><td class="rank-1">1</td><td class="rank-good">✓ #1</td></tr>
+            <tr><td>CIPP Pipe Lining</td><td class="rank-1">1</td><td class="rank-1">1</td><td class="rank-1">1</td><td class="rank-1">1</td><td class="rank-good">✓ #1</td></tr>
+            <tr><td>Trenchless Sewer Repair</td><td class="rank-1">1</td><td class="rank-1">1</td><td class="rank-1">1</td><td class="rank-1">1</td><td class="rank-good">✓ #1</td></tr>
+            <tr><td>Trenchless Pipe Repair</td><td class="rank-1">1</td><td class="rank-1">1</td><td class="rank-1">1</td><td class="rank-1">1</td><td class="rank-good">✓ #1</td></tr>
+            <tr><td>Hydro Jetting</td><td class="rank-1">1</td><td class="rank-1">1</td><td class="rank-1">1</td><td class="rank-1">1</td><td class="rank-good">✓ #1</td></tr>
+            <tr><td>Clogged Drain</td><td class="rank-2">2</td><td class="rank-2">2</td><td class="rank-1">1</td><td class="rank-2">2</td><td class="rank-good">Strong #2</td></tr>
+            <tr><td>Water Line Repair</td><td class="rank-good">4</td><td class="rank-good">4</td><td class="rank-good">3</td><td class="rank-good">4</td><td>Top 5</td></tr>
+            <tr><td>Sewer Camera Inspection</td><td class="rank-2">2</td><td class="rank-2">2</td><td class="rank-2">2</td><td class="rank-1">1</td><td class="rank-good">↑ #1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">📍 Map Pack Rankings — Stafford, VA (Jan–Apr 2026)</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Keyword</th><th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>Trend</th></tr></thead>
+          <tbody>
+            <tr><td>Plumber in</td><td class="rank-warn">17</td><td class="rank-warn">17</td><td class="rank-warn">17</td><td class="rank-warn">19</td><td class="rank-bad">↓ Worse</td></tr>
+            <tr><td>Sewer Repair</td><td class="rank-good">9</td><td class="rank-good">8</td><td class="rank-good">8</td><td class="rank-good">7</td><td class="rank-good">↑ Improving</td></tr>
+            <tr><td>Drain Cleaning</td><td class="rank-good">7</td><td class="rank-good">6</td><td class="rank-good">6</td><td class="rank-good">7</td><td>Top 10</td></tr>
+            <tr><td>CIPP Pipe Lining</td><td class="rank-1">1</td><td class="rank-2">2</td><td class="rank-2">2</td><td class="rank-1">1</td><td class="rank-good">✓ #1</td></tr>
+            <tr><td>Trenchless Sewer Repair</td><td class="rank-good">4</td><td class="rank-good">4</td><td class="rank-good">4</td><td class="rank-good">4</td><td>Steady</td></tr>
+            <tr><td>Trenchless Pipe Repair</td><td class="rank-good">4</td><td class="rank-good">3</td><td class="rank-good">3</td><td class="rank-good">5</td><td>Top 5</td></tr>
+            <tr><td>Hydro Jetting</td><td class="rank-warn">11</td><td class="rank-bad">20</td><td class="rank-warn">12</td><td class="rank-warn">12</td><td class="rank-bad">↓ Volatile</td></tr>
+            <tr><td>Clogged Drain</td><td class="rank-good">8</td><td class="rank-good">7</td><td class="rank-good">3</td><td class="rank-good">3</td><td class="rank-good">↑ Improving</td></tr>
+            <tr><td>Water Line Repair</td><td class="rank-warn">12</td><td class="rank-warn">11</td><td class="rank-warn">11</td><td class="rank-warn">11</td><td>→ Flat</td></tr>
+            <tr><td>Sewer Camera Inspection</td><td class="rank-good">5</td><td class="rank-good">4</td><td class="rank-2">2</td><td class="rank-1">1</td><td class="rank-good">↑ #1!</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-grid">
+    <div class="insight-box green">
+      <div class="insight-title">🏆 Specialty Services = Unbeatable</div>
+      <p>CIPP, Trenchless Sewer/Pipe Repair, and Hydro Jetting all hold <strong>#1 map pack positions in Fredericksburg</strong>. These niche specialties show Google trusts The Pipe Doctor as the area authority for advanced plumbing techniques.</p>
+    </div>
+    <div class="insight-box orange">
+      <div class="insight-title">⚠️ "Plumber In" Gap — Both Cities</div>
+      <p>Despite specialty dominance, <strong>"plumber in [city]"</strong> ranks 17–19 in both Fredericksburg and Stafford. This high-volume head term requires homepage NAP consistency, review velocity, and citation building to break into the top 5.</p>
+    </div>
+    <div class="insight-box blue">
+      <div class="insight-title">📈 Stafford Sewer Camera: #1 in Apr</div>
+      <p>Sewer Camera Inspection in Stafford improved from <strong>position 5 in January to #1 in April</strong> — the biggest ranking gain of the period. Replicate this success by applying the same GBP optimization playbook to Hydro Jetting in Stafford (currently at 12).</p>
+    </div>
+    <div class="insight-box orange">
+      <div class="insight-title">⚠️ Stafford Hydro Jetting — Volatile</div>
+      <p>Hydro Jetting in Stafford swung from <strong>11 → 20 → 12 → 12</strong>. The February dip to position 20 suggests a competitor posted a GBP update. Counter with fresh photos, a service post, and a Q&amp;A response targeting hydro jetting keywords.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB 3: SEARCH CONSOLE ===== -->
+<div id="tab-gsc" class="tab-pane">
+  <div class="section-title">Google Search Console</div>
+  <div class="section-sub">Organic search performance · Jan–Apr 2026 · thepipedoctorplumbing.com</div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card green"><div class="kpi-label">Total Clicks</div><div class="kpi-value">919</div><div class="kpi-delta neutral">Jan–Apr 2026</div></div>
+    <div class="kpi-card"><div class="kpi-label">Total Impressions</div><div class="kpi-value">1.73M</div><div class="kpi-delta down">↓ Feb spike (bots)</div></div>
+    <div class="kpi-card orange"><div class="kpi-label">Avg. CTR</div><div class="kpi-value">0.06%</div><div class="kpi-delta down">↓ Very low</div></div>
+    <div class="kpi-card orange"><div class="kpi-label">Avg. Position</div><div class="kpi-value">29.7</div><div class="kpi-delta up">↑ Trending 29.6→26.9</div></div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">📈 Clicks &amp; Impressions Trend</div>
+      <div class="chart-wrap"><canvas id="gscTrendChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📉 Average Position Trend</div>
+      <div class="chart-wrap"><canvas id="gscPositionChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 Monthly Performance</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Month</th><th>Clicks</th><th>Impressions</th><th>CTR</th><th>Avg Position</th></tr></thead>
+        <tbody>
+          <tr><td>Oct 2025</td><td>266</td><td>313,007</td><td class="ctr-warn">0.08%</td><td>26.5</td></tr>
+          <tr><td>Nov 2025</td><td>260</td><td>507,108</td><td class="ctr-bad">0.05%</td><td>30.7</td></tr>
+          <tr><td>Dec 2025</td><td>213</td><td>413,976</td><td class="ctr-bad">0.05%</td><td>30.7</td></tr>
+          <tr><td><strong>Jan 2026</strong></td><td><strong>252</strong></td><td><strong>415,630</strong></td><td class="ctr-warn"><strong>0.06%</strong></td><td><strong>29.6</strong></td></tr>
+          <tr><td><strong>Feb 2026</strong></td><td><strong>233</strong></td><td><strong>718,119*</strong></td><td class="ctr-bad"><strong>0.03%</strong></td><td><strong>28.0</strong></td></tr>
+          <tr><td><strong>Mar 2026</strong></td><td><strong>252</strong></td><td><strong>389,206</strong></td><td class="ctr-warn"><strong>0.06%</strong></td><td><strong>26.9</strong></td></tr>
+          <tr><td><strong>Apr 2026</strong></td><td><strong>182</strong></td><td><strong>210,667</strong></td><td class="ctr-warn"><strong>0.09%</strong></td><td><strong>34.4</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color:var(--muted);font-size:11px;margin-top:8px;">*Feb 2026 impressions inflated by bot/crawler events (Feb 10: 83K, Feb 12: 207K, Feb 18: 145K in single days)</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔑 Top 15 Keywords — Jan–Apr 2026</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Keyword</th><th>Clicks</th><th>Impressions</th><th>CTR</th><th>Avg Position</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>pipe doctor plumbing</td><td>73</td><td>602</td><td class="ctr-good">12.1%</td><td>9.7</td><td><span class="badge badge-blue">Brand</span></td></tr>
+          <tr><td>the pipe doctor</td><td>37</td><td>632</td><td class="ctr-good">5.9%</td><td>6.0</td><td><span class="badge badge-blue">Brand</span></td></tr>
+          <tr><td>pipe doctor</td><td>28</td><td>564</td><td class="ctr-good">5.0%</td><td>16.8</td><td><span class="badge badge-blue">Brand</span></td></tr>
+          <tr><td>the pipe doctor plumbing</td><td>19</td><td>117</td><td class="ctr-good">16.2%</td><td>3.7</td><td><span class="badge badge-blue">Brand</span></td></tr>
+          <tr><td>plumbers alexandria va</td><td>15</td><td>1,058</td><td class="ctr-good">1.4%</td><td>7.6</td><td><span class="badge badge-green">Local</span></td></tr>
+          <tr><td>plumbers near me</td><td>12</td><td>2,467</td><td class="ctr-warn">0.5%</td><td>6.0</td><td><span class="badge badge-orange">Head</span></td></tr>
+          <tr><td>plumber near me</td><td>10</td><td>4,122</td><td class="ctr-bad">0.2%</td><td>7.2</td><td><span class="badge badge-orange">Head</span></td></tr>
+          <tr><td>the pipe doctor plumbing &amp; drain cleaning</td><td>8</td><td>875</td><td class="ctr-warn">0.9%</td><td>3.2</td><td><span class="badge badge-blue">Brand</span></td></tr>
+          <tr><td>plumber alexandria va</td><td>7</td><td>1,862</td><td class="ctr-warn">0.4%</td><td>9.5</td><td><span class="badge badge-green">Local</span></td></tr>
+          <tr><td>drain cleaning near me</td><td>3</td><td>6,527</td><td class="ctr-bad">0.05%</td><td>13.5</td><td><span class="badge badge-orange">⚡ Opportunity</span></td></tr>
+          <tr><td>emergency plumber alexandria va</td><td>3</td><td>156</td><td class="ctr-good">1.9%</td><td>8.4</td><td><span class="badge badge-green">Local</span></td></tr>
+          <tr><td>plumber</td><td>3</td><td>14,390</td><td class="ctr-bad">0.02%</td><td>3.2</td><td><span class="badge badge-gray">Broad</span></td></tr>
+          <tr><td>plumber in alexandria va</td><td>3</td><td>286</td><td class="ctr-warn">1.1%</td><td>7.2</td><td><span class="badge badge-green">Local</span></td></tr>
+          <tr><td>plumbing alexandria va</td><td>3</td><td>239</td><td class="ctr-warn">1.3%</td><td>6.9</td><td><span class="badge badge-green">Local</span></td></tr>
+          <tr><td>cipp pipe lining near me</td><td>2</td><td>437</td><td class="ctr-warn">0.5%</td><td>44.3</td><td><span class="badge badge-orange">⚡ Specialty</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📄 Top 15 Landing Pages by Organic Clicks</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Page</th><th>Clicks</th><th>Impressions</th><th>CTR</th><th>Avg Position</th></tr></thead>
+        <tbody>
+          <tr><td>/service-area/alexandria-va/ <span class="badge badge-blue">GBP Link</span></td><td>362</td><td>150,075</td><td class="ctr-warn">0.24%</td><td>3.5</td></tr>
+          <tr><td>/ (Homepage)</td><td>178</td><td>30,783</td><td class="ctr-warn">0.58%</td><td>17.3</td></tr>
+          <tr><td>/service-area/fredericksburg-va/ <span class="badge badge-blue">GBP Link</span></td><td>70</td><td>35,846</td><td class="ctr-warn">0.20%</td><td>4.6</td></tr>
+          <tr><td>/contact-us/</td><td>27</td><td>2,725</td><td class="ctr-good">0.99%</td><td>12.1</td></tr>
+          <tr><td>/blog/how-to-descale-plumbing-pipes/</td><td>16</td><td>7,095</td><td class="ctr-warn">0.23%</td><td>26.3</td></tr>
+          <tr><td>/sewer-and-drain/sewer-camera-inspection-alexandria-va/ <span class="badge badge-orange">⚡</span></td><td>16</td><td>245,975</td><td class="ctr-bad">0.01%</td><td>28.9</td></tr>
+          <tr><td>/service-area/fairfax-va/sewer-camera-inspection/</td><td>14</td><td>50,778</td><td class="ctr-bad">0.03%</td><td>58.8</td></tr>
+          <tr><td>/plumbing/sump-pumps-alexandria-va/</td><td>12</td><td>37,761</td><td class="ctr-bad">0.03%</td><td>46.9</td></tr>
+          <tr><td>/service-area/fairfax-va/pipe-lining/</td><td>10</td><td>29,539</td><td class="ctr-bad">0.03%</td><td>44.2</td></tr>
+          <tr><td>/sewer-and-drain/cured-in-place-pipe-alexandria-va/</td><td>9</td><td>2,357</td><td class="ctr-warn">0.38%</td><td>38.1</td></tr>
+          <tr><td>/blog/things-to-consider-when-installing-well-pumps/</td><td>8</td><td>516</td><td class="ctr-good">1.55%</td><td>15.1</td></tr>
+          <tr><td>/service-area/fredericksburg-va/ (organic)</td><td>8</td><td>6,031</td><td class="ctr-warn">0.13%</td><td>34.7</td></tr>
+          <tr><td>/service-area/arlington-va/sewer-camera-inspection/</td><td>6</td><td>106,809</td><td class="ctr-bad">0.01%</td><td>33.3</td></tr>
+          <tr><td>/service-area/fairfax-va/</td><td>6</td><td>4,936</td><td class="ctr-warn">0.12%</td><td>39.2</td></tr>
+          <tr><td>/service-area/fairfax-va/trenchless-pipe-repair/</td><td>6</td><td>49,526</td><td class="ctr-bad">0.01%</td><td>28.9</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">📱 Device Breakdown</div>
+      <div class="chart-wrap" style="height:200px"><canvas id="gscDeviceChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">🌍 Country Traffic</div>
+      <table>
+        <thead><tr><th>Country</th><th>Clicks</th><th>Impressions</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>🇺🇸 United States</td><td>847</td><td>1,703,184</td><td><span class="badge badge-green">Core</span></td></tr>
+          <tr><td>🇳🇬 Nigeria</td><td>12</td><td>362</td><td><span class="badge badge-orange">Filter</span></td></tr>
+          <tr><td>🇵🇰 Pakistan</td><td>11</td><td>498</td><td><span class="badge badge-orange">Filter</span></td></tr>
+          <tr><td>🇵🇭 Philippines</td><td>10</td><td>1,857</td><td><span class="badge badge-orange">Filter</span></td></tr>
+          <tr><td>🇧🇩 Bangladesh</td><td>7</td><td>280</td><td><span class="badge badge-orange">Filter</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="insight-grid">
+    <div class="insight-box red">
+      <div class="insight-title">🚨 245K Impressions — 16 Clicks (Sewer Camera Page)</div>
+      <p>The <strong>sewer camera inspection Alexandria page</strong> has 245,975 impressions at position 28.9 — ranking on page 3. A focused optimization campaign (title tag, internal links, schema, review mentions) could push this to page 1 and yield 400–800 monthly clicks.</p>
+    </div>
+    <div class="insight-box red">
+      <div class="insight-title">🚨 "Drain Cleaning Near Me" — 6,527 Impr, Only 3 Clicks</div>
+      <p>Ranking at position 13.5 for <strong>"drain cleaning near me"</strong> — just off page 1. A dedicated drain cleaning Alexandria page optimized for this term could realistically move to top 5 and generate 50–100 additional monthly clicks.</p>
+    </div>
+    <div class="insight-box orange">
+      <div class="insight-title">⚠️ Brand Queries = 17% of Traffic</div>
+      <p>"Pipe doctor" brand variations generated <strong>157 of 919 total clicks</strong>. While brand awareness is healthy, the remaining 83% of non-brand clicks are largely low-volume. Invest in non-brand keyword expansion to reduce dependency on brand traffic.</p>
+    </div>
+    <div class="insight-box orange">
+      <div class="insight-title">⚠️ Mobile CTR 3x Lower Than Desktop</div>
+      <p>Mobile: 414 clicks / 1,183,649 impressions = <strong>0.03% CTR</strong>. Desktop: 496 clicks / 547,521 impressions = <strong>0.09% CTR</strong>. Mobile ranking is weaker than desktop — run a mobile-first audit on all service pages.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">✏️ Title Tag &amp; Meta Description Rewrites — Top Opportunities</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Page</th><th>Current Title</th><th>Recommended Rewrite</th></tr></thead>
+        <tbody>
+          <tr><td>/sewer-and-drain/sewer-camera-inspection-alexandria-va/</td><td>Sewer Camera Inspection Alexandria VA</td><td><strong>Sewer Camera Inspection Alexandria VA | Same-Day Diagnosis | The Pipe Doctor</strong></td></tr>
+          <tr><td>/service-area/fairfax-va/sewer-camera-inspection/</td><td>Sewer Camera Inspection Fairfax VA</td><td><strong>Sewer Camera Inspection Fairfax VA | Licensed Plumber | 24/7 Available</strong></td></tr>
+          <tr><td>/plumbing/sump-pumps-alexandria-va/</td><td>Sump Pumps Alexandria VA</td><td><strong>Sump Pump Installation &amp; Repair Alexandria VA | Free Estimates</strong></td></tr>
+          <tr><td>/service-area/fairfax-va/pipe-lining/</td><td>Pipe Lining Fairfax VA</td><td><strong>Trenchless Pipe Lining Fairfax VA | No-Dig Solution | The Pipe Doctor</strong></td></tr>
+          <tr><td>/ (Homepage)</td><td>The Pipe Doctor Plumbing</td><td><strong>The Pipe Doctor Plumbing | Fredericksburg &amp; Alexandria VA | Sewer &amp; Drain Experts</strong></td></tr>
+          <tr><td>drain cleaning near me (no page)</td><td>—</td><td>Create /sewer-and-drain/drain-cleaning-near-me/ targeting 6,527 impressions</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🕳 Content Gap Analysis — GSC-Backed Opportunities</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Missing Content</th><th>GSC Signal</th><th>Priority</th><th>Est. Monthly Clicks</th></tr></thead>
+        <tbody>
+          <tr><td>Drain Cleaning Near Me dedicated page</td><td>6,527 impr, pos 13.5</td><td><span class="badge badge-red">HIGH</span></td><td>+50–80</td></tr>
+          <tr><td>Sewer Camera Inspection optimization (Alex)</td><td>245,975 impr, pos 28.9</td><td><span class="badge badge-red">HIGH</span></td><td>+400–800</td></tr>
+          <tr><td>Plumber Near Me landing page (Frxbg)</td><td>4,122 impr, pos 7.2</td><td><span class="badge badge-red">HIGH</span></td><td>+40–60</td></tr>
+          <tr><td>Sump Pump page optimization</td><td>37,761 impr, pos 46.9</td><td><span class="badge badge-orange">MEDIUM</span></td><td>+20–35</td></tr>
+          <tr><td>Trenchless Pipe Repair Fairfax</td><td>49,526 impr, pos 28.9</td><td><span class="badge badge-orange">MEDIUM</span></td><td>+30–50</td></tr>
+          <tr><td>Arlington Sewer Camera optimization</td><td>106,809 impr, pos 33.3</td><td><span class="badge badge-orange">MEDIUM</span></td><td>+80–150</td></tr>
+          <tr><td>Emergency Plumber Fredericksburg page</td><td>Brand + local intent</td><td><span class="badge badge-orange">MEDIUM</span></td><td>+25–40</td></tr>
+          <tr><td>CIPP Pipe Lining Near Me guide</td><td>437 impr, pos 44.3</td><td><span class="badge badge-gray">LOW</span></td><td>+10–15</td></tr>
+          <tr><td>Stafford Plumber dedicated page</td><td>Map pack weakness pos 17</td><td><span class="badge badge-orange">MEDIUM</span></td><td>+20–35</td></tr>
+          <tr><td>Water Pipe Descaling guide (blog)</td><td>7,095 impr, pos 26.3</td><td><span class="badge badge-gray">LOW</span></td><td>+15–25</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📆 GSC Content Calendar — Jun–Nov 2026</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Month</th><th>Content Piece</th><th>Target Keywords</th><th>GSC Impressions</th></tr></thead>
+        <tbody>
+          <tr><td>June 2026</td><td>Sewer Camera Inspection Alexandria — full page overhaul</td><td>sewer camera inspection alexandria va, camera inspection plumbing</td><td>245,975</td></tr>
+          <tr><td>June 2026</td><td>Drain Cleaning Near Me — new dedicated page</td><td>drain cleaning near me, clogged drain service</td><td>6,527</td></tr>
+          <tr><td>July 2026</td><td>Plumber Near Me Fredericksburg — new landing page</td><td>plumber near me, plumber fredericksburg va</td><td>4,122</td></tr>
+          <tr><td>July 2026</td><td>Arlington Sewer Camera Inspection — page optimization</td><td>sewer camera arlington va, drain inspection arlington</td><td>106,809</td></tr>
+          <tr><td>August 2026</td><td>Trenchless Pipe Repair Fairfax — full page overhaul</td><td>trenchless pipe repair fairfax va, pipe lining fairfax</td><td>49,526</td></tr>
+          <tr><td>September 2026</td><td>Emergency Plumber Fredericksburg — new landing page</td><td>emergency plumber fredericksburg, 24/7 plumber fredericksburg va</td><td>Local intent</td></tr>
+          <tr><td>October 2026</td><td>Sump Pump Installation Alexandria — page optimization</td><td>sump pump alexandria va, sump pump installation cost</td><td>37,761</td></tr>
+          <tr><td>November 2026</td><td>Stafford Plumber Dedicated Service Page</td><td>plumber stafford va, plumbing stafford virginia</td><td>Map pack gap</td></tr>
+          <tr><td>November 2026</td><td>How to Descale Plumbing Pipes — blog expansion</td><td>descale plumbing pipes, pipe descaling service</td><td>7,095</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB 4: CORE UPDATE AUDIT ===== -->
+<div id="tab-coreupdate" class="tab-pane">
+  <div class="section-title">Core Update Audit — E-E-A-T Assessment</div>
+  <div class="section-sub">Google Quality Evaluator Guidelines · Helpful Content Assessment · thepipedoctorplumbing.com</div>
+
+  <div class="eeat-grid">
+    <div class="eeat-card">
+      <div class="eeat-letter">Experience (E)</div>
+      <div class="eeat-grade grade-b">B</div>
+      <div class="eeat-note">Service photos present, before/after work shown. Missing personal technician stories and job-specific case studies.</div>
+    </div>
+    <div class="eeat-card">
+      <div class="eeat-letter">Expertise (E)</div>
+      <div class="eeat-grade grade-b">B+</div>
+      <div class="eeat-note">Specialty services (CIPP, trenchless) demonstrate deep expertise. Technical blog content strong. License numbers not prominently displayed.</div>
+    </div>
+    <div class="eeat-card">
+      <div class="eeat-letter">Authoritativeness (A)</div>
+      <div class="eeat-grade grade-c">C+</div>
+      <div class="eeat-note">No author bio pages. Limited third-party media citations. GBP authority strong locally but weak for broader VA market.</div>
+    </div>
+    <div class="eeat-card">
+      <div class="eeat-letter">Trustworthiness (T)</div>
+      <div class="eeat-grade grade-b">B</div>
+      <div class="eeat-note">HTTPS secure, clear contact info, reviews visible. Missing: license numbers in footer, insurance documentation, LSA badge.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">✅ Compliance Checklist</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Item</th><th>Status</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Schema markup (LocalBusiness)</td><td><span class="checklist-pass">✓ PASS</span></td><td>Properly implemented on homepage</td></tr>
+          <tr><td>HTTPS / SSL certificate</td><td><span class="checklist-pass">✓ PASS</span></td><td>Secure across all pages</td></tr>
+          <tr><td>GBP listing active and verified</td><td><span class="checklist-pass">✓ PASS</span></td><td>Fredericksburg + service area coverage</td></tr>
+          <tr><td>Active blog with helpful content</td><td><span class="checklist-pass">✓ PASS</span></td><td>Descale pipes post: 7,095 impressions</td></tr>
+          <tr><td>Contact page with NAP consistency</td><td><span class="checklist-pass">✓ PASS</span></td><td>Name, address, phone consistent</td></tr>
+          <tr><td>Service area pages exist</td><td><span class="checklist-pass">✓ PASS</span></td><td>Alexandria, Fredericksburg, Fairfax, Arlington, Stafford</td></tr>
+          <tr><td>Photo gallery / portfolio</td><td><span class="checklist-pass">✓ PASS</span></td><td>Work photos present</td></tr>
+          <tr><td>Review section visible</td><td><span class="checklist-pass">✓ PASS</span></td><td>/about-us/reviews/ page active</td></tr>
+          <tr><td>Mobile responsive design</td><td><span class="checklist-pass">✓ PASS</span></td><td>38% mobile sessions confirm usability</td></tr>
+          <tr><td>FAQ page exists</td><td><span class="checklist-pass">✓ PASS</span></td><td>/about-us/frequently-asked-questions/ active</td></tr>
+          <tr><td>Author attribution on blog</td><td><span class="checklist-warn">! WARN</span></td><td>Blog posts lack author bylines — EEAT risk</td></tr>
+          <tr><td>License numbers displayed</td><td><span class="checklist-warn">! WARN</span></td><td>Not visible in footer or About page</td></tr>
+          <tr><td>FAQ schema (FAQPage markup)</td><td><span class="checklist-warn">! WARN</span></td><td>FAQ page exists but schema not implemented</td></tr>
+          <tr><td>Thin service area pages</td><td><span class="checklist-warn">! WARN</span></td><td>Fairfax, Arlington pages need unique content expansion</td></tr>
+          <tr><td>AggregateRating schema</td><td><span class="checklist-warn">! WARN</span></td><td>Reviews not marked up — missing rich snippet opportunity</td></tr>
+          <tr><td>Author bio / team pages</td><td><span class="checklist-fail">✗ FAIL</span></td><td>No /about/team/ or technician profiles</td></tr>
+          <tr><td>LSA (Local Services Ads) badge</td><td><span class="checklist-fail">✗ FAIL</span></td><td>Not enrolled — major trust signal missing</td></tr>
+          <tr><td>Insurance documentation visible</td><td><span class="checklist-fail">✗ FAIL</span></td><td>No proof of insurance on site</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="insight-grid">
+    <div class="insight-box orange">
+      <div class="insight-title">⚠️ Service Area Doorway Page Risk</div>
+      <p>Pages like /service-area/arlington-va/sewer-camera-inspection/ (106K impressions, 6 clicks) may be flagged as thin doorway pages. Each service × city page needs <strong>500+ words of unique, location-specific content</strong> with local landmarks, specific job stories, and area-specific FAQs.</p>
+    </div>
+    <div class="insight-box green">
+      <div class="insight-title">✅ Blog Content Genuinely Helpful</div>
+      <p>The descale pipes post (7,095 impressions) and well pump installation post (516 impressions, 1.55% CTR) demonstrate <strong>genuine helpfulness</strong> — strong EEAT signals. Continue with 1–2 technical blog posts per month focused on real customer questions.</p>
+    </div>
+    <div class="insight-box red">
+      <div class="insight-title">🚨 No AI Content Risk Mitigation</div>
+      <p>No evidence of AI-generated thin content detected, but <strong>multiple low-word service area pages</strong> could be misidentified as AI-generated doorways. Add real job photos, named technicians, and local service history to each page to create unambiguous human experience signals.</p>
+    </div>
+    <div class="insight-box blue">
+      <div class="insight-title">💡 Specialty Services = Strong Expertise Signal</div>
+      <p>CIPP pipe lining, trenchless repair, and sewer camera inspection are <strong>technically complex services</strong> that signal deep plumbing expertise. Expand technical content on these pages with procedure explanations, before/after case studies, and cost transparency.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 Core Update History — Pipe Doctor Impact Assessment</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Update</th><th>Date</th><th>Focus</th><th>Pipe Doctor Impact</th></tr></thead>
+        <tbody>
+          <tr><td>March 2025 Core Update</td><td>Mar 2025</td><td>Quality &amp; EEAT signals</td><td>Minimal — specialty pages maintained positions</td></tr>
+          <tr><td>June 2025 Core Update</td><td>Jun 2025</td><td>Helpful content &amp; experience</td><td>Positive for specialty service pages; "plumber in" remained weak</td></tr>
+          <tr><td>Helpful Content System</td><td>Ongoing</td><td>Human-first, depth signals</td><td>Service area pages at risk due to thin content (&lt;300 words)</td></tr>
+          <tr><td>August 2025 Core Update</td><td>Aug 2025</td><td>Authority &amp; trustworthiness</td><td>Position 29.7 avg suggests mid-pack — no major volatility</td></tr>
+          <tr><td>November 2025 Core Update</td><td>Nov 2025</td><td>Broad quality signals</td><td>Stable — impressions held at 507K despite ranking volatility</td></tr>
+          <tr><td>March 2026 Core Update</td><td>Mar 2026</td><td>EEAT + spam policy</td><td>Position improved 30.7 → 26.9 — positive trend beginning</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎯 E-E-A-T Action Plan</div>
+    <div class="action-grid">
+      <div class="action-box">
+        <div class="priority">Priority 1 — HIGH</div>
+        <h4>Add Technician License Numbers</h4>
+        <p>Display Virginia contractor license numbers in the footer, About page, and service pages. Direct trust signal per Google Quality Rater Guidelines. Estimated EEAT grade improvement: C+ → B for Authoritativeness.</p>
+      </div>
+      <div class="action-box">
+        <div class="priority">Priority 2 — HIGH</div>
+        <h4>Create Technician Bio Pages</h4>
+        <p>Add /about-us/team/ with individual technician profiles — years of experience, certifications, specialties, photos. Link blog posts to author profiles. This is the single strongest EEAT improvement available.</p>
+      </div>
+      <div class="action-box">
+        <div class="priority">Priority 3 — MEDIUM</div>
+        <h4>Implement FAQPage Schema</h4>
+        <p>Add FAQPage schema to /about-us/frequently-asked-questions/ and all 8 core service pages. Targets AI Overview appearances for cost and how-to queries. Estimated 15–25% CTR improvement on affected pages.</p>
+      </div>
+      <div class="action-box">
+        <div class="priority">Priority 4 — MEDIUM</div>
+        <h4>Apply for Google Guaranteed (LSA)</h4>
+        <p>Google Guaranteed badge appears above organic results and Google Ads. For a plumbing company with strong call conversion, LSA typically generates a 20–40% increase in qualified call volume. Virginia contractor license required.</p>
+      </div>
+      <div class="action-box">
+        <div class="priority">Priority 5 — MEDIUM</div>
+        <h4>Expand Service Area Page Content</h4>
+        <p>Rewrite Fairfax, Arlington, and Stafford service area pages to 600+ words each with: unique local neighborhoods served, named technicians who operate in the area, specific job examples, and area-specific FAQs.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB 5: GA4 ANALYTICS ===== -->
+<div id="tab-ga4" class="tab-pane">
+  <div class="section-title">GA4 Analytics</div>
+  <div class="section-sub">Google Analytics 4 · Property 353756487 · Jan–Apr 2026</div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-label">Total Sessions</div><div class="kpi-value">3,987</div><div class="kpi-delta neutral">Jan–Apr 2026</div></div>
+    <div class="kpi-card"><div class="kpi-label">Total Users</div><div class="kpi-value">3,304</div><div class="kpi-delta neutral">3,268 new users</div></div>
+    <div class="kpi-card orange"><div class="kpi-label">Engagement Rate</div><div class="kpi-value">44.1%</div><div class="kpi-delta down">↓ Below avg (60%+)</div></div>
+    <div class="kpi-card"><div class="kpi-label">Avg Session Duration</div><div class="kpi-value">2:10</div><div class="kpi-delta neutral">129.9 seconds</div></div>
+    <div class="kpi-card green"><div class="kpi-label">Phone Calls</div><div class="kpi-value">371</div><div class="kpi-delta up">↑ Top conversion</div></div>
+    <div class="kpi-card green"><div class="kpi-label">Form Submits</div><div class="kpi-value">140</div><div class="kpi-delta neutral">+ 86 thank-you views</div></div>
+    <div class="kpi-card"><div class="kpi-label">Page Views</div><div class="kpi-value">5,904</div><div class="kpi-delta neutral">1.48 pages/session</div></div>
+    <div class="kpi-card orange"><div class="kpi-label">Bounce Rate</div><div class="kpi-value">55.9%</div><div class="kpi-delta down">↓ High</div></div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">📈 Monthly Sessions Trend</div>
+      <div class="chart-wrap"><canvas id="ga4SessionsChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📊 Traffic by Channel</div>
+      <div class="chart-wrap"><canvas id="ga4ChannelsChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 Monthly GA4 Performance</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Month</th><th>Sessions</th><th>Users</th><th>Engaged Sessions</th><th>Engagement Rate</th><th>Avg Duration</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Jan 2026</strong></td><td><strong>1,164</strong></td><td><strong>983</strong></td><td><strong>525</strong></td><td class="ctr-warn"><strong>45.1%</strong></td><td><strong>1:54</strong></td></tr>
+          <tr><td><strong>Feb 2026</strong></td><td><strong>725</strong></td><td><strong>609</strong></td><td><strong>401</strong></td><td class="ctr-good"><strong>55.3%</strong></td><td><strong>2:39</strong></td></tr>
+          <tr><td><strong>Mar 2026</strong></td><td><strong>985</strong></td><td><strong>820</strong></td><td><strong>463</strong></td><td class="ctr-warn"><strong>47.0%</strong></td><td><strong>2:38</strong></td></tr>
+          <tr><td><strong>Apr 2026</strong></td><td><strong>1,113</strong></td><td><strong>956</strong></td><td><strong>339</strong></td><td class="ctr-bad"><strong>30.5%</strong></td><td><strong>1:35</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">📄 Top Pages by Views</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Page</th><th>Views</th><th>Users</th></tr></thead>
+          <tbody>
+            <tr><td>/ (Homepage)</td><td>1,918</td><td>1,443</td></tr>
+            <tr><td>/service-area/alexandria-va/</td><td>622</td><td>492</td></tr>
+            <tr><td>/contact-us/</td><td>506</td><td>342</td></tr>
+            <tr><td>/service-area/fredericksburg-va/</td><td>174</td><td>131</td></tr>
+            <tr><td>/coupons/</td><td>169</td><td>114</td></tr>
+            <tr><td>/about-us/</td><td>110</td><td>85</td></tr>
+            <tr><td>/thank-you/</td><td>85</td><td>78</td></tr>
+            <tr><td>/plumbing/</td><td>76</td><td>65</td></tr>
+            <tr><td>/blog/</td><td>70</td><td>32</td></tr>
+            <tr><td>/about-us/reviews/</td><td>65</td><td>57</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">📱 Device Distribution</div>
+      <div class="chart-wrap" style="height:200px"><canvas id="ga4DeviceChart"></canvas></div>
+      <table style="margin-top:12px">
+        <thead><tr><th>Device</th><th>Sessions</th><th>Users</th><th>Share</th></tr></thead>
+        <tbody>
+          <tr><td>Desktop</td><td>2,437</td><td>1,933</td><td>61.1%</td></tr>
+          <tr><td>Mobile</td><td>1,492</td><td>1,320</td><td>37.4%</td></tr>
+          <tr><td>Tablet</td><td>66</td><td>58</td><td>1.7%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎯 Conversions by Type</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Conversion</th><th>Count</th><th>Share</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>📞 Phone Number Clicks</td><td>371</td><td>72.7%</td><td><span class="badge badge-green">Primary revenue driver</span></td></tr>
+          <tr><td>📝 Form Submissions</td><td>140</td><td>27.4%</td><td><span class="badge badge-blue">Lead capture</span></td></tr>
+          <tr><td>✅ Thank You Page Views</td><td>86</td><td>16.8%</td><td><span class="badge badge-blue">Confirmed leads</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="insight-grid">
+    <div class="insight-box red">
+      <div class="insight-title">🚨 April Engagement Collapsed to 30.5%</div>
+      <p>Engagement dropped from 55% in February to <strong>30.5% in April</strong> despite sessions increasing to 1,113. This pattern — more sessions, less engagement — indicates paid traffic quality issues. Review paid search ad targeting and landing page relevance for April campaigns.</p>
+    </div>
+    <div class="insight-box green">
+      <div class="insight-title">✅ Phone Call Conversion is Strong</div>
+      <p>371 phone number clicks in 4 months = <strong>93 calls/month average</strong>. Combined with the 97.8% call answer rate (CallRail data), this means nearly every generated call is being captured. Focus is on growing top-of-funnel to scale conversion volume.</p>
+    </div>
+    <div class="insight-box orange">
+      <div class="insight-title">⚠️ Coupons Page — 169 Views</div>
+      <p>The <strong>/coupons/ page is the 5th most visited page</strong> (169 views, 114 users) — showing strong price-sensitive visitor behavior. Add a lead capture form on the coupons page and track downloads/conversions to quantify coupon-driven revenue.</p>
+    </div>
+    <div class="insight-box blue">
+      <div class="insight-title">💡 Desktop-Heavy Traffic (61%)</div>
+      <p>Unlike most local service businesses (which skew 60%+ mobile), <strong>The Pipe Doctor is 61% desktop</strong>. This suggests users doing research before calling — possibly property managers, contractors, or commercial clients. Consider targeted content for commercial/B2B audiences.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB 6: ON-PAGE SEO ===== -->
+<div id="tab-onpage" class="tab-pane">
+  <div class="section-title">On-Page SEO Audit</div>
+  <div class="section-sub">Technical and content SEO audit · thepipedoctorplumbing.com</div>
+
+  <div class="card">
+    <div class="card-title">🔍 Page-by-Page SEO Audit</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Page</th><th>Title Tag</th><th>Meta Description</th><th>H1</th><th>Schema</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr><td>Homepage</td><td><span class="checklist-warn">Needs keyword</span></td><td><span class="checklist-warn">Generic</span></td><td><span class="checklist-pass">Present</span></td><td><span class="checklist-pass">LocalBusiness</span></td><td><span class="badge badge-orange">MEDIUM</span></td></tr>
+          <tr><td>/service-area/alexandria-va/</td><td><span class="checklist-pass">Good</span></td><td><span class="checklist-warn">Could improve CTR</span></td><td><span class="checklist-pass">Present</span></td><td><span class="checklist-warn">No FAQ schema</span></td><td><span class="badge badge-orange">MEDIUM</span></td></tr>
+          <tr><td>/sewer-camera-inspection-alexandria-va/</td><td><span class="checklist-fail">Weak — 245K impr</span></td><td><span class="checklist-fail">Not optimized</span></td><td><span class="checklist-pass">Present</span></td><td><span class="checklist-fail">Missing Service schema</span></td><td><span class="badge badge-red">HIGH</span></td></tr>
+          <tr><td>/plumbing/sump-pumps-alexandria-va/</td><td><span class="checklist-warn">Needs refresh</span></td><td><span class="checklist-fail">Missing</span></td><td><span class="checklist-pass">Present</span></td><td><span class="checklist-fail">Missing</span></td><td><span class="badge badge-red">HIGH</span></td></tr>
+          <tr><td>/service-area/fairfax-va/</td><td><span class="checklist-warn">Thin</span></td><td><span class="checklist-warn">Generic</span></td><td><span class="checklist-pass">Present</span></td><td><span class="checklist-fail">Missing</span></td><td><span class="badge badge-red">HIGH</span></td></tr>
+          <tr><td>/service-area/arlington-va/</td><td><span class="checklist-warn">Thin</span></td><td><span class="checklist-warn">Generic</span></td><td><span class="checklist-pass">Present</span></td><td><span class="checklist-fail">Missing</span></td><td><span class="badge badge-red">HIGH</span></td></tr>
+          <tr><td>/about-us/frequently-asked-questions/</td><td><span class="checklist-pass">Good</span></td><td><span class="checklist-pass">Good</span></td><td><span class="checklist-pass">Present</span></td><td><span class="checklist-fail">No FAQPage schema</span></td><td><span class="badge badge-orange">MEDIUM</span></td></tr>
+          <tr><td>/blog/ posts</td><td><span class="checklist-pass">Good</span></td><td><span class="checklist-warn">Varies</span></td><td><span class="checklist-pass">Present</span></td><td><span class="checklist-fail">No Article schema</span></td><td><span class="badge badge-orange">MEDIUM</span></td></tr>
+          <tr><td>/coupons/</td><td><span class="checklist-warn">Not keyword-rich</span></td><td><span class="checklist-warn">Generic</span></td><td><span class="checklist-pass">Present</span></td><td><span class="checklist-fail">Missing Offer schema</span></td><td><span class="badge badge-orange">MEDIUM</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="insight-grid">
+    <div class="insight-box red">
+      <div class="insight-title">🚨 Sewer Camera Inspection — Highest Priority Fix</div>
+      <p>245,975 impressions and position 28.9 with only 16 clicks. The title tag, meta description, H1, and internal link structure all need optimization. Adding Service schema and FAQ schema could trigger rich snippets and double CTR within 60–90 days.</p>
+    </div>
+    <div class="insight-box red">
+      <div class="insight-title">🚨 Service Area Pages — Thin Content Risk</div>
+      <p>Pages like /service-area/fairfax-va/ (6 clicks, 4,936 impr) and /service-area/arlington-va/ are likely thin template duplicates. Google's Helpful Content system actively penalizes these. Each needs 600–800 words of unique, location-specific content.</p>
+    </div>
+    <div class="insight-box orange">
+      <div class="insight-title">⚠️ Missing Schema — Multiple Pages</div>
+      <p>No FAQPage schema on the FAQ page, no Service schema on service pages, no Article schema on blog posts, no Offer schema on the coupons page. Implementing these 4 schema types could generate multiple rich snippet appearances in Google Search.</p>
+    </div>
+    <div class="insight-box green">
+      <div class="insight-title">✅ Core Pages Performing Well</div>
+      <p>Homepage (1,918 views), Alexandria service area (622 views), and Contact page (506 views, 169s avg duration) all show strong user engagement. These pages are working — prioritize fixing the underperforming sewer/service area pages.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB 7: CONTENT CALENDAR ===== -->
+<div id="tab-content" class="tab-pane">
+  <div class="section-title">Content Calendar — Jun–Nov 2026</div>
+  <div class="section-sub">GSC-backed content priorities for maximum organic traffic growth</div>
+
+  <div class="card">
+    <div class="card-title">📅 6-Month Content Plan</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Month</th><th>Content Piece</th><th>Type</th><th>Target Keywords</th><th>GSC Opportunity</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr><td>June 2026</td><td>Sewer Camera Inspection Alexandria VA — Complete Overhaul</td><td><span class="badge badge-blue">Service Page</span></td><td>sewer camera inspection alexandria va</td><td>245,975 impr, pos 28.9</td><td><span class="badge badge-red">HIGH</span></td></tr>
+          <tr><td>June 2026</td><td>Drain Cleaning Near Me — New Dedicated Page</td><td><span class="badge badge-blue">Service Page</span></td><td>drain cleaning near me, drain cleaning fredericksburg va</td><td>6,527 impr, pos 13.5</td><td><span class="badge badge-red">HIGH</span></td></tr>
+          <tr><td>July 2026</td><td>Arlington Sewer Camera Inspection — Optimization</td><td><span class="badge badge-blue">Service Page</span></td><td>sewer camera inspection arlington va</td><td>106,809 impr, pos 33.3</td><td><span class="badge badge-red">HIGH</span></td></tr>
+          <tr><td>July 2026</td><td>Emergency Plumber Fredericksburg — New Landing Page</td><td><span class="badge badge-blue">Service Page</span></td><td>emergency plumber fredericksburg va, 24/7 plumber</td><td>High local intent</td><td><span class="badge badge-orange">MEDIUM</span></td></tr>
+          <tr><td>August 2026</td><td>Trenchless Pipe Repair Fairfax — Full Overhaul</td><td><span class="badge badge-blue">Service Page</span></td><td>trenchless pipe repair fairfax va, pipe lining fairfax</td><td>49,526 impr, pos 28.9</td><td><span class="badge badge-orange">MEDIUM</span></td></tr>
+          <tr><td>August 2026</td><td>"How Much Does Sewer Camera Inspection Cost?" — Blog</td><td><span class="badge badge-green">Blog</span></td><td>sewer camera inspection cost, how much does camera inspection cost</td><td>Commercial intent</td><td><span class="badge badge-orange">MEDIUM</span></td></tr>
+          <tr><td>September 2026</td><td>Sump Pump Installation Alexandria — Optimization</td><td><span class="badge badge-blue">Service Page</span></td><td>sump pump installation alexandria va, sump pump repair</td><td>37,761 impr, pos 46.9</td><td><span class="badge badge-orange">MEDIUM</span></td></tr>
+          <tr><td>October 2026</td><td>Plumber Near Me Fredericksburg — New Landing Page</td><td><span class="badge badge-blue">Service Page</span></td><td>plumber near me, plumber fredericksburg va</td><td>4,122 impr, pos 7.2</td><td><span class="badge badge-orange">MEDIUM</span></td></tr>
+          <tr><td>October 2026</td><td>Signs You Need Trenchless Pipe Replacement — Blog</td><td><span class="badge badge-green">Blog</span></td><td>when to replace pipes, trenchless pipe replacement signs</td><td>Informational intent</td><td><span class="badge badge-gray">LOW</span></td></tr>
+          <tr><td>November 2026</td><td>Stafford VA Plumber — New Service Page</td><td><span class="badge badge-blue">Service Page</span></td><td>plumber stafford va, plumbing stafford virginia</td><td>Map pack weakness pos 17</td><td><span class="badge badge-orange">MEDIUM</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="insight-grid">
+    <div class="insight-box red">
+      <div class="insight-title">🚨 June Priority — 352K Combined Impressions</div>
+      <p>The sewer camera inspection page (245K impr) + drain cleaning near me (6.5K impr) together represent <strong>the highest-value optimization opportunity</strong> available. Completing both in June alone could add 500–900 monthly organic clicks within 90 days.</p>
+    </div>
+    <div class="insight-box green">
+      <div class="insight-title">✅ Blog Strategy — Answer Real Questions</div>
+      <p>The "how to descale pipes" post performs well (7,095 impressions). Continue this pattern: <strong>answer specific plumbing cost and how-to questions</strong> with detailed, honest content. Target commercial intent queries ("how much does X cost in Alexandria VA") for high-conversion blog traffic.</p>
+    </div>
+    <div class="insight-box blue">
+      <div class="insight-title">💡 Service × City Matrix Approach</div>
+      <p>The Pipe Doctor serves 5+ Virginia cities × 8+ services = 40+ potential optimized pages. Prioritize by GSC impression volume: sewer camera + fairfax/arlington/fredericksburg, trenchless repair + fairfax, drain cleaning + all cities. Build a <strong>systematic page-by-page matrix</strong> over 12 months.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB 8: LOCAL SEO ===== -->
+<div id="tab-local" class="tab-pane">
+  <div class="section-title">Local SEO</div>
+  <div class="section-sub">Citations, NAP consistency, GBP optimization, and local link building</div>
+
+  <div class="insight-grid">
+    <div class="insight-box green">
+      <div class="insight-title">✅ NAP Consistency</div>
+      <p>Name, Address, Phone across GBP, website, and primary citations appears consistent. The GBP tracking confirms Fredericksburg, VA as the primary business location with active service area coverage across Northern Virginia.</p>
+    </div>
+    <div class="insight-box orange">
+      <div class="insight-title">⚠️ Citation Gap — Secondary Cities</div>
+      <p>Alexandria, Fairfax, and Arlington drive significant organic traffic but may lack citation coverage matching their GBP service area declarations. Build citations specifically mentioning these service cities to reinforce local authority.</p>
+    </div>
+    <div class="insight-box red">
+      <div class="insight-title">🚨 "Plumber In" Gap — Citations Issue</div>
+      <p>Ranking at position 17 for "plumber in Fredericksburg/Stafford" despite #1 rankings for specialty services indicates a <strong>citation authority deficit</strong> for broad plumbing keywords. Aggressively build citations on Yelp, HomeAdvisor, Angi, and local Fredericksburg/Stafford directories.</p>
+    </div>
+    <div class="insight-box blue">
+      <div class="insight-title">💡 GBP Post Cadence Opportunity</div>
+      <p>Monthly GBP posts (visible in the spreadsheet) are already active. Increase to <strong>2 posts/week</strong> — one highlighting a specialty service and one featuring a customer success story. Posts boost impressions and signal activity to Google's local algorithm.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 Citation Building Priority List</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Directory</th><th>Priority</th><th>Reason</th><th>Service Cities to Include</th></tr></thead>
+        <tbody>
+          <tr><td>Google Business Profile (all cities)</td><td><span class="badge badge-red">HIGH</span></td><td>Direct GBP ranking signal</td><td>Fredericksburg, Alexandria, Stafford, Fairfax, Arlington</td></tr>
+          <tr><td>Yelp</td><td><span class="badge badge-red">HIGH</span></td><td>Strong DA, high visibility</td><td>All service cities</td></tr>
+          <tr><td>Angi (formerly Angie's List)</td><td><span class="badge badge-red">HIGH</span></td><td>Plumbing-specific, lead gen</td><td>Northern Virginia</td></tr>
+          <tr><td>HomeAdvisor / Thumbtack</td><td><span class="badge badge-red">HIGH</span></td><td>Service industry authority</td><td>All service cities</td></tr>
+          <tr><td>BBB (Better Business Bureau)</td><td><span class="badge badge-orange">MEDIUM</span></td><td>Trust signal, backlink</td><td>Virginia chapter</td></tr>
+          <tr><td>Houzz</td><td><span class="badge badge-orange">MEDIUM</span></td><td>Home improvement authority</td><td>Northern Virginia</td></tr>
+          <tr><td>Fredericksburg Chamber of Commerce</td><td><span class="badge badge-orange">MEDIUM</span></td><td>Local authority signal</td><td>Fredericksburg, Stafford</td></tr>
+          <tr><td>NextDoor Business</td><td><span class="badge badge-orange">MEDIUM</span></td><td>Hyper-local trust signal</td><td>All neighborhoods served</td></tr>
+          <tr><td>Porch.com</td><td><span class="badge badge-gray">LOW</span></td><td>Home services directory</td><td>Virginia</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB 9: COMPETITIVE LANDSCAPE ===== -->
+<div id="tab-competitive" class="tab-pane">
+  <div class="section-title">Competitive Landscape</div>
+  <div class="section-sub">Fredericksburg &amp; Northern Virginia plumbing market analysis</div>
+
+  <div class="card">
+    <div class="card-title">⚔ Competitor Overview — Fredericksburg/Northern VA Market</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Competitor</th><th>Market Focus</th><th>Strengths</th><th>The Pipe Doctor Advantage</th></tr></thead>
+        <tbody>
+          <tr><td>Roto-Rooter (franchise)</td><td>All of NoVA</td><td>Brand recognition, advertising budget</td><td>Local expertise, specialty services (CIPP, trenchless)</td></tr>
+          <tr><td>Mr. Rooter Plumbing</td><td>All of NoVA</td><td>National brand, LSA presence</td><td>Specialty niche authority, faster response</td></tr>
+          <tr><td>Local independent plumbers</td><td>Fredericksburg</td><td>Low overhead, word-of-mouth</td><td>Advanced technology, CIPP/trenchless capabilities</td></tr>
+          <tr><td>Benjamin Franklin Plumbing</td><td>Northern VA</td><td>On-time guarantee, marketing</td><td>Trenchless specialization, technical blog authority</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="insight-grid">
+    <div class="insight-box green">
+      <div class="insight-title">🏆 Specialty Service Moat</div>
+      <p>CIPP pipe lining, trenchless sewer repair, and sewer camera inspection at <strong>#1 in Fredericksburg</strong> represents a defensible competitive moat that national franchises cannot easily replicate. Double down on this differentiation in all marketing.</p>
+    </div>
+    <div class="insight-box orange">
+      <div class="insight-title">⚠️ National Franchises Dominate "Plumber In"</div>
+      <p>Roto-Rooter and Mr. Rooter have LSA badges and massive ad budgets targeting "plumber near me" and "plumber in Fredericksburg." These broad keywords are expensive to compete on via SEO alone — <strong>prioritize specialty keywords + LSA enrollment</strong> to compete effectively.</p>
+    </div>
+    <div class="insight-box blue">
+      <div class="insight-title">💡 Alexandria Market — Underserved Online</div>
+      <p>The Alexandria service area page drives 39% of organic traffic. <strong>Alexandria is a premium market</strong> with high property values and commercial buildings that need specialty sewer services. A focused Alexandria SEO campaign could significantly increase revenue per job.</p>
+    </div>
+    <div class="insight-box blue">
+      <div class="insight-title">💡 Commercial B2B Opportunity</div>
+      <p>Desktop traffic at 61% and the Fairfax/Arlington presence suggest commercial clients. Property managers, HOAs, and commercial buildings in Northern Virginia are a <strong>high-value B2B segment</strong> that would benefit from dedicated landing pages and outreach campaigns.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB 10: PRIORITY ACTIONS ===== -->
+<div id="tab-actions" class="tab-pane">
+  <div class="section-title">Priority Action Plan</div>
+  <div class="section-sub">Ranked by ROI potential · The Pipe Doctor Plumbing · Summer 2026</div>
+
+  <div class="card">
+    <div class="card-title">🚀 Top 10 Priority Actions — Ranked by Impact</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Action Item</th><th>Impact</th><th>Effort</th><th>Est. Monthly Gain</th><th>Timeline</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1</strong></td><td>Optimize sewer camera inspection Alexandria page title, meta, H1, internal links, Service schema</td><td><span class="badge badge-red">CRITICAL</span></td><td><span class="badge badge-green">Low</span></td><td>+400–800 clicks</td><td>Week 1</td></tr>
+          <tr><td><strong>2</strong></td><td>Create drain cleaning near me dedicated page targeting pos 13.5 keyword (6,527 impr)</td><td><span class="badge badge-red">HIGH</span></td><td><span class="badge badge-orange">Medium</span></td><td>+50–80 clicks</td><td>Week 2</td></tr>
+          <tr><td><strong>3</strong></td><td>Optimize Arlington sewer camera page (106,809 impr, pos 33.3) — title + content expansion</td><td><span class="badge badge-red">HIGH</span></td><td><span class="badge badge-orange">Medium</span></td><td>+80–150 clicks</td><td>Week 2</td></tr>
+          <tr><td><strong>4</strong></td><td>Audit April engagement rate drop (30.5%) — review paid search landing page quality</td><td><span class="badge badge-red">HIGH</span></td><td><span class="badge badge-green">Low</span></td><td>Revenue quality</td><td>Week 1</td></tr>
+          <tr><td><strong>5</strong></td><td>Implement FAQPage schema on FAQ page + all 8 service pages</td><td><span class="badge badge-orange">MEDIUM</span></td><td><span class="badge badge-green">Low</span></td><td>+15–25% CTR</td><td>Week 2</td></tr>
+          <tr><td><strong>6</strong></td><td>Apply for LSA / Google Guaranteed badge — Virginia plumbing license required</td><td><span class="badge badge-orange">MEDIUM</span></td><td><span class="badge badge-orange">Medium</span></td><td>+20–40% calls</td><td>30 days</td></tr>
+          <tr><td><strong>7</strong></td><td>Add technician license numbers to footer, About page, and all service pages</td><td><span class="badge badge-orange">MEDIUM</span></td><td><span class="badge badge-green">Low</span></td><td>EEAT improvement</td><td>Week 1</td></tr>
+          <tr><td><strong>8</strong></td><td>Create technician bio/team page with certifications, specialties, photos</td><td><span class="badge badge-orange">MEDIUM</span></td><td><span class="badge badge-orange">Medium</span></td><td>Trust + EEAT</td><td>30 days</td></tr>
+          <tr><td><strong>9</strong></td><td>Set GSC geo-targeting to United States to filter international bot impressions</td><td><span class="badge badge-orange">MEDIUM</span></td><td><span class="badge badge-green">Low</span></td><td>Cleaner data</td><td>Week 1</td></tr>
+          <tr><td><strong>10</strong></td><td>Expand Fairfax + Arlington service area pages to 600+ words with unique local content</td><td><span class="badge badge-orange">MEDIUM</span></td><td><span class="badge badge-orange">Medium</span></td><td>+30–60 clicks</td><td>60 days</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📆 90-Day Action Roadmap</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Week</th><th>Actions</th><th>Owner</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Week 1</strong></td><td>Sewer camera inspection page overhaul · April engagement audit · License numbers · GSC geo-targeting</td><td>SEO Team</td></tr>
+          <tr><td><strong>Week 2–3</strong></td><td>Drain cleaning near me page · Arlington sewer camera optimization · FAQPage schema implementation</td><td>SEO Team</td></tr>
+          <tr><td><strong>Month 2</strong></td><td>LSA application · Technician bio pages · Trenchless Pipe Repair Fairfax overhaul</td><td>SEO + Owner</td></tr>
+          <tr><td><strong>Month 3</strong></td><td>Emergency plumber Fredericksburg page · Sump pump page optimization · Stafford dedicated page</td><td>SEO Team</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="insight-grid">
+    <div class="insight-box red">
+      <div class="insight-title">🎯 Quick Win — Week 1 = Massive Impact</div>
+      <p>The sewer camera inspection page optimization alone (Action #1) targets <strong>245,975 impressions</strong> at position 28.9. Moving from page 3 to page 1 is achievable in 60–90 days with title/meta updates + content expansion + internal linking. Conservative estimate: +400 clicks/month.</p>
+    </div>
+    <div class="insight-box green">
+      <div class="insight-title">✅ 90-Day Traffic Goal</div>
+      <p>Completing Actions 1–5 within 60 days should move monthly organic clicks from <strong>230–250 to 600–800 by September 2026</strong>. The sewer camera + Arlington pages alone represent 350K+ impressions waiting to be converted into clicks.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// Tab switching
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+const BLUE = 'rgba(13,75,140,0.85)';
+const ORANGE = 'rgba(230,126,34,0.85)';
+const GREEN = 'rgba(39,174,96,0.85)';
+const RED = 'rgba(192,57,43,0.85)';
+const GRAY = 'rgba(107,122,141,0.7)';
+
+// GBP Performance Chart
+new Chart(document.getElementById('gbpPerfChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr'],
+    datasets: [
+      { label: 'Website Visits', data: [949,838,930,761,537,573,512,596,559], backgroundColor: 'rgba(13,75,140,0.7)', yAxisID: 'y' },
+      { label: 'Calls', data: [13,8,17,12,4,10,5,4,12], backgroundColor: ORANGE, yAxisID: 'y1' }
+    ]
+  },
+  options: { responsive:true, maintainAspectRatio:false, scales: { y:{position:'left'}, y1:{position:'right',grid:{drawOnChartArea:false}} } }
+});
+
+// GBP Clicks Chart
+new Chart(document.getElementById('gbpClicksChart'), {
+  type: 'line',
+  data: {
+    labels: ['Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr'],
+    datasets: [{ label: 'GBP Clicks', data: [19,21,23,20,12,5,25,19,14], borderColor: BLUE, backgroundColor: 'rgba(13,75,140,0.1)', tension:0.3, fill:true, pointRadius:5 }]
+  },
+  options: { responsive:true, maintainAspectRatio:false }
+});
+
+// GSC Trend Chart
+new Chart(document.getElementById('gscTrendChart'), {
+  type: 'line',
+  data: {
+    labels: ['Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26','Apr 26'],
+    datasets: [
+      { label: 'Clicks', data: [266,260,213,252,233,252,182], borderColor: BLUE, backgroundColor: 'rgba(13,75,140,0.1)', tension:0.3, fill:true, yAxisID:'y' },
+      { label: 'Impressions/1000', data: [313,507,414,416,718,389,211], borderColor: ORANGE, borderDash:[5,5], tension:0.3, yAxisID:'y1' }
+    ]
+  },
+  options: { responsive:true, maintainAspectRatio:false,
+    scales: { y:{position:'left',title:{display:true,text:'Clicks'}}, y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'Impressions (000s)'}} }
+  }
+});
+
+// GSC Position Chart
+new Chart(document.getElementById('gscPositionChart'), {
+  type: 'line',
+  data: {
+    labels: ['Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26','Apr 26'],
+    datasets: [{ label: 'Avg Position', data: [26.5,30.7,30.7,29.6,28.0,26.9,34.4], borderColor: RED, backgroundColor: 'rgba(192,57,43,0.08)', tension:0.3, fill:true, pointRadius:5 }]
+  },
+  options: { responsive:true, maintainAspectRatio:false,
+    scales: { y:{ reverse:true, min:20, max:40, title:{display:true,text:'Position (lower = better)'} } }
+  }
+});
+
+// GSC Device Chart
+new Chart(document.getElementById('gscDeviceChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Desktop','Mobile','Tablet'],
+    datasets: [{ data: [496,414,9], backgroundColor: [BLUE, ORANGE, GREEN] }]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{position:'right'} } }
+});
+
+// GA4 Sessions Chart
+new Chart(document.getElementById('ga4SessionsChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Jan 2026','Feb 2026','Mar 2026','Apr 2026'],
+    datasets: [
+      { label: 'Sessions', data: [1164,725,985,1113], backgroundColor: BLUE },
+      { label: 'Engaged Sessions', data: [525,401,463,339], backgroundColor: GREEN }
+    ]
+  },
+  options: { responsive:true, maintainAspectRatio:false }
+});
+
+// GA4 Channels Chart
+new Chart(document.getElementById('ga4ChannelsChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Organic Search','Direct','Paid Search','Unassigned','Social','Referral','Other'],
+    datasets: [{ data: [1504,1343,836,159,64,61,26], backgroundColor: [GREEN, BLUE, ORANGE, GRAY, '#9B59B6', '#E74C3C', '#BDC3C7'] }]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{position:'right'} } }
+});
+
+// GA4 Device Chart
+new Chart(document.getElementById('ga4DeviceChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Desktop','Mobile','Tablet'],
+    datasets: [{ data: [2437,1492,66], backgroundColor: [BLUE, ORANGE, GREEN] }]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{position:'right'} } }
+});
+</script>
+</body>
+</html>
